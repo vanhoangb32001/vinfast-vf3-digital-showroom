@@ -4,45 +4,14 @@ import { ArrowRight, BatteryCharging, Shield, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CarCard } from "@/components/CarCard"
+import { FeaturedCarSlider } from "@/components/FeaturedCarSlider"
 import { cars } from "@/data/cars"
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1593941707882-a5bac6861d75?w=1920&h=1080&fit=crop"
-            alt="VinFast VF3 trên đường đô thị"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight">
-              VinFast VF3
-            </h1>
-            <p className="mt-4 text-white/90 max-w-2xl text-lg">
-              Xe điện nhỏ gọn cho đô thị. Tối giản, bền bỉ, tiết kiệm.
-            </p>
-            <div className="mt-8 flex gap-3">
-              <Link to="/chi-tiet-xe">
-                <Button size="lg">
-                  Khám phá chi tiết
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/dat-coc">
-                <Button size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white">
-                  Đặt cọc ngay
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Featured Car Slider - Full Screen */}
+      <FeaturedCarSlider />
 
       {/* Product Grid */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
