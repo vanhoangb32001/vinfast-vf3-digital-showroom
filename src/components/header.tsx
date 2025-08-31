@@ -26,11 +26,11 @@ export function Header() {
           <Link to="/" className="-m-1.5 p-1.5">
             <motion.div 
               className="flex items-center space-x-2"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <Car className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-gradient">VinFast</span>
+              <span className="text-2xl font-bold text-foreground">VinFast</span>
             </motion.div>
           </Link>
         </div>
@@ -74,7 +74,7 @@ export function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <ThemeToggle />
           <Link to="/dat-coc">
-            <Button className="hero-button">
+            <Button>
               Đăng ký tư vấn
             </Button>
           </Link>
