@@ -3,9 +3,8 @@ import { Link } from "react-router-dom"
 import { ArrowRight, BatteryCharging, Shield, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CarCard } from "@/components/CarCard"
 import { FeaturedCarSlider } from "@/components/FeaturedCarSlider"
-import { cars } from "@/data/cars"
+import { CarCategorySection } from "@/components/CarCategorySection"
 
 const Index = () => {
   return (
@@ -13,18 +12,8 @@ const Index = () => {
       {/* Featured Car Slider - Full Screen */}
       <FeaturedCarSlider />
 
-      {/* Product Grid */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Danh mục xe</h2>
-          <p className="text-muted-foreground mt-2">Các phiên bản VF3 với màu sắc đa dạng</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cars.map((car) => (
-            <CarCard key={car.id} id={car.id} name={car.name} variant={car.variant} price={car.price} image={car.image} colorName={car.colorName} />
-          ))}
-        </div>
-      </section>
+      {/* Car Category Section */}
+      <CarCategorySection />
 
       {/* Highlights */}
       <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
