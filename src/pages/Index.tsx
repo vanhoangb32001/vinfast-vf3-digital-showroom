@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FeaturedCarSlider } from "@/components/FeaturedCarSlider"
 import { CarCategorySection } from "@/components/CarCategorySection"
+import { BrandHistorySection } from "@/components/BrandHistorySection"
 
 const Index = () => {
   return (
@@ -14,6 +15,9 @@ const Index = () => {
 
       {/* Car Category Section */}
       <CarCategorySection />
+
+      {/* Brand History Section */}
+      <BrandHistorySection />
 
       {/* Highlights */}
       <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
