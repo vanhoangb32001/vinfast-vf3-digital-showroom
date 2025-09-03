@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Car, Zap, Leaf, Truck, ChevronLeft, ChevronRight } from "lucide-react"
+import { motion } from "framer-motion"
+import { Zap, Leaf, Truck } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -7,7 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { cars } from "@/data/cars"
 import { Link } from "react-router-dom"
-import { useRef } from "react"
 
 const categoryIcons = {
   electric: Zap,
@@ -28,14 +27,6 @@ const categoryDescriptions = {
 }
 
 export function CarCategorySection() {
-  const ref = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  })
-  
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
 
   const electricCars = cars.filter(car => car.category === "electric")
   const greenCars = cars.filter(car => car.category === "green")  
@@ -52,18 +43,6 @@ export function CarCategorySection() {
     }
   }
 
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0, scale: 0.95 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
 
   const LuxuryCarousel = ({ cars }: { cars: typeof electricCars }) => (
     <motion.div
@@ -194,7 +173,6 @@ export function CarCategorySection() {
 
   return (
     <section 
-      ref={ref}
       className="relative py-20 overflow-hidden"
     >
       {/* Premium background with multiple gradients */}
