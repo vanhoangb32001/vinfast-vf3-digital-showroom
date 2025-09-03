@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { cars } from "@/data/cars"
 import { Link } from "react-router-dom"
 
@@ -16,187 +15,155 @@ const categoryIcons = {
 
 const categoryLabels = {
   electric: "Xe Điện",
-  green: "Xe Xanh",
+  green: "Xe Xanh", 
   commercial: "Xe Thương Mại",
 }
 
 const categoryDescriptions = {
-  electric: "Dòng xe điện 100% thân thiện môi trường với công nghệ tiên tiến",
-  green: "Xe xăng tiết kiệm nhiên liệu với hiệu suất vận hành tối ưu",
-  commercial: "Giải pháp vận tải thương mại điện hóa cho doanh nghiệp",
+  electric: "Dòng xe điện 100% thân thiện môi trường với công nghệ tiên tiến nhất",
+  green: "Xe xăng tiết kiệm nhiên liệu với hiệu suất vận hành tối ưu và bền vững",
+  commercial: "Giải pháp vận tải thương mại điện hóa hoàn toàn cho doanh nghiệp hiện đại",
 }
 
 export function CarCategorySection() {
-
   const electricCars = cars.filter(car => car.category === "electric")
   const greenCars = cars.filter(car => car.category === "green")  
   const commercialCars = cars.filter(car => car.category === "commercial")
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  }
+  const ProfessionalCarGrid = ({ cars }: { cars: typeof electricCars }) => (
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+      {cars.map((car, index) => {
+        const IconComponent = categoryIcons[car.category]
+        return (
+          <motion.div 
+            key={car.id}
+            initial={{ opacity: 0, y: 60, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ 
+              duration: 0.7, 
+              delay: index * 0.1,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
+            whileHover={{ 
+              y: -16,
+              scale: 1.02,
+              transition: { duration: 0.4, ease: "easeOut" }
+            }}
+            className="group"
+          >
+            <Card className="h-full overflow-hidden border-0 bg-gradient-to-br from-card via-card/98 to-card/95 backdrop-blur-2xl shadow-2xl hover:shadow-3xl transition-all duration-700 group-hover:shadow-primary/25 relative">
+              {/* Premium glass overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-accent/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              
+              {/* Enhanced image container */}
+              <div className="relative overflow-hidden bg-gradient-to-br from-muted/10 to-muted/5">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10" />
+                <img
+                  src={car.image}
+                  alt={car.name}
+                  className="w-full h-64 sm:h-72 lg:h-80 xl:h-72 2xl:h-80 object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                />
+                
+                {/* Enhanced floating badges */}
+                <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-20">
+                  <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-xl shadow-2xl px-3 py-1.5 text-xs sm:text-sm font-medium">
+                    <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                    {car.variant}
+                  </Badge>
+                </div>
+                
+                {car.priceFrom && car.priceFrom !== "Liên hệ" && (
+                  <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 z-20">
+                    <Badge className="bg-primary/95 text-primary-foreground backdrop-blur-sm shadow-2xl px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold">
+                      Từ {car.priceFrom}
+                    </Badge>
+                  </div>
+                )}
 
+                {/* Enhanced shine effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1500 ease-out" />
+                </div>
+              </div>
+              
+              {/* Enhanced content section */}
+              <div className="p-6 sm:p-8 relative z-20 space-y-4 sm:space-y-6">
+                <div className="space-y-2 sm:space-y-3">
+                  <h3 className="text-xl sm:text-2xl lg:text-2xl xl:text-3xl font-bold bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent leading-tight">
+                    {car.name}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base line-clamp-2">
+                    {car.description}
+                  </p>
+                </div>
 
-  const LuxuryCarousel = ({ cars }: { cars: typeof electricCars }) => (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="relative"
-    >
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-4">
-          {cars.map((car) => {
-            const IconComponent = categoryIcons[car.category]
-            return (
-              <CarouselItem key={car.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                <motion.div 
-                  className="group relative"
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                  <Card className="h-full overflow-hidden border-0 bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-lg shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:shadow-primary/20">
-                    {/* Luxury gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <div className="relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
-                      <img
-                        src={car.image}
-                        alt={car.name}
-                        className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                      />
-                      
-                      {/* Floating badges with glass effect */}
-                      <div className="absolute top-4 left-4 z-20">
-                        <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-md">
-                          <IconComponent className="w-3 h-3 mr-1" />
-                          {car.variant}
-                        </Badge>
-                      </div>
-                      
-                      {car.priceFrom && car.priceFrom !== "Liên hệ" && (
-                        <div className="absolute bottom-4 right-4 z-20">
-                          <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm shadow-lg">
-                            Từ {car.priceFrom}
-                          </Badge>
-                        </div>
-                      )}
-
-                      {/* Shine effect on hover */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                      </div>
+                {/* Professional specs layout */}
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="space-y-1 sm:space-y-2">
+                      <span className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">Chỗ ngồi</span>
+                      <p className="font-bold text-base sm:text-lg text-foreground">{car.specs.seating}</p>
                     </div>
-                    
-                    <CardHeader className="pb-3 relative z-20">
-                      <CardTitle className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        {car.name}
-                      </CardTitle>
-                      <CardDescription className="text-sm leading-relaxed">
-                        {car.description}
-                      </CardDescription>
-                    </CardHeader>
-                    
-                    <CardContent className="pt-0 space-y-4 relative z-20">
-                      {/* Premium specs grid */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <span className="text-xs text-muted-foreground uppercase tracking-wider">Chỗ ngồi</span>
-                          <p className="font-semibold text-sm">{car.specs.seating}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <span className="text-xs text-muted-foreground uppercase tracking-wider">Động cơ</span>
-                          <p className="font-semibold text-sm">{car.specs.engineType}</p>
-                        </div>
-                        {car.specs.range && (
-                          <div className="col-span-2 space-y-1">
-                            <span className="text-xs text-muted-foreground uppercase tracking-wider">Phạm vi</span>
-                            <p className="font-semibold text-sm">{car.specs.range}</p>
-                          </div>
-                        )}
-                      </div>
-                      
-                      {/* Feature tags */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {car.keyFeatures.slice(0, 2).map((feature, index) => (
-                          <Badge 
-                            key={index} 
-                            variant="outline" 
-                            className="text-xs bg-muted/50 hover:bg-primary/10 transition-colors duration-300"
-                          >
-                            {feature}
-                          </Badge>
-                        ))}
-                      </div>
-                      
-                      {/* Premium CTA button */}
-                      <div className="pt-2">
-                        <Link to="/chi-tiet-xe">
-                          <Button 
-                            className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 shadow-lg hover:shadow-primary/25 transition-all duration-300" 
-                            size="sm"
-                          >
-                            <span className="font-medium">Khám phá ngay</span>
-                          </Button>
-                        </Link>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </CarouselItem>
-            )
-          })}
-        </CarouselContent>
-        
-        {/* Custom navigation with luxury styling */}
-        <div className="flex justify-center mt-8 gap-4">
-          <CarouselPrevious className="relative inset-auto translate-y-0 bg-white/10 backdrop-blur-md border-white/20 hover:bg-primary/20 hover:border-primary/30 text-primary shadow-xl" />
-          <CarouselNext className="relative inset-auto translate-y-0 bg-white/10 backdrop-blur-md border-white/20 hover:bg-primary/20 hover:border-primary/30 text-primary shadow-xl" />
-        </div>
-      </Carousel>
-    </motion.div>
+                    <div className="space-y-1 sm:space-y-2">
+                      <span className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">Động cơ</span>
+                      <p className="font-bold text-base sm:text-lg text-foreground">{car.specs.engineType}</p>
+                    </div>
+                  </div>
+                  
+                  {car.specs.range && (
+                    <div className="space-y-1 sm:space-y-2">
+                      <span className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">Phạm vi hoạt động</span>
+                      <p className="font-bold text-lg sm:text-xl text-primary">{car.specs.range}</p>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Enhanced feature tags */}
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {car.keyFeatures.slice(0, 3).map((feature, idx) => (
+                    <Badge 
+                      key={idx} 
+                      variant="outline" 
+                      className="text-xs sm:text-sm bg-muted/30 hover:bg-primary/10 border-muted-foreground/20 hover:border-primary/30 transition-all duration-300 px-2 sm:px-3 py-1"
+                    >
+                      {feature}
+                    </Badge>
+                  ))}
+                </div>
+                
+                {/* Premium CTA button */}
+                <div className="pt-2 sm:pt-4">
+                  <Link to="/chi-tiet-xe">
+                    <Button 
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-primary via-primary/90 to-accent hover:from-primary/90 hover:via-primary/80 hover:to-accent/90 shadow-xl hover:shadow-2xl hover:shadow-primary/40 transition-all duration-500 text-sm sm:text-base font-semibold py-4 sm:py-6"
+                    >
+                      Khám phá chi tiết
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        )
+      })}
+    </div>
   )
 
   return (
-    <section 
-      className="relative py-20 overflow-hidden"
-    >
-      {/* Premium background with multiple gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-t from-accent/5 via-transparent to-primary/5" />
+    <section className="min-h-screen relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
+      {/* Premium animated background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-t from-accent/[0.02] via-transparent to-primary/[0.02]" />
       
       {/* Animated background elements */}
       <motion.div 
-        className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
+        className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
         animate={{ 
           x: [0, 100, 0],
-          y: [0, -50, 0] 
-        }}
-        transition={{ 
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
-        animate={{ 
-          x: [0, -80, 0],
-          y: [0, 30, 0] 
+          y: [0, -50, 0],
+          scale: [1, 1.1, 1]
         }}
         transition={{ 
           duration: 25,
@@ -204,26 +171,43 @@ export function CarCategorySection() {
           ease: "linear"
         }}
       />
+      <motion.div 
+        className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+        animate={{ 
+          x: [0, -80, 0],
+          y: [0, 30, 0],
+          scale: [1, 0.9, 1]
+        }}
+        transition={{ 
+          duration: 30,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Enhanced header section */}
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Danh Mục Xe VinFast
           </motion.h2>
           <motion.p 
-            className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Khám phá dòng xe điện và xe xanh hiện đại với công nghệ tiên tiến, 
@@ -231,22 +215,24 @@ export function CarCategorySection() {
           </motion.p>
         </motion.div>
 
+        {/* Enhanced tabs section */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Tabs defaultValue="electric" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-12 bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl">
+            <TabsList className="grid w-full grid-cols-3 mb-8 sm:mb-12 lg:mb-16 bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl h-auto p-2">
               {Object.entries(categoryLabels).map(([key, label]) => {
                 const IconComponent = categoryIcons[key as keyof typeof categoryIcons]
                 return (
                   <TabsTrigger 
                     key={key} 
                     value={key} 
-                    className="flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-accent data-[state=active]:text-white transition-all duration-300"
+                    className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-accent data-[state=active]:text-white transition-all duration-300 py-3 sm:py-4 px-2 sm:px-4 rounded-lg text-xs sm:text-sm lg:text-base"
                   >
-                    <IconComponent className="w-5 h-5" />
+                    <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span className="font-medium">{label}</span>
                   </TabsTrigger>
                 )
@@ -254,22 +240,23 @@ export function CarCategorySection() {
             </TabsList>
 
             {Object.entries(categoryLabels).map(([key, label]) => (
-              <TabsContent key={key} value={key} className="space-y-8">
+              <TabsContent key={key} value={key} className="space-y-8 sm:space-y-12">
                 <motion.div 
-                  className="text-center mb-12"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center mb-8 sm:mb-12"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h3 className="text-2xl font-bold mb-3 text-foreground">{label}</h3>
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-foreground">{label}</h3>
+                  <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
                     {categoryDescriptions[key as keyof typeof categoryDescriptions]}
                   </p>
                 </motion.div>
                 
-                {key === "electric" && <LuxuryCarousel cars={electricCars} />}
-                {key === "green" && <LuxuryCarousel cars={greenCars} />}
-                {key === "commercial" && <LuxuryCarousel cars={commercialCars} />}
+                {key === "electric" && <ProfessionalCarGrid cars={electricCars} />}
+                {key === "green" && <ProfessionalCarGrid cars={greenCars} />}
+                {key === "commercial" && <ProfessionalCarGrid cars={commercialCars} />}
               </TabsContent>
             ))}
           </Tabs>
