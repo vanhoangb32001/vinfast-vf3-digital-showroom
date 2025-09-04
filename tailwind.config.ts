@@ -65,9 +65,9 @@ export default {
 				},
 				vinfast: {
 					blue: 'hsl(var(--vinfast-blue))',
-					green: 'hsl(var(--vinfast-green))',
 					'light-blue': 'hsl(var(--vinfast-light-blue))',
-					'light-green': 'hsl(var(--vinfast-light-green))'
+					'accent-blue': 'hsl(var(--vinfast-accent-blue))',
+					white: 'hsl(var(--vinfast-white))'
 				}
 			},
 			borderRadius: {

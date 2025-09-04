@@ -17,19 +17,19 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* VinFast Blue Theme */
-    --primary: 215 100% 50%; /* #007BFF */
+    /* Blue & White Theme */
+    --primary: 215 100% 50%; /* Bright Blue */
     --primary-foreground: 0 0% 100%;
     --primary-glow: 215 100% 70%;
 
-    /* VinFast Green Accent */
-    --secondary: 134 63% 41%; /* #28A745 */
-    --secondary-foreground: 0 0% 100%;
+    /* Light Blue Secondary */
+    --secondary: 215 80% 90%; /* Light Blue */
+    --secondary-foreground: 215 100% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 25% 96%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 134 63% 41%;
+    --accent: 215 100% 60%; /* Lighter Blue */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -41,11 +41,11 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    /* VinFast Custom Colors */
+    /* Blue & White Custom Colors */
     --vinfast-blue: 215 100% 50%;
-    --vinfast-green: 134 63% 41%;
     --vinfast-light-blue: 215 100% 95%;
-    --vinfast-light-green: 134 63% 95%;
+    --vinfast-accent-blue: 215 100% 60%;
+    --vinfast-white: 0 0% 100%;
 
     /* Gradients (subtle, monochrome) */
     --gradient-primary: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 96%));
@@ -79,19 +79,19 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    /* Dark mode VinFast colors */
+    /* Dark mode Blue & White colors */
     --primary: 215 100% 60%;
-    --primary-foreground: 222.2 84% 4.9%;
+    --primary-foreground: 0 0% 98%;
     --primary-glow: 215 100% 80%;
 
-    --secondary: 134 63% 51%;
-    --secondary-foreground: 222.2 84% 4.9%;
+    --secondary: 215 50% 25%;
+    --secondary-foreground: 215 100% 85%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 25% 15%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 134 63% 51%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent: 215 100% 70%;
+    --accent-foreground: 215 100% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -100,11 +100,11 @@ All colors MUST be HSL.
     --input: 217.2 32.6% 17.5%;
     --ring: 215 100% 60%;
 
-    /* Dark mode custom colors */
+    /* Dark mode Blue & White custom colors */
     --vinfast-blue: 215 100% 60%;
-    --vinfast-green: 134 63% 51%;
     --vinfast-light-blue: 215 100% 15%;
-    --vinfast-light-green: 134 63% 15%;
+    --vinfast-accent-blue: 215 100% 70%;
+    --vinfast-white: 0 0% 98%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
