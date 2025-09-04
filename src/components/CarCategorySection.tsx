@@ -31,7 +31,7 @@ export function CarCategorySection() {
   const commercialCars = cars.filter(car => car.category === "commercial")
 
   const ProfessionalCarGrid = ({ cars }: { cars: typeof electricCars }) => (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
       {cars.map((car, index) => {
         const IconComponent = categoryIcons[car.category]
         return (
@@ -62,7 +62,7 @@ export function CarCategorySection() {
                 <img
                   src={car.image}
                   alt={car.name}
-                  className="w-full h-64 sm:h-72 lg:h-80 xl:h-72 2xl:h-80 object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                  className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                 />
                 
                 {/* Enhanced floating badges */}
@@ -185,7 +185,7 @@ export function CarCategorySection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Enhanced header section */}
         <motion.div 
           className="text-center mb-12 sm:mb-16 lg:mb-20"
