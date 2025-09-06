@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
+import QRCode from "qrcode.react"
 
 export function SellerInfoSection() {
   const sellerData = {
@@ -28,6 +29,10 @@ ORG:VinFast
 TEL:${sellerData.phone}
 EMAIL:${sellerData.email}
 END:VCARD`
+
+  const telHref = `tel:${sellerData.phone.replace(/\s/g, '')}`
+  const mailHref = `mailto:${sellerData.email}`
+
 
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-background via-background to-secondary/5 relative overflow-hidden">
@@ -79,8 +84,11 @@ END:VCARD`
                   </Avatar>
                   
                   <div className="space-y-2">
-                    <CardTitle className="text-2xl lg:text-3xl font-bold text-primary">
+                    <CardTitle className="text-2xl lg:text-3xl font-bold text-primary flex items-center gap-2">
                       {sellerData.name}
+                      <Badge className="bg-primary/10 text-primary border-primary/20 flex items-center gap-1">
+                        <Shield className="w-3.5 h-3.5" /> Đã xác thực
+                      </Badge>
                     </CardTitle>
                     <p className="text-lg font-medium text-muted-foreground">
                       {sellerData.title}
@@ -99,7 +107,7 @@ END:VCARD`
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star 
                           key={star} 
-                          className={`w-5 h-5 ${star <= sellerData.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
+                          className={`w-5 h-5 ${star <= Math.round(sellerData.rating) ? 'text-primary fill-current' : 'text-muted-foreground/40'}`} 
                         />
                       ))}
                     </div>
@@ -128,18 +136,31 @@ END:VCARD`
                 </div>
 
                 {/* QR Code */}
-                <div className="text-center p-4 bg-white rounded-xl shadow-lg">
-                  <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gray-100 rounded-lg flex items-center justify-center mb-2">
-                    <div className="text-xs text-center text-gray-500 px-2">
-                      QR Contact<br/>Card
-                    </div>
+                <div className="text-center p-4 bg-card/80 rounded-xl shadow-lg ring-1 ring-border">
+                  <div className="inline-block rounded-lg p-2 bg-background">
+                    <QRCode value={qrCodeData} size={136} level="H" includeMargin={false} />
                   </div>
-                  <p className="text-xs text-muted-foreground font-medium">Quét để lưu liên hệ</p>
+                  <p className="text-xs text-muted-foreground font-medium mt-2">Quét để lưu liên hệ</p>
                 </div>
               </div>
             </CardHeader>
 
             <CardContent className="p-6 lg:p-8">
+              {/* Quick stats */}
+              <div className="grid grid-cols-3 gap-3 mb-8">
+                <div className="text-center p-4 rounded-lg bg-primary/5 border border-primary/10">
+                  <p className="text-2xl font-extrabold text-primary">1.200+</p>
+                  <p className="text-xs text-muted-foreground">Khách hàng phục vụ</p>
+                </div>
+                <div className="text-center p-4 rounded-lg bg-primary/5 border border-primary/10">
+                  <p className="text-2xl font-extrabold text-primary">650+</p>
+                  <p className="text-xs text-muted-foreground">Xe bàn giao</p>
+                </div>
+                <div className="text-center p-4 rounded-lg bg-primary/5 border border-primary/10">
+                  <p className="text-2xl font-extrabold text-primary">98%</p>
+                  <p className="text-xs text-muted-foreground">Hài lòng</p>
+                </div>
+              </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Contact Information */}
                 <div className="space-y-6">
@@ -204,22 +225,26 @@ END:VCARD`
                     <Separator />
                     
                     <div className="space-y-3">
-                      <Button 
-                        size="lg" 
-                        className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 font-bold py-4 shadow-lg"
-                      >
-                        <Phone className="w-5 h-5 mr-2" />
-                        Gọi ngay để tư vấn
-                      </Button>
+                      <a href={telHref} className="block">
+                        <Button 
+                          size="lg" 
+                          className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 font-bold py-4 shadow-lg"
+                        >
+                          <Phone className="w-5 h-5 mr-2" />
+                          Gọi ngay để tư vấn
+                        </Button>
+                      </a>
                       
-                      <Button 
-                        variant="outline" 
-                        size="lg" 
-                        className="w-full border-primary/30 text-primary hover:bg-primary/10 font-semibold py-4"
-                      >
-                        <Mail className="w-5 h-5 mr-2" />
-                        Gửi email liên hệ
-                      </Button>
+                      <a href={mailHref} className="block">
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="w-full border-primary/30 text-primary hover:bg-primary/10 font-semibold py-4"
+                        >
+                          <Mail className="w-5 h-5 mr-2" />
+                          Gửi email liên hệ
+                        </Button>
+                      </a>
                     </div>
                   </div>
                 </div>
