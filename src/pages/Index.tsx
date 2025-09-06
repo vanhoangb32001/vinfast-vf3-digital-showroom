@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FeaturedCarSlider } from "@/components/FeaturedCarSlider"
 import { CarCategorySection } from "@/components/CarCategorySection"
 import { BrandHistorySection } from "@/components/BrandHistorySection"
+import { SellerInfoSection } from "@/components/SellerInfoSection"
 
 const Index = () => {
   return (
@@ -15,6 +16,9 @@ const Index = () => {
 
       {/* Car Category Section */}
       <CarCategorySection />
+
+      {/* Seller Info Section */}
+      <SellerInfoSection />
 
       {/* Brand History Section */}
       <BrandHistorySection />

@@ -31,7 +31,7 @@ export function CarCategorySection() {
   const commercialCars = cars.filter(car => car.category === "commercial")
 
   const ProfessionalCarGrid = ({ cars }: { cars: typeof electricCars }) => (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
       {cars.map((car, index) => {
         const IconComponent = categoryIcons[car.category]
         return (
@@ -41,94 +41,94 @@ export function CarCategorySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ 
-              duration: 0.5, 
-              delay: index * 0.1,
-              ease: "easeOut"
+              duration: 0.6, 
+              delay: index * 0.15,
+              ease: [0.25, 0.46, 0.45, 0.94]
             }}
             className="group will-change-transform"
           >
-            <Card className="h-full overflow-hidden bg-card shadow-lg hover:shadow-xl transition-all duration-300 border border-border/50 hover:border-primary/20 group-hover:translate-y-[-8px]">
-              {/* Simple overlay */}
-              <div className="absolute inset-0 bg-primary/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <Card className="relative h-full overflow-hidden bg-gradient-to-br from-card to-card/80 backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-0 ring-1 ring-white/10 hover:ring-primary/30 group-hover:translate-y-[-12px] group-hover:rotate-1">
+              {/* Glowing background effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              {/* Optimized image container */}
-              <div className="relative overflow-hidden">
+              {/* Image section with enhanced overlay */}
+              <div className="relative overflow-hidden h-56 lg:h-64">
                 <img
                   src={car.image}
                   alt={car.name}
-                  className="w-full h-48 sm:h-56 lg:h-64 object-cover will-change-transform transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover will-change-transform transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                 />
                 
-                {/* Simple badges */}
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                
+                {/* Enhanced badges */}
                 <div className="absolute top-4 left-4 z-10">
-                  <Badge className="bg-white/90 text-primary border-primary/20 px-3 py-1.5 text-xs font-medium">
-                    <IconComponent className="w-3 h-3 mr-1.5" />
+                  <Badge className="bg-white/95 backdrop-blur-sm text-primary border-0 px-4 py-2 text-sm font-bold shadow-lg">
+                    <IconComponent className="w-4 h-4 mr-2" />
                     {car.variant}
                   </Badge>
                 </div>
                 
                 {car.priceFrom && car.priceFrom !== "Liên hệ" && (
                   <div className="absolute bottom-4 right-4 z-10">
-                    <Badge className="bg-primary text-primary-foreground px-3 py-1.5 text-xs font-semibold">
+                    <Badge className="bg-gradient-to-r from-primary to-primary/80 text-white border-0 px-4 py-2 text-sm font-bold shadow-xl backdrop-blur-sm">
                       Từ {car.priceFrom}
                     </Badge>
                   </div>
                 )}
               </div>
               
-              {/* Optimized content section */}
-              <div className="p-6 sm:p-8 space-y-4 sm:space-y-6">
-                <div className="space-y-2 sm:space-y-3">
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary leading-tight">
+              {/* Enhanced content section */}
+              <div className="relative p-6 lg:p-8 space-y-6 bg-gradient-to-b from-transparent to-card/50">
+                <div className="space-y-3">
+                  <h3 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent leading-tight">
                     {car.name}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base line-clamp-2">
+                  <p className="text-muted-foreground leading-relaxed text-base line-clamp-2 font-medium">
                     {car.description}
                   </p>
                 </div>
 
-                {/* Simple specs layout */}
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                    <div className="space-y-1">
-                      <span className="text-xs text-muted-foreground uppercase font-medium">Chỗ ngồi</span>
-                      <p className="font-semibold text-base text-foreground">{car.specs.seating}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <span className="text-xs text-muted-foreground uppercase font-medium">Động cơ</span>
-                      <p className="font-semibold text-base text-foreground">{car.specs.engineType}</p>
-                    </div>
+                {/* Enhanced specs grid */}
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
+                    <span className="block text-xs text-muted-foreground uppercase font-bold mb-1">Chỗ ngồi</span>
+                    <p className="font-bold text-lg text-foreground">{car.specs.seating}</p>
                   </div>
-                  
+                  <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
+                    <span className="block text-xs text-muted-foreground uppercase font-bold mb-1">Động cơ</span>
+                    <p className="font-bold text-lg text-foreground">{car.specs.engineType}</p>
+                  </div>
                   {car.specs.range && (
-                    <div className="space-y-1">
-                      <span className="text-xs text-muted-foreground uppercase font-medium">Phạm vi hoạt động</span>
+                    <div className="text-center p-3 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl border border-primary/20">
+                      <span className="block text-xs text-muted-foreground uppercase font-bold mb-1">Phạm vi</span>
                       <p className="font-bold text-lg text-primary">{car.specs.range}</p>
                     </div>
                   )}
                 </div>
                 
-                {/* Simple feature tags */}
+                {/* Enhanced feature badges */}
                 <div className="flex flex-wrap gap-2">
                   {car.keyFeatures.slice(0, 3).map((feature, idx) => (
                     <Badge 
                       key={idx} 
                       variant="outline" 
-                      className="text-xs bg-secondary/20 border-primary/20 text-primary hover:bg-primary/10 transition-colors duration-200 px-2 py-1"
+                      className="text-xs bg-white/5 border-primary/30 text-primary hover:bg-primary/10 transition-all duration-300 px-3 py-2 backdrop-blur-sm"
                     >
                       {feature}
                     </Badge>
                   ))}
                 </div>
                 
-                {/* Simple CTA button */}
+                {/* Enhanced CTA button */}
                 <div className="pt-4">
                   <Link to="/chi-tiet-xe">
                     <Button 
                       size="lg"
-                      className="w-full bg-primary hover:bg-primary/90 transition-colors duration-200 text-base font-semibold py-4"
+                      className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 text-base font-bold py-4 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
                     >
-                      Khám phá chi tiết
+                      Khám phá chi tiết →
                     </Button>
                   </Link>
                 </div>
