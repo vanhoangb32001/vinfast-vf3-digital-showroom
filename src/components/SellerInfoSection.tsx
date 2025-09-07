@@ -71,6 +71,7 @@ const consultants: ConsultantProfile[] = [
 ];
 
 export function SellerInfoSection() {
+  const consultant = consultants[0];
   return (
     <section className="relative py-24 lg:py-32 bg-gradient-to-br from-luxury-obsidian via-luxury-charcoal to-luxury-navy overflow-hidden">
       {/* Luxury Background Elements */}
