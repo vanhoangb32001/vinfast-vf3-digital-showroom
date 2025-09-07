@@ -47,6 +47,14 @@ All colors MUST be HSL.
     --vinfast-accent-blue: 215 100% 60%;
     --vinfast-white: 0 0% 100%;
 
+    /* Luxury Colors */
+    --luxury-navy: 221 83% 20%;        /* Deep navy blue */
+    --luxury-charcoal: 220 13% 18%;    /* Elegant charcoal */
+    --luxury-silver: 220 9% 46%;       /* Sophisticated silver */
+    --luxury-gold: 38 92% 50%;         /* Subtle gold accent */
+    --luxury-platinum: 220 14% 96%;    /* Platinum white */
+    --luxury-obsidian: 220 27% 8%;     /* Deep black */
+
     /* Gradients (subtle, monochrome) */
     --gradient-primary: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 96%));
     --gradient-eco: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 94%));

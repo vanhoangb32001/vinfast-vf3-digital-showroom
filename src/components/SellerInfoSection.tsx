@@ -1,254 +1,347 @@
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, Clock, Star, Shield, Award } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Phone, Mail, MapPin, Clock, Star, Shield, Award, Calendar, ChevronRight } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
-import QRCode from "qrcode.react"
+
+interface ConsultantProfile {
+  id: string;
+  name: string;
+  title: string;
+  experience: string;
+  rating: number;
+  reviews: number;
+  phone: string;
+  email: string;
+  location: string;
+  avatar: string;
+  bio: string;
+  specialties: string[];
+  languages: string[];
+}
+
+const consultants: ConsultantProfile[] = [
+  {
+    id: "1",
+    name: "Nguyễn Minh Châu",
+    title: "Cố vấn Ô tô Cấp cao",
+    experience: "12+ năm kinh nghiệm",
+    rating: 4.9,
+    reviews: 347,
+    phone: "0988 123 456",
+    email: "minh.chau@vinfast.vn", 
+    location: "Showroom VinFast Hai Bà Trưng, Hà Nội",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+    bio: "Chuyên gia hàng đầu về xe điện cao cấp với kinh nghiệm quốc tế tại Mercedes-Benz và BMW. Tận tâm phục vụ khách hàng VIP với dịch vụ cá nhân hóa hoàn hảo.",
+    specialties: ["Xe điện cao cấp", "Tư vấn tài chính", "Dịch vụ VIP"],
+    languages: ["Tiếng Việt", "English", "日本語"]
+  },
+  {
+    id: "2", 
+    name: "Trần Thùy Linh",
+    title: "Chuyên gia Tư vấn Luxury",
+    experience: "8+ năm kinh nghiệm",
+    rating: 4.8,
+    reviews: 289,
+    phone: "0977 234 567",
+    email: "thuy.linh@vinfast.vn",
+    location: "Showroom VinFast Đống Đa, Hà Nội", 
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=300&h=300&fit=crop&crop=face",
+    bio: "Chuyên gia tư vấn xe sang trọng với background tại Audi và Lexus. Hiểu sâu nhu cầu khách hàng doanh nhân và gia đình thượng lưu, mang đến trải nghiệm mua sắm đẳng cấp.",
+    specialties: ["Xe gia đình cao cấp", "Customization", "After-sales Service"],
+    languages: ["Tiếng Việt", "English", "Français"]
+  },
+  {
+    id: "3",
+    name: "Lê Hoàng Nam",
+    title: "Senior Automotive Consultant", 
+    experience: "10+ năm kinh nghiệm",
+    rating: 4.9,
+    reviews: 412,
+    phone: "0966 345 678",
+    email: "hoang.nam@vinfast.vn",
+    location: "Showroom VinFast Cầu Giấy, Hà Nội",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face", 
+    bio: "Cựu chuyên gia của Tesla và Porsche, chuyên sâu về công nghệ xe điện thông minh. Cam kết mang đến giải pháp di chuyển bền vững và hiệu quả nhất cho khách hàng.",
+    specialties: ["Công nghệ EV", "Smart Features", "Performance"],
+    languages: ["Tiếng Việt", "English", "Deutsch"]
+  }
+];
 
 export function SellerInfoSection() {
-  const sellerData = {
-    name: "Nguyễn Văn Minh",
-    title: "Chuyên viên tư vấn VinFast",
-    experience: "5+ năm kinh nghiệm",
-    rating: 4.9,
-    reviews: 247,
-    phone: "0988 123 456",
-    email: "minh.nguyen@vinfast.vn",
-    location: "Showroom VinFast Thái Hà, Hà Nội",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
-    achievements: ["Tư vấn viên xuất sắc 2023", "Top Sales Q4 2023", "Chứng chỉ VinFast Professional"],
-    workingHours: "8:00 - 18:00 (T2-T7)"
-  }
-
-  const qrCodeData = `BEGIN:VCARD
-VERSION:3.0
-FN:${sellerData.name}
-ORG:VinFast
-TEL:${sellerData.phone}
-EMAIL:${sellerData.email}
-END:VCARD`
-
-  const telHref = `tel:${sellerData.phone.replace(/\s/g, '')}`
-  const mailHref = `mailto:${sellerData.email}`
-
-
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-background via-background to-secondary/5 relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-primary/3 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-accent/3 rounded-full blur-3xl" />
+    <section className="relative py-24 lg:py-32 bg-gradient-to-br from-luxury-obsidian via-luxury-charcoal to-luxury-navy overflow-hidden">
+      {/* Luxury Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-luxury-gold rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-luxury-silver rounded-full blur-3xl" />
+      </div>
       
+      {/* Subtle Car Silhouette */}
+      <div className="absolute inset-0 opacity-3">
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-64 bg-gradient-to-t from-luxury-platinum/10 to-transparent" 
+             style={{ clipPath: 'polygon(20% 100%, 25% 60%, 35% 40%, 65% 40%, 75% 60%, 80% 100%)' }} />
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
+        {/* Luxury Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16 lg:mb-24"
+        >
           <motion.h2 
+            className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-luxury-platinum mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mb-4"
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Thông Tin Tư Vấn Viên
+            Gặp Gỡ Chuyên Gia 
+            <span className="block text-transparent bg-gradient-to-r from-luxury-gold to-luxury-silver bg-clip-text">
+              Tư Vấn Của Chúng Tôi
+            </span>
           </motion.h2>
+          
+          <motion.div 
+            className="w-32 h-1 bg-gradient-to-r from-luxury-gold to-luxury-silver mx-auto mb-8"
+            initial={{ width: 0 }}
+            whileInView={{ width: 128 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
+          
           <motion.p 
+            className="text-lg lg:text-xl text-luxury-silver max-w-4xl mx-auto font-montserrat font-light leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto"
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Đội ngũ chuyên gia tư vấn chuyên nghiệp, sẵn sàng hỗ trợ bạn tìm hiểu và lựa chọn xe VinFast phù hợp nhất
+            Đội ngũ chuyên gia tư vấn cao cấp với kinh nghiệm quốc tế, tận tâm mang đến trải nghiệm 
+            mua sắm xe hạng sang đẳng cấp thế giới cho khách hàng VinFast
           </motion.p>
+        </motion.div>
+
+        {/* Consultant Profiles Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto">
+          {consultants.map((consultant, index) => (
+            <motion.div
+              key={consultant.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className="group"
+            >
+              <Card className="bg-gradient-to-br from-luxury-charcoal/80 to-luxury-navy/60 backdrop-blur-xl border border-luxury-silver/20 shadow-2xl hover:shadow-luxury-gold/10 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+                <CardContent className="p-0">
+                  {/* Profile Header with Avatar */}
+                  <div className="relative p-8 pb-6">
+                    <div className="flex flex-col items-center text-center">
+                      {/* Premium Avatar */}
+                      <div className="relative mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold to-luxury-silver rounded-full p-1">
+                          <div className="bg-luxury-obsidian rounded-full p-1">
+                            <Avatar className="w-24 h-24 ring-4 ring-luxury-platinum/20">
+                              <AvatarImage 
+                                src={consultant.avatar} 
+                                alt={consultant.name}
+                                className="object-cover"
+                              />
+                              <AvatarFallback className="bg-luxury-navy text-luxury-platinum text-2xl font-bold">
+                                {consultant.name.charAt(0)}
+                              </AvatarFallback>
+                            </Avatar>
+                          </div>
+                        </div>
+                        
+                        {/* Verification Badge */}
+                        <Badge className="absolute -top-2 -right-2 bg-luxury-gold/90 text-luxury-obsidian border-0 px-2 py-1">
+                          <Shield className="w-3 h-3 mr-1" />
+                          Certified
+                        </Badge>
+                      </div>
+
+                      {/* Name and Title */}
+                      <h3 className="font-playfair text-2xl font-bold text-luxury-platinum mb-2">
+                        {consultant.name}
+                      </h3>
+                      <p className="text-luxury-gold font-montserrat font-medium italic mb-3">
+                        {consultant.title}
+                      </p>
+                      <Badge className="bg-luxury-navy/50 text-luxury-silver border border-luxury-silver/30 mb-4">
+                        {consultant.experience}
+                      </Badge>
+
+                      {/* Rating */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="flex">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <Star 
+                              key={star} 
+                              className={`w-4 h-4 ${star <= Math.round(consultant.rating) ? 'text-luxury-gold fill-current' : 'text-luxury-silver/30'}`} 
+                            />
+                          ))}
+                        </div>
+                        <span className="font-bold text-luxury-platinum">{consultant.rating}</span>
+                        <span className="text-luxury-silver text-sm">({consultant.reviews})</span>
+                      </div>
+                    </div>
+
+                    <Separator className="bg-luxury-silver/20 my-6" />
+
+                    {/* Bio */}
+                    <p className="text-luxury-silver text-sm leading-relaxed font-montserrat font-light mb-6 text-center">
+                      {consultant.bio}
+                    </p>
+
+                    {/* Specialties */}
+                    <div className="mb-6">
+                      <h4 className="text-luxury-platinum font-montserrat font-semibold text-sm mb-3 flex items-center justify-center gap-2">
+                        <Award className="w-4 h-4 text-luxury-gold" />
+                        Chuyên môn
+                      </h4>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        {consultant.specialties.map((specialty, idx) => (
+                          <Badge 
+                            key={idx}
+                            variant="outline" 
+                            className="bg-luxury-gold/10 border-luxury-gold/30 text-luxury-gold text-xs font-montserrat"
+                          >
+                            {specialty}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Languages */}
+                    <div className="mb-8">
+                      <h4 className="text-luxury-platinum font-montserrat font-semibold text-sm mb-3 text-center">
+                        Ngôn ngữ
+                      </h4>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        {consultant.languages.map((language, idx) => (
+                          <Badge 
+                            key={idx}
+                            className="bg-luxury-silver/10 text-luxury-silver border border-luxury-silver/30 text-xs font-montserrat"
+                          >
+                            {language}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Contact Actions */}
+                    <div className="space-y-3">
+                      <a href={`tel:${consultant.phone.replace(/\s/g, '')}`}>
+                        <Button 
+                          size="lg" 
+                          className="w-full bg-gradient-to-r from-luxury-gold to-luxury-gold/80 text-luxury-obsidian font-montserrat font-bold hover:from-luxury-gold/90 hover:to-luxury-gold/70 transition-all duration-300 shadow-lg hover:shadow-luxury-gold/20 group"
+                        >
+                          <Phone className="w-4 h-4 mr-2 group-hover:animate-pulse" />
+                          Gọi Ngay
+                          <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
+                      
+                      <a href={`mailto:${consultant.email}`}>
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="w-full border-luxury-silver/30 text-luxury-silver hover:bg-luxury-silver/10 font-montserrat font-medium hover:border-luxury-silver/50 transition-all duration-300 group"
+                        >
+                          <Calendar className="w-4 h-4 mr-2" />
+                          Đặt Lịch Tư Vấn
+                          <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
+                    </div>
+
+                    {/* Contact Details */}
+                    <div className="mt-6 pt-6 border-t border-luxury-silver/20">
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-center gap-3 text-luxury-silver">
+                          <Phone className="w-4 h-4 text-luxury-gold flex-shrink-0" />
+                          <span className="font-montserrat">{consultant.phone}</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-luxury-silver">
+                          <Mail className="w-4 h-4 text-luxury-gold flex-shrink-0" />
+                          <span className="font-montserrat break-all">{consultant.email}</span>
+                        </div>
+                        <div className="flex items-start gap-3 text-luxury-silver">
+                          <MapPin className="w-4 h-4 text-luxury-gold flex-shrink-0 mt-0.5" />
+                          <span className="font-montserrat text-xs leading-relaxed">{consultant.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Seller Card */}
+        {/* Luxury CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="max-w-4xl mx-auto"
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-20 text-center"
         >
-          <Card className="overflow-hidden bg-gradient-to-br from-card to-card/80 backdrop-blur-xl shadow-2xl border-0 ring-1 ring-white/10">
-            <CardHeader className="bg-gradient-to-r from-primary/5 to-accent/5 pb-6">
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6">
-                {/* Avatar and basic info */}
-                <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-                  <Avatar className="w-24 h-24 lg:w-32 lg:h-32 ring-4 ring-white/20 shadow-xl mb-4">
-                    <AvatarImage src={sellerData.avatar} alt={sellerData.name} />
-                    <AvatarFallback className="bg-primary text-white text-2xl font-bold">
-                      {sellerData.name.charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-                  
-                  <div className="space-y-2">
-                    <CardTitle className="text-2xl lg:text-3xl font-bold text-primary flex items-center gap-2">
-                      {sellerData.name}
-                      <Badge className="bg-primary/10 text-primary border-primary/20 flex items-center gap-1">
-                        <Shield className="w-3.5 h-3.5" /> Đã xác thực
-                      </Badge>
-                    </CardTitle>
-                    <p className="text-lg font-medium text-muted-foreground">
-                      {sellerData.title}
-                    </p>
-                    <Badge className="bg-primary/10 text-primary border-primary/20 px-3 py-1">
-                      {sellerData.experience}
-                    </Badge>
-                  </div>
+          <Card className="max-w-4xl mx-auto bg-gradient-to-r from-luxury-gold/10 to-luxury-silver/10 border border-luxury-gold/30 backdrop-blur-xl">
+            <CardContent className="p-12">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-luxury-gold to-luxury-silver flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-luxury-obsidian" />
                 </div>
-
-                {/* Rating and achievements */}
-                <div className="flex-1 space-y-4">
-                  {/* Rating */}
-                  <div className="flex items-center justify-center lg:justify-start gap-2">
-                    <div className="flex">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star 
-                          key={star} 
-                          className={`w-5 h-5 ${star <= Math.round(sellerData.rating) ? 'text-primary fill-current' : 'text-muted-foreground/40'}`} 
-                        />
-                      ))}
-                    </div>
-                    <span className="font-bold text-lg">{sellerData.rating}</span>
-                    <span className="text-muted-foreground">({sellerData.reviews} đánh giá)</span>
+                <h3 className="font-playfair text-2xl font-bold text-luxury-platinum">
+                  Cam Kết Dịch Vụ Luxury
+                </h3>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-luxury-gold/20 flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-8 h-8 text-luxury-gold" />
                   </div>
-
-                  {/* Achievements */}
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-sm text-muted-foreground uppercase flex items-center gap-2">
-                      <Award className="w-4 h-4" />
-                      Thành tích nổi bật
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {sellerData.achievements.map((achievement, index) => (
-                        <Badge 
-                          key={index}
-                          variant="outline" 
-                          className="bg-accent/10 border-accent/30 text-accent-foreground text-xs"
-                        >
-                          {achievement}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
+                  <h4 className="font-montserrat font-semibold text-luxury-platinum mb-2">Tư vấn 24/7</h4>
+                  <p className="text-luxury-silver text-sm">Hỗ trợ tận tâm mọi lúc</p>
                 </div>
-
-                {/* QR Code */}
-                <div className="text-center p-4 bg-card/80 rounded-xl shadow-lg ring-1 ring-border">
-                  <div className="inline-block rounded-lg p-2 bg-background">
-                    <QRCode value={qrCodeData} size={136} level="H" includeMargin={false} />
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-luxury-gold/20 flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-8 h-8 text-luxury-gold" />
                   </div>
-                  <p className="text-xs text-muted-foreground font-medium mt-2">Quét để lưu liên hệ</p>
+                  <h4 className="font-montserrat font-semibold text-luxury-platinum mb-2">Dịch vụ VIP</h4>
+                  <p className="text-luxury-silver text-sm">Trải nghiệm cá nhân hóa</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-luxury-gold/20 flex items-center justify-center mx-auto mb-4">
+                    <Star className="w-8 h-8 text-luxury-gold" />
+                  </div>
+                  <h4 className="font-montserrat font-semibold text-luxury-platinum mb-2">Chất lượng đỉnh cao</h4>
+                  <p className="text-luxury-silver text-sm">Tiêu chuẩn quốc tế</p>
                 </div>
               </div>
-            </CardHeader>
 
-            <CardContent className="p-6 lg:p-8">
-              {/* Quick stats */}
-              <div className="grid grid-cols-3 gap-3 mb-8">
-                <div className="text-center p-4 rounded-lg bg-primary/5 border border-primary/10">
-                  <p className="text-2xl font-extrabold text-primary">1.200+</p>
-                  <p className="text-xs text-muted-foreground">Khách hàng phục vụ</p>
-                </div>
-                <div className="text-center p-4 rounded-lg bg-primary/5 border border-primary/10">
-                  <p className="text-2xl font-extrabold text-primary">650+</p>
-                  <p className="text-xs text-muted-foreground">Xe bàn giao</p>
-                </div>
-                <div className="text-center p-4 rounded-lg bg-primary/5 border border-primary/10">
-                  <p className="text-2xl font-extrabold text-primary">98%</p>
-                  <p className="text-xs text-muted-foreground">Hài lòng</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Contact Information */}
-                <div className="space-y-6">
-                  <h3 className="text-xl font-bold text-primary flex items-center gap-2">
-                    <Phone className="w-5 h-5" />
-                    Thông tin liên hệ
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-                      <Phone className="w-5 h-5 text-primary" />
-                      <div>
-                        <p className="font-medium">{sellerData.phone}</p>
-                        <p className="text-sm text-muted-foreground">Hotline tư vấn</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-                      <Mail className="w-5 h-5 text-primary" />
-                      <div>
-                        <p className="font-medium">{sellerData.email}</p>
-                        <p className="text-sm text-muted-foreground">Email chính thức</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-                      <MapPin className="w-5 h-5 text-primary" />
-                      <div>
-                        <p className="font-medium">{sellerData.location}</p>
-                        <p className="text-sm text-muted-foreground">Địa chỉ showroom</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-                      <Clock className="w-5 h-5 text-primary" />
-                      <div>
-                        <p className="font-medium">{sellerData.workingHours}</p>
-                        <p className="text-sm text-muted-foreground">Giờ làm việc</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <p className="text-luxury-silver font-montserrat mb-8 leading-relaxed">
+                Đội ngũ chuyên gia của chúng tôi không chỉ bán xe - chúng tôi tạo nên trải nghiệm mua sắm đẳng cấp, 
+                từ tư vấn chuyên sâu đến dịch vụ hậu mãi hoàn hảo.
+              </p>
 
-                {/* Call to Action */}
-                <div className="space-y-6">
-                  <h3 className="text-xl font-bold text-primary flex items-center gap-2">
-                    <Shield className="w-5 h-5" />
-                    Hỗ trợ khách hàng
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <div className="p-4 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg border border-primary/20">
-                      <h4 className="font-semibold mb-2">Cam kết dịch vụ</h4>
-                      <ul className="text-sm space-y-1 text-muted-foreground">
-                        <li>• Tư vấn miễn phí và chuyên nghiệp</li>
-                        <li>• Hỗ trợ lái thử tận nơi</li>
-                        <li>• Báo giá tốt nhất thị trường</li>
-                        <li>• Hỗ trợ thủ tục vay ngân hàng</li>
-                      </ul>
-                    </div>
-                    
-                    <Separator />
-                    
-                    <div className="space-y-3">
-                      <a href={telHref} className="block">
-                        <Button 
-                          size="lg" 
-                          className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 font-bold py-4 shadow-lg"
-                        >
-                          <Phone className="w-5 h-5 mr-2" />
-                          Gọi ngay để tư vấn
-                        </Button>
-                      </a>
-                      
-                      <a href={mailHref} className="block">
-                        <Button 
-                          variant="outline" 
-                          size="lg" 
-                          className="w-full border-primary/30 text-primary hover:bg-primary/10 font-semibold py-4"
-                        >
-                          <Mail className="w-5 h-5 mr-2" />
-                          Gửi email liên hệ
-                        </Button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-luxury-gold to-luxury-gold/90 text-luxury-obsidian font-montserrat font-bold px-12 py-4 hover:from-luxury-gold/90 hover:to-luxury-gold/80 transition-all duration-300 shadow-lg hover:shadow-luxury-gold/30 group"
+              >
+                <Phone className="w-5 h-5 mr-3 group-hover:animate-pulse" />
+                Kết Nối Với Chuyên Gia Ngay
+                <ChevronRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </CardContent>
           </Card>
         </motion.div>

@@ -68,6 +68,14 @@ export default {
 					'light-blue': 'hsl(var(--vinfast-light-blue))',
 					'accent-blue': 'hsl(var(--vinfast-accent-blue))',
 					white: 'hsl(var(--vinfast-white))'
+				},
+				luxury: {
+					navy: 'hsl(var(--luxury-navy))',
+					charcoal: 'hsl(var(--luxury-charcoal))',
+					silver: 'hsl(var(--luxury-silver))',
+					gold: 'hsl(var(--luxury-gold))',
+					platinum: 'hsl(var(--luxury-platinum))',
+					obsidian: 'hsl(var(--luxury-obsidian))'
 				}
 			},
 			borderRadius: {
@@ -76,7 +84,9 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'inter': ['Inter', 'system-ui', 'sans-serif']
+				'inter': ['Inter', 'system-ui', 'sans-serif'],
+				'playfair': ['Playfair Display', 'serif'],
+				'montserrat': ['Montserrat', 'sans-serif']
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
