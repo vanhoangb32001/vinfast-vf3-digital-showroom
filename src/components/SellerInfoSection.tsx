@@ -5,36 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-
-interface ConsultantProfile {
-  id: string;
-  name: string;
-  title: string;
-  experience: string;
-  phone: string;
-  zalo: string;
-  fanpage: string;
-  location: string;
-  avatar: string;
-  bio: string;
-  specialties: string[];
-  languages: string[];
-}
-
-const consultant: ConsultantProfile = {
-  id: "1",
-  name: "Hoàng Phúc Vinfast",
-  title: "Chuyên gia Tư vấn VinFast",
-  experience: "10+ năm kinh nghiệm",
-  phone: "0862 797 714",
-  zalo: "https://zalo.me/0862797714",
-  fanpage: "https://facebook.com/share/1BGZDhc3fb/?mibextid=wwXIfr",
-  location: "VinFast Đồng Nai, 270 – 369 QL51, P. Long Hưng, Đồng Nai",
-  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-  bio: "Phong cách - An Toàn - Sáng Tạo - Tiên Phong",
-  specialties: ["Xe điện cao cấp", "Dịch vụ VIP", "Tư vấn tài chính"],
-  languages: ["Tiếng Việt", "English"]
-};
+import { Profile } from "@/config/globalconfig";
 
 export function SellerInfoSection() {
   return (
@@ -72,20 +43,17 @@ export function SellerInfoSection() {
               <div className="flex flex-col items-center text-center">
                 {/* Avatar */}
                 <div className="relative mb-6">
-                  <Avatar className="w-24 h-24 ring-4 ring-blue-600/40 hover:ring-blue-600/50 transition-all duration-300">
-                    <AvatarImage src={consultant.avatar} alt={consultant.name} />
+                  <Avatar className="w-32 h-32 ring-4 ring-blue-600/40 hover:ring-blue-600/50 transition-all duration-300">
+                    <AvatarImage src="/avatar.jpg" alt={Profile.name} />
                     <AvatarFallback className="bg-gray-700 text-white text-2xl font-bold">
-                      {consultant.name.charAt(0)}
+                      {Profile.name.charAt(0)}
                     </AvatarFallback>
                   </Avatar>
                 </div>
 
                 {/* Name + Title */}
-                <h3 className="text-2xl font-bold text-black mb-2">{consultant.name}</h3>
-                <p className="text-blue-500 text-lg mb-4 italic">{consultant.title}</p>
-
-                {/* Bio */}
-                <p className="text-gray-600 max-w-xl mb-6">{consultant.bio}</p>
+                <h3 className="text-2xl font-bold text-black mb-2">{Profile.name}</h3>
+                <p className="text-blue-500 text-lg mb-4 italic">{Profile.title}</p>
 
                 <Separator className="my-6 bg-gray-600 w-1/2" />
 
@@ -93,7 +61,7 @@ export function SellerInfoSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 w-full">
                   <div className="flex flex-col items-center">
                     <Award className="w-8 h-8 text-blue-400 mb-2" />
-                    <span className="text-black font-semibold">{consultant.experience}</span>
+                    <span className="text-black font-semibold">{Profile.experience}</span>
                     <span className="text-gray-600 text-sm">Kinh nghiệm</span>
                   </div>
                   <div className="flex flex-col items-center">
@@ -112,7 +80,7 @@ export function SellerInfoSection() {
                 <div className="mb-8 w-full">
                   <h4 className="text-lg font-semibold text-black mb-3">Chuyên môn</h4>
                   <div className="flex flex-wrap justify-center gap-2">
-                    {consultant.specialties.map((spec, idx) => (
+                    {Profile.specialties.map((spec, idx) => (
                       <Badge key={idx} className="bg-blue-500 text-white px-3 py-1">
                         {spec}
                       </Badge>
@@ -124,7 +92,7 @@ export function SellerInfoSection() {
                 <div className="mb-8 w-full">
                   <h4 className="text-lg font-semibold text-black mb-3">Ngôn ngữ</h4>
                   <div className="flex flex-wrap justify-center gap-2">
-                    {consultant.languages.map((lang, idx) => (
+                    {Profile.languages.map((lang, idx) => (
                       <Badge key={idx} className="bg-blue-500 text-white px-3 py-1">
                         {lang}
                       </Badge>
@@ -136,17 +104,25 @@ export function SellerInfoSection() {
                 <div className="space-y-4 w-full">
                   <div className="flex items-center justify-center space-x-3 text-gray-600">
                     <Phone className="w-5 h-5 text-blue-400" />
-                    <span>{consultant.phone}</span>
-                    <a href={consultant.zalo} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
-                      Zalo
+                    <span>{Profile.phone}</span>
+                    <a href={Profile.zalo} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src="/zaloicon.webp"
+                        alt="Zalo"
+                        className="w-5 h-5"
+                      />
                     </a>
-                    <a href={consultant.fanpage} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">
-                      Fanpage
+                    <a href={Profile.fanpage} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src="/fb-icon.png"
+                        alt="Facebook"
+                        className="w-5 h-5"
+                      />
                     </a>
                   </div>
                   <div className="flex items-center justify-center space-x-3 text-gray-600">
                     <MapPin className="w-5 h-5 text-blue-400" />
-                    <span>{consultant.location}</span>
+                    <span>{Profile.location}</span>
                   </div>
                 </div>
               </div>
