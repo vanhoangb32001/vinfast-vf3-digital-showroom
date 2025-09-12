@@ -20,7 +20,7 @@ export function SellerInfoSection() {
           className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold text-black">
-            Chuyên Gia Tư Vấn
+            Chuyên viên Tư Vấn
             <span className="block bg-clip-text bg-gradient-to-r text-blue-600">
               Hàng Đầu Của Chúng Tôi
             </span>

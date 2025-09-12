@@ -15,7 +15,7 @@ export const Profile: TypeProfile = {
   id: "1",
   name: "Hoàng Phúc Vinfast",
   title: "Chuyên gia Tư vấn VinFast",
-  experience: "10+ năm kinh nghiệm",
+  experience: "Nhiều kinh nghiệm",
   phone: "0862 797 714",
   zalo: "https://zalo.me/0862797714",
   fanpage: "https://facebook.com/share/1BGZDhc3fb/?mibextid=wwXIfr",

@@ -77,18 +77,18 @@ export function FeaturedCarSlider() {
                 <Badge className="bg-primary text-primary-foreground">Mới</Badge>
               )}
             </div>
-            
+
             <p className="text-xl sm:text-2xl text-white/90 mb-4">
               {currentCar.tagline}
             </p>
-            
+
             <p className="text-white/80 mb-6 max-w-lg">
               {currentCar.description}
             </p>
 
             <div className="mb-6">
               <div className="text-3xl font-bold mb-2">
-                {parseInt(currentCar.basePrice).toLocaleString()} VNĐ
+                {parseInt(currentCar.basePrice).toLocaleString()} triệu VNĐ
               </div>
               <div className="text-white/80 text-sm">Giá khởi điểm</div>
             </div>
@@ -114,7 +114,7 @@ export function FeaturedCarSlider() {
                 </Button>
               </Link>
               <Link to="/dat-coc">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="border-white text-black hover:bg-white/10">
                   Đặt cọc ngay
                 </Button>
               </Link>
@@ -165,11 +165,10 @@ export function FeaturedCarSlider() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex 
-                    ? "bg-white" 
-                    : "bg-white/40 hover:bg-white/60"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all ${index === currentIndex
+                  ? "bg-white"
+                  : "bg-white/40 hover:bg-white/60"
+                  }`}
               />
             ))}
           </div>

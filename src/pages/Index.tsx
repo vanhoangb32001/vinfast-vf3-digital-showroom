@@ -14,11 +14,11 @@ const Index = () => {
       {/* Featured Car Slider - Full Screen */}
       <FeaturedCarSlider />
 
-      {/* Car Category Section */}
-      <CarCategorySection />
-
       {/* Seller Info Section */}
       <SellerInfoSection />
+
+      {/* Car Category Section */}
+      <CarCategorySection />
 
       {/* Brand History Section */}
       <BrandHistorySection />
