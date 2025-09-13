@@ -1,3 +1,4 @@
+// Used to showcase featured cars on the homepage
 export interface CarColor {
   name: string
   code: string
@@ -32,34 +33,40 @@ export const featuredCars: FeaturedCar[] = [
     isNew: true,
     colors: [
       {
-        name: "Summer Yellow",
-        code: "yellow",
+        name: "Vàng",
+        code: "vang",
         hex: "#FFD700",
-        image: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=1200&h=600&fit=crop"
+        image: "https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dwece0922b/reserves/VF3/vf3section-5-mb.jpg"
       },
       {
-        name: "Zenith Grey",
-        code: "grey",
-        hex: "#708090",
-        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=600&fit=crop"
+        name: "Xanh rêu",
+        code: "xanh-reu",
+        hex: "#4B6F3F",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2024/05/VinFast-VF3-mau-xanh-reu.jpg"
       },
       {
-        name: "Sky Blue",
-        code: "blue",
-        hex: "#87CEEB",
-        image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&h=600&fit=crop"
+        name: "Xanh lơ Cyan",
+        code: "xanh-lo-cyan",
+        hex: "#57AEC6",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2024/05/VinFast-VF3-mau-xanh-lo-Cyan.jpg"
       },
       {
-        name: "Crimson Red",
-        code: "red",
-        hex: "#DC143C",
-        image: "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1200&h=600&fit=crop"
+        name: "Xanh dương",
+        code: "xanh-duong",
+        hex: "#3659B7",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2024/05/VinFast-VF3-mau-xanh-duong.jpg"
       },
       {
-        name: "Infinity Blanc",
-        code: "white",
-        hex: "#FFFFFF",
-        image: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=1200&h=600&fit=crop"
+        name: "Xanh bộ đội",
+        code: "xanh-bo-doi",
+        hex: "#4F554A",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2024/05/VinFast-VF3-mau-xanh-bo-doi.jpg"
+      },
+      {
+        name: "Xám",
+        code: "xam",
+        hex: "#8E8E8E",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2024/05/VinFast-VF3-mau-xam.jpg"
       }
     ],
     specs: [
@@ -74,26 +81,62 @@ export const featuredCars: FeaturedCar[] = [
     name: "VinFast VF5",
     tagline: "SUV điện đa năng",
     description: "Không gian rộng rãi, khả năng vận hành mạnh mẽ, phù hợp cho gia đình và du lịch.",
-    basePrice: "468.000.000",
+    basePrice: "529.000.000",
     colors: [
       {
-        name: "Pearl White",
-        code: "white",
-        hex: "#F8F8FF",
-        image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&h=600&fit=crop"
+        name: "Trắng",
+        code: "trang",
+        hex: "#F9F9F9",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-white.png"
       },
       {
-        name: "Midnight Black",
-        code: "black",
-        hex: "#2F2F2F",
-        image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&h=600&fit=crop"
+        name: "Cam",
+        code: "cam",
+        hex: "#A46322",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-orange.png"
       },
       {
-        name: "Ocean Blue",
-        code: "blue",
-        hex: "#4682B4",
-        image: "https://images.unsplash.com/photo-1542282088-fe8426682b8f?w=1200&h=600&fit=crop"
-      }
+        name: "Cam trắng",
+        code: "cam-trang",
+        hex: "#A46322",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-orange-white.png"
+      },
+      {
+        name: "Đỏ",
+        code: "do",
+        hex: "#67100C",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-red.png"
+      },
+      {
+        name: "Đỏ trắng",
+        code: "do-trang",
+        hex: "#67100C",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-red-white.png"
+      },
+      {
+        name: "Xanh",
+        code: "xanh",
+        hex: "#19244A",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-blue.png"
+      },
+      {
+        name: "Xanh trắng",
+        code: "xanh-trang",
+        hex: "#19244A",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-blue-white.png"
+      },
+      {
+        name: "Xám",
+        code: "xam",
+        hex: "#292929",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-grey.png"
+      },
+      {
+        name: "Xám trắng",
+        code: "xam-trang",
+        hex: "#292929",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf5-grey-white.png"
+      },
     ],
     specs: [
       { label: "Phạm vi", value: "326 km" },
@@ -107,26 +150,38 @@ export const featuredCars: FeaturedCar[] = [
     name: "VinFast VF7",
     tagline: "SUV cao cấp thông minh",
     description: "Thiết kế sang trọng, công nghệ ADAS tiên tiến, trải nghiệm lái xe đẳng cấp.",
-    basePrice: "850.000.000",
+    basePrice: "799.000.000",
     colors: [
       {
-        name: "Platinum Silver",
-        code: "silver",
-        hex: "#C0C0C0",
-        image: "https://images.unsplash.com/photo-1617654112368-307921291f42?w=1200&h=600&fit=crop"
+        name: "Xanh lá",
+        code: "xanh-la",
+        hex: "#4E6E5D",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vinfast-vf7-6.png"
       },
       {
-        name: "Deep Black",
-        code: "black",
-        hex: "#1C1C1C",
-        image: "https://images.unsplash.com/photo-1593941707882-a5bac6861d75?w=1200&h=600&fit=crop"
+        name: "Đỏ",
+        code: "do",
+        hex: "#C23234",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vf7-red.png"
       },
       {
-        name: "Royal Blue",
-        code: "blue",
-        hex: "#4169E1",
-        image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&h=600&fit=crop"
-      }
+        name: "Xanh dương",
+        code: "xanh-duong",
+        hex: "#3467CA",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vf7-blue.png"
+      },
+      {
+        name: "Trắng",
+        code: "trang",
+        hex: "#EEEFF3",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vf7-white.png"
+      },
+      {
+        name: "Xám",
+        code: "xam",
+        hex: "#A7A7B0",
+        image: "https://vinfast-vn.vn/wp-content/uploads/2023/10/vf7-silver.png"
+      },
     ],
     specs: [
       { label: "Phạm vi", value: "450 km" },

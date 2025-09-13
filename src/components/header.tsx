@@ -24,12 +24,12 @@ export function Header() {
         {/* Logo */}
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
-            <motion.div 
+            <motion.div
               className="flex items-center space-x-2"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <Car className="h-8 w-8 text-primary" />
+              <img src="https://vinfast-vn.vn/wp-content/uploads/2023/10/VinFast_2022.png" alt="VinFast Logo" className="h-8 w-8" />
               <span className="text-2xl font-bold text-foreground">VinFast</span>
             </motion.div>
           </Link>
@@ -60,8 +60,8 @@ export function Header() {
               to={item.href}
               className={cn(
                 "text-sm font-semibold leading-6 transition-colors hover:text-primary",
-                isActivePath(item.href) 
-                  ? "text-primary" 
+                isActivePath(item.href)
+                  ? "text-primary"
                   : "text-muted-foreground"
               )}
             >
@@ -83,7 +83,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <motion.div 
+        <motion.div
           className="lg:hidden"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}

@@ -1,3 +1,4 @@
+// Not used in the app, but kept for reference and future use
 export interface CarData {
   id: string
   name: string
@@ -98,7 +99,7 @@ export const cars: CarData[] = [
     keyFeatures: ["Phạm vi 438km", "Tự lái Level 2+", "6+1 chỗ"],
     specs: { range: "438 km", seating: "6+1 chỗ", engineType: "Điện 100%" }
   },
-  
+
   // Green Vehicle Series
   {
     id: "fadil",
@@ -113,7 +114,7 @@ export const cars: CarData[] = [
     keyFeatures: ["Động cơ 1.4L", "CVT", "5 chỗ ngồi"],
     specs: { seating: "5 chỗ", engineType: "Xăng 1.4L" }
   },
-  
+
   // Commercial Vehicles
   {
     id: "ec-van",
@@ -135,7 +136,7 @@ export const cars: CarData[] = [
     price: "Liên hệ",
     priceFrom: "Liên hệ",
     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=450&fit=crop",
-    category: "commercial", 
+    category: "commercial",
     type: "bus",
     description: "Xe buýt điện thông minh cho giao thông công cộng",
     keyFeatures: ["40 chỗ ngồi", "Phạm vi 300km", "Hệ thống giám sát"],

@@ -21,10 +21,10 @@ const Index = () => {
       <CarCategorySection />
 
       {/* Brand History Section */}
-      <BrandHistorySection />
+      {/* <BrandHistorySection /> */}
 
       {/* Highlights */}
-      <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+      {/* <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
@@ -63,7 +63,7 @@ const Index = () => {
             </CardContent>
           </Card>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
