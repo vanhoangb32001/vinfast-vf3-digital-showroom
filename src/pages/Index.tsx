@@ -18,7 +18,7 @@ const Index = () => {
       <SellerInfoSection />
 
       {/* Car Category Section */}
-      <CarCategorySection />
+      {/* <CarCategorySection /> */}
 
       {/* Brand History Section */}
       {/* <BrandHistorySection /> */}
@@ -66,7 +66,7 @@ const Index = () => {
       </section> */}
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      {/* <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Card className="border-dashed">
           <CardContent className="py-10 text-center">
             <h3 className="text-2xl font-bold">Sẵn sàng trải nghiệm VF3?</h3>
@@ -78,7 +78,7 @@ const Index = () => {
             </div>
           </CardContent>
         </Card>
-      </section>
+      </section> */}
     </div>
   );
 };
