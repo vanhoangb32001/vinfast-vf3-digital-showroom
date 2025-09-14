@@ -26,7 +26,7 @@ export function SellerInfoSection() {
             </span>
           </h2>
           <p className="mt-4 text-gray-500 text-lg max-w-2xl mx-auto">
-            Đội ngũ chuyên gia của chúng tôi mang đến trải nghiệm mua sắm xe đẳng cấp với sự tận tâm và chuyên nghiệp.
+            Đội ngũ chuyên viên của chúng tôi mang đến trải nghiệm mua sắm xe đẳng cấp với sự tận tâm và chuyên nghiệp.
           </p>
         </motion.div>
 

@@ -14,7 +14,7 @@ interface TypeProfile {
 export const Profile: TypeProfile = {
   id: "1",
   name: "Hoàng Phúc Vinfast",
-  title: "Chuyên gia Tư vấn VinFast",
+  title: "Chuyên viên Tư vấn VinFast",
   experience: "Nhiều kinh nghiệm",
   phone: "0862 797 714",
   zalo: "https://zalo.me/0862797714",
