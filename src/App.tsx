@@ -11,7 +11,8 @@ import Index from "./pages/Index";
 import ChiTietXe from "./pages/ChiTietXe";
 import DatCoc from "./pages/DatCoc";
 import NotFound from "./pages/NotFound";
-
+import { ContactForm } from "./components/ContactForm";
+import { FloatingButtons } from "./components/FloatingButtons";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -31,6 +32,8 @@ const App = () => (
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <ContactForm />
+              <FloatingButtons />
             </main>
             <Footer />
             <FloatingChat />
