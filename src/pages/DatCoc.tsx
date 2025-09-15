@@ -1,15 +1,16 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { 
-  Car, 
-  Palette, 
-  CreditCard, 
-  MessageSquare, 
+import {
+  Car,
+  Palette,
+  CreditCard,
   CheckCircle,
   Loader2,
   Battery,
   Shield,
-  Zap
+  Zap,
+  HandCoins,
+  Landmark
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -46,11 +47,11 @@ const faqData = [
   },
   {
     question: "VF3 có tính năng ADAS nào?",
-    answer: "VF3 được trang bị các tính năng an toàn cơ bản như camera lùi, cảm biến lùi, ABS, ESC. Một số tính năng ADAS nâng cao có thể được cung cấp thông qua cập nhật OTA với chi phí bổ sung."
+    answer: "VF3 được trang bị các tính năng an toàn cơ bản như ABS, TCS, HSA, EBD, cảm biến lùi và camera sau. Tuy nhiên, các tính năng ADAS nâng cao như giữ làn đường hay phanh khẩn cấp tự động chưa có sẵn."
   },
   {
     question: "Thời gian giao xe dự kiến?",
-    answer: "Thời gian giao xe dự kiến từ 3-6 tháng sau khi đặt cọc, tùy thuộc vào màu sắc và cấu hình được chọn. VinFast sẽ thông báo chính xác thời gian giao xe sau khi xác nhận đơn hàng."
+    answer: "Thời gian giao xe dự kiến khoảng 2 tuần sau khi đặt cọc, tùy thuộc vào màu sắc và cấu hình được chọn. VinFast sẽ thông báo chính xác thời gian giao xe sau khi xác nhận đơn hàng."
   }
 ]
 
@@ -92,27 +93,19 @@ export default function DatCoc() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.agreeTerms) {
-      toast({
-        title: "Lỗi",
-        description: "Vui lòng đồng ý với điều khoản và điều kiện",
-        variant: "destructive"
-      })
-      return
-    }
 
     setIsSubmitting(true)
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000))
-    
+
     console.log("Form submitted:", formData)
-    
+
     toast({
       title: "Đặt cọc thành công!",
       description: "Cảm ơn bạn đã đặt cọc VinFast VF3. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
     })
-    
+
     setIsSubmitting(false)
   }
 
@@ -139,28 +132,28 @@ export default function DatCoc() {
       <section className="relative overflow-hidden bg-gradient-hero">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Đặt cọc VinFast VF3
+              Đặt cọc VinFast VF3/VF5
             </h1>
             <p className="mt-6 text-lg leading-8 text-white/90 max-w-2xl mx-auto">
-              Đặt cọc ngay hôm nay để nhận ưu đãi đặc biệt và là người đầu tiên sở hữu VF3
+              Đặt cọc ngay hôm nay để nhận ưu đãi đặc biệt và là người đầu tiên sở hữu VF3/VF5
             </p>
             <div className="mt-8">
               <Badge className="bg-white/20 border-white/30 text-white text-lg px-4 py-2">
-                🎉 Ưu đãi: Giảm 10% cho đặt cọc sớm
+                🎉 Ưu đãi: Tặng 2 năm bảo hiểm vật chất đến 30/09/2025
               </Badge>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -169,14 +162,14 @@ export default function DatCoc() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Form Section */}
           <motion.div variants={itemVariants} className="lg:col-span-2">
-            <Card className="card-hover">
+            <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Car className="mr-2 h-6 w-6 text-primary" />
                   Thông tin đặt cọc
                 </CardTitle>
                 <CardDescription>
-                  Vui lòng điền đầy đủ thông tin để hoàn tất việc đặt cọc VF3
+                  Vui lòng điền đầy đủ thông tin để hoàn tất việc đặt cọc VF3/VF5
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -184,7 +177,7 @@ export default function DatCoc() {
                   {/* Personal Information */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="fullName">Họ và tên *</Label>
+                      <Label htmlFor="fullName">Họ và tên</Label>
                       <Input
                         id="fullName"
                         value={formData.fullName}
@@ -194,7 +187,7 @@ export default function DatCoc() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Số điện thoại *</Label>
+                      <Label htmlFor="phone">Số điện thoại</Label>
                       <Input
                         id="phone"
                         type="tel"
@@ -205,9 +198,9 @@ export default function DatCoc() {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
-                    <Label htmlFor="email">Email *</Label>
+                    <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
                       type="email"
@@ -221,20 +214,20 @@ export default function DatCoc() {
                   {/* Vehicle Configuration */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="variant">Biến thể *</Label>
+                      <Label htmlFor="variant">Loại xe</Label>
                       <Select value={formData.variant} onValueChange={(value) => handleInputChange("variant", value)}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Chọn biến thể" />
+                          <SelectValue placeholder="Chọn loại xe" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="eco">VF3 Eco</SelectItem>
-                          <SelectItem value="plus">VF3 Plus</SelectItem>
+                          <SelectItem value="eco">VF3</SelectItem>
+                          <SelectItem value="plus">VF5</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
                     <div>
-                      <Label htmlFor="color">Màu sắc *</Label>
+                      <Label htmlFor="color">Màu sắc</Label>
                       <Select value={formData.color} onValueChange={(value) => handleInputChange("color", value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Chọn màu sắc" />
@@ -243,7 +236,7 @@ export default function DatCoc() {
                           {colorOptions.map((color) => (
                             <SelectItem key={color.value} value={color.value}>
                               <div className="flex items-center space-x-2">
-                                <div 
+                                <div
                                   className="w-4 h-4 rounded-full border"
                                   style={{ backgroundColor: color.color }}
                                 ></div>
@@ -254,41 +247,6 @@ export default function DatCoc() {
                         </SelectContent>
                       </Select>
                     </div>
-                  </div>
-
-                  {/* Battery Option */}
-                  <div>
-                    <Label className="text-base font-semibold">Phương thức pin *</Label>
-                    <RadioGroup 
-                      value={formData.batteryOption} 
-                      onValueChange={(value) => handleInputChange("batteryOption", value)}
-                      className="mt-2"
-                    >
-                      <div className="flex items-center space-x-2 p-4 border rounded-lg hover:bg-muted/50">
-                        <RadioGroupItem value="buy" id="buy" />
-                        <Label htmlFor="buy" className="flex-1 cursor-pointer">
-                          <div className="flex items-center space-x-2">
-                            <Battery className="h-5 w-5 text-primary" />
-                            <div>
-                              <div className="font-medium">Mua pin</div>
-                              <div className="text-sm text-muted-foreground">Sở hữu hoàn toàn, bảo hành 8 năm</div>
-                            </div>
-                          </div>
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2 p-4 border rounded-lg hover:bg-muted/50">
-                        <RadioGroupItem value="rent" id="rent" />
-                        <Label htmlFor="rent" className="flex-1 cursor-pointer">
-                          <div className="flex items-center space-x-2">
-                            <CreditCard className="h-5 w-5 text-secondary" />
-                            <div>
-                              <div className="font-medium">Thuê pin theo km</div>
-                              <div className="text-sm text-muted-foreground">Trả theo km đi được, linh hoạt hơn</div>
-                            </div>
-                          </div>
-                        </Label>
-                      </div>
-                    </RadioGroup>
                   </div>
 
                   {/* Message */}
@@ -303,26 +261,10 @@ export default function DatCoc() {
                     />
                   </div>
 
-                  {/* Terms Agreement */}
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="terms"
-                      checked={formData.agreeTerms}
-                      onCheckedChange={(checked) => handleInputChange("agreeTerms", checked as boolean)}
-                    />
-                    <Label htmlFor="terms" className="text-sm">
-                      Tôi đồng ý với{" "}
-                      <a href="#" className="text-primary hover:underline">
-                        điều khoản và điều kiện
-                      </a>{" "}
-                      của VinFast
-                    </Label>
-                  </div>
-
                   {/* Submit Button */}
-                  <Button 
-                    type="submit" 
-                    size="lg" 
+                  <Button
+                    type="submit"
+                    size="lg"
                     disabled={isSubmitting}
                     className="w-full hero-button"
                   >
@@ -346,7 +288,7 @@ export default function DatCoc() {
           {/* Summary Section */}
           <motion.div variants={itemVariants} className="space-y-6">
             {/* Price Summary */}
-            <Card className="card-hover">
+            <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Palette className="mr-2 h-6 w-6 text-primary" />
@@ -356,18 +298,18 @@ export default function DatCoc() {
               <CardContent className="space-y-4">
                 {formData.variant && (
                   <div className="flex justify-between">
-                    <span>Biến thể:</span>
+                    <span>Loại xe:</span>
                     <span className="font-medium">
-                      {formData.variant === "eco" ? "VF3 Eco" : "VF3 Plus"}
+                      {formData.variant === "vf3" ? "VF3" : "VF5"}
                     </span>
                   </div>
                 )}
-                
+
                 {selectedColor && (
                   <div className="flex justify-between items-center">
                     <span>Màu sắc:</span>
                     <div className="flex items-center space-x-2">
-                      <div 
+                      <div
                         className="w-4 h-4 rounded-full border"
                         style={{ backgroundColor: selectedColor.color }}
                       ></div>
@@ -375,16 +317,7 @@ export default function DatCoc() {
                     </div>
                   </div>
                 )}
-                
-                {formData.batteryOption && (
-                  <div className="flex justify-between">
-                    <span>Pin:</span>
-                    <span className="font-medium">
-                      {formData.batteryOption === "buy" ? "Mua pin" : "Thuê pin"}
-                    </span>
-                  </div>
-                )}
-                
+
                 {formData.variant && formData.batteryOption && (
                   <>
                     <hr />
@@ -394,35 +327,36 @@ export default function DatCoc() {
                         {calculatePrice().toLocaleString('vi-VN')} VNĐ
                       </span>
                     </div>
-                    <Badge variant="secondary" className="w-full justify-center bg-gradient-eco text-white">
-                      🎁 Ưu đãi giảm 10% đã được áp dụng
-                    </Badge>
                   </>
                 )}
               </CardContent>
             </Card>
 
             {/* Benefits */}
-            <Card className="card-hover">
+            <Card>
               <CardHeader>
                 <CardTitle>Quyền lợi khi đặt cọc</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center space-x-2">
-                  <Shield className="h-5 w-5 text-secondary" />
-                  <span className="text-sm">Bảo hành chính hãng toàn diện</span>
+                  <Shield className="h-5 w-5 text-primary" />
+                  <span className="text-sm">Bảo hành chính hãng toàn diện lên đến 8 năm</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Zap className="h-5 w-5 text-primary" />
-                  <span className="text-sm">Hỗ trợ sạc miễn phí 6 tháng đầu</span>
+                  <span className="text-sm">Hỗ trợ sạc miễn phí 2 năm (30/06/2027)</span>
                 </div>
+                  <div className="flex items-center space-x-2">
+                    <Car className="h-5 w-5 text-primary" />
+                    <span className="text-sm">Sẵn xe - Đủ màu - Giao ngay</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <HandCoins className="h-5 w-5 text-primary" />
+                    <span className="text-sm">Hỗ trợ lãi suất 3% trong 3 năm đầu</span>
+                  </div>
                 <div className="flex items-center space-x-2">
-                  <Car className="h-5 w-5 text-secondary" />
-                  <span className="text-sm">Ưu tiên giao xe sớm nhất</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MessageSquare className="h-5 w-5 text-primary" />
-                  <span className="text-sm">Hỗ trợ kỹ thuật 24/7</span>
+                  <Landmark className="h-5 w-5 text-primary" />
+                  <span className="text-sm">Hỗ trợ vay ngân hàng lên đến 90%</span>
                 </div>
               </CardContent>
             </Card>
@@ -439,8 +373,8 @@ export default function DatCoc() {
               Tìm hiểu thêm về VinFast VF3 và quy trình đặt cọc
             </p>
           </div>
-          
-          <Card className="card-hover max-w-4xl mx-auto">
+
+          <Card className="max-w-4xl mx-auto">
             <CardContent className="p-0">
               <Accordion type="single" collapsible className="w-full">
                 {faqData.map((faq, index) => (

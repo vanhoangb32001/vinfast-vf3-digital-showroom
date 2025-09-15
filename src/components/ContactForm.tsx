@@ -27,10 +27,10 @@ export function ContactForm() {
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Bạn quan tâm đến một chiếc xe VinFast?
           </h2>
-          <p className="text-lg text-gray-200 mb-2">
+          <p className="text-lg text-gray-200 mb-2 italic">
             Yêu cầu báo giá, đăng ký lái thử trải nghiệm và các dịch vụ VinFast.
           </p>
-          <p className="text-lg text-gray-200">
+          <p className="text-lg text-gray-200 italic">
             Nếu bạn muốn ai đó trực tiếp giúp bạn, hãy gọi{" "}
             <span className="text-red-500 font-semibold">
               HOTLINE: {Profile.phone}
