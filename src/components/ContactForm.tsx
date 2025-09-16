@@ -23,7 +23,7 @@ export function ContactForm() {
       {/* Nội dung */}
       <div className="relative max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row items-center lg:items-start justify-between">
         {/* Bên trái: Tiêu đề và hotline */}
-        <div className="lg:w-1/2 text-white text-center lg:text-left">
+        <div className="lg:w-1/2 text-white text-center lg:text-left ml-5">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Bạn quan tâm đến một chiếc xe VinFast?
           </h2>
@@ -43,7 +43,7 @@ export function ContactForm() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="lg:w-1/3 w-full mt-8 lg:mt-0"
+          className="lg:w-1/3 w-full mt-8 lg:mt-0 mr-5"
         >
           <div className="flex flex-col space-y-6">
             <input

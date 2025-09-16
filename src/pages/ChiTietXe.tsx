@@ -130,7 +130,7 @@ export default function ChiTietXe() {
             </p>
           </div>
           
-          <Card className="card-hover">
+          <Card>
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
@@ -163,7 +163,7 @@ export default function ChiTietXe() {
             </p>
           </div>
           
-          <Card className="card-hover">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Shield className="mr-2 h-6 w-6 text-primary" />
@@ -177,7 +177,7 @@ export default function ChiTietXe() {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {safetyFeatures.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
                     <span className="text-sm">{feature}</span>
                   </div>
                 ))}
@@ -207,7 +207,7 @@ export default function ChiTietXe() {
             </TabsList>
             
             <TabsContent value="battery" className="mt-6">
-              <Card className="card-hover">
+              <Card>
                 <CardHeader>
                   <CardTitle>Hệ thống pin tiên tiến</CardTitle>
                   <CardDescription>
@@ -237,7 +237,7 @@ export default function ChiTietXe() {
                       <div className="text-xs text-muted-foreground">(10%-70%)</div>
                     </div>
                     <div className="text-center p-4 bg-muted/50 rounded-lg">
-                      <div className="text-2xl font-bold text-secondary">215</div>
+                      <div className="text-2xl font-bold text-primary">215</div>
                       <div className="text-sm text-muted-foreground">km phạm vi</div>
                       <div className="text-xs text-muted-foreground">(NEDC/WLTP)</div>
                     </div>
@@ -252,7 +252,7 @@ export default function ChiTietXe() {
             </TabsContent>
             
             <TabsContent value="performance" className="mt-6">
-              <Card className="card-hover">
+              <Card>
                 <CardHeader>
                   <CardTitle>Hiệu suất vượt trội</CardTitle>
                   <CardDescription>
@@ -267,7 +267,7 @@ export default function ChiTietXe() {
                       <p className="text-sm text-muted-foreground">Tối ưu hóa phạm vi hoạt động</p>
                     </div>
                     <div className="text-center p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                      <Car className="h-8 w-8 text-secondary mx-auto mb-3" />
+                      <Car className="h-8 w-8 text-primary mx-auto mb-3" />
                       <h4 className="font-semibold mb-2">Comfort Mode</h4>
                       <p className="text-sm text-muted-foreground">Cân bằng hiệu suất & tiết kiệm</p>
                     </div>
@@ -294,7 +294,7 @@ export default function ChiTietXe() {
             </p>
           </div>
           
-          <Card className="card-hover">
+          <Card>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <Table>

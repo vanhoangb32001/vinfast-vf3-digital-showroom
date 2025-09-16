@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
-import { Car, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
@@ -18,19 +18,32 @@ export function Header() {
 
   const isActivePath = (path: string) => location.pathname === path
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   return (
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b border-border/40">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
+      <nav
+        className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8"
+        aria-label="Global"
+      >
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <Link to="/" className="-m-1.5 p-1.5">
+          <Link to="/" onClick={scrollToTop} className="-m-1.5 p-1.5">
             <motion.div
               className="flex items-center space-x-2"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <img src="https://vinfast-vn.vn/wp-content/uploads/2023/10/VinFast_2022.png" alt="VinFast Logo" className="h-8 w-8" />
-              <span className="text-2xl font-bold text-foreground">VinFast</span>
+              <img
+                src="https://vinfast-vn.vn/wp-content/uploads/2023/10/VinFast_2022.png"
+                alt="VinFast Logo"
+                className="h-8 w-8"
+              />
+              <span className="text-2xl font-bold text-foreground">
+                VinFast
+              </span>
             </motion.div>
           </Link>
         </div>
@@ -58,6 +71,7 @@ export function Header() {
             <Link
               key={item.name}
               to={item.href}
+              onClick={scrollToTop}
               className={cn(
                 "text-sm font-semibold leading-6 transition-colors hover:text-primary",
                 isActivePath(item.href)
@@ -73,10 +87,8 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <ThemeToggle />
-          <Link to="/dat-coc">
-            <Button>
-              Đăng ký tư vấn
-            </Button>
+          <Link to="/dat-coc" onClick={scrollToTop}>
+            <Button>Đăng ký tư vấn</Button>
           </Link>
         </div>
       </nav>
@@ -95,20 +107,29 @@ export function Header() {
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={() => {
+                  scrollToTop()
+                  setMobileMenuOpen(false)
+                }}
                 className={cn(
                   "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
                   isActivePath(item.href)
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
             <div className="flex items-center justify-between pt-4 border-t border-border">
               <ThemeToggle />
-              <Link to="/dat-coc" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                to="/dat-coc"
+                onClick={() => {
+                  scrollToTop()
+                  setMobileMenuOpen(false)
+                }}
+              >
                 <Button size="sm" className="hero-button">
                   Đăng ký tư vấn
                 </Button>
