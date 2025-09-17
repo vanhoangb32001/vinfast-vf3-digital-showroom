@@ -86,7 +86,7 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           <Link to="/dat-coc" onClick={scrollToTop}>
             <Button>Đăng ký tư vấn</Button>
           </Link>
@@ -122,7 +122,7 @@ export function Header() {
               </Link>
             ))}
             <div className="flex items-center justify-between pt-4 border-t border-border">
-              <ThemeToggle />
+              {/* <ThemeToggle /> */}
               <Link
                 to="/dat-coc"
                 onClick={() => {
