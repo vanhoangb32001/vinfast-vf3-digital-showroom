@@ -42,7 +42,7 @@ export function Header() {
                 className="h-8 w-8"
               />
               <span className="text-2xl font-bold text-foreground">
-                VinFast
+                VinFast Miền Nam
               </span>
             </motion.div>
           </Link>

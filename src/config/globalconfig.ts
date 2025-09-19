@@ -9,6 +9,7 @@ interface TypeProfile {
   location: string;
   specialties: string[];
   languages: string[];
+  email: string;
 }
 
 export const Profile: TypeProfile = {
@@ -21,6 +22,7 @@ export const Profile: TypeProfile = {
   fanpage: "https://facebook.com/share/1BGZDhc3fb/?mibextid=wwXIfr",
   location: "VinFast Đồng Nai, 270 - 369 QL51, P. Long Hưng, Đồng Nai",
   specialties: ["Xe điện cao cấp", "Dịch vụ VIP", "Tư vấn tài chính"],
-  languages: ["Tiếng Việt", "English"]
+  languages: ["Tiếng Việt", "English"],
+  email: "phucnguyenhoang1610@gmail.com",
 };
 

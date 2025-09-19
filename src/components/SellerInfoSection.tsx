@@ -104,7 +104,12 @@ export function SellerInfoSection() {
                 <div className="space-y-4 w-full">
                   <div className="flex items-center justify-center space-x-3 text-muted-foreground">
                     <Phone className="w-5 h-5 text-blue-400" />
-                    <span>{Profile.phone}</span>
+                    <span>
+                      <a
+                        href={`tel:${Profile.phone}`}
+                        className="hover:underline underline-offset-2 cursor-pointer"
+                      >{Profile.phone}</a>
+                    </span>
                     <a href={Profile.zalo} target="_blank" rel="noopener noreferrer">
                       <img
                         src="/zaloicon.webp"

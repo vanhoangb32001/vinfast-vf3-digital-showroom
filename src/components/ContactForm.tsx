@@ -33,7 +33,11 @@ export function ContactForm() {
           <p className="text-lg text-gray-200 italic">
             Nếu bạn muốn ai đó trực tiếp giúp bạn, hãy gọi{" "}
             <span className="text-red-500 font-semibold">
-              HOTLINE: {Profile.phone}
+              <a
+                href={`tel:${Profile.phone}`}
+                className="hover:text-red-600 rounded-full shadow-lg"
+              >
+                HOTLINE: {Profile.phone}</a>
             </span>
           </p>
         </div>

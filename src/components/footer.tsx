@@ -91,14 +91,15 @@ export function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+0868678878" className="text-primary font-medium hover:underline">
-                  0868 678 878
-                </a>
+                <a
+                  href={`tel:${Profile.phone}`}
+                  className="text-primary hover:underline underline-offset-2 cursor-pointer"
+                >{Profile.phone}</a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:info@vinfastconghoa.vn" className="text-primary hover:underline">
-                  info@vinfastconghoa.vn
+                <a href={`mailto:${Profile.email}`} className="text-primary hover:underline">
+                  {Profile.email}
                 </a>
               </div>
             </div>
