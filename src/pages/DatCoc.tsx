@@ -131,7 +131,7 @@ export default function DatCoc() {
 
       toast({
         title: "Đặt cọc thành công!",
-        description: "Cảm ơn bạn đã đặt cọc VinFast VF3. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
+        description: "Cảm ơn bạn đã đặt cọc VinFast VF3. Em Phúc Vinfast sẽ liên hệ anh/chị trong thời gian sớm nhất ạ."
       })
     } catch (error) {
       toast({
