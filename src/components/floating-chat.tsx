@@ -1,32 +1,54 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { MessageCircle, X, Send } from "lucide-react"
+import { motion } from "framer-motion"
+import { MessageCircle, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
+import emailjs from "emailjs-com"
 
 export function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [message, setMessage] = useState("")
   const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    toast({
-      title: "Gửi thành công!",
-      description: "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
-    })
-    
+
+    // Gửi email qua EmailJS
+    try {
+      await emailjs.send(
+        "service_06llyup",      // Thay bằng service ID của bạn
+        "template_rqoj8cj",     // Thay bằng template ID của bạn
+        {
+          from_name: name,
+          phone: phone,
+          message: message,
+        },
+        "VY8SLpepauLuTGjVF"          // Thay bằng user ID của bạn
+      )
+      toast({
+        title: "Gửi thành công!",
+        description: "Thông tin đã được gửi đến chủ page.",
+      })
+      setIsOpen(false)
+      setName("")
+      setPhone("")
+      setMessage("")
+    } catch (error) {
+      toast({
+        title: "Gửi thất bại!",
+        description: "Vui lòng thử lại sau.",
+        variant: "destructive",
+      })
+    }
     setIsSubmitting(false)
-    setIsOpen(false)
   }
 
   return (
@@ -56,47 +78,53 @@ export function FloatingChat() {
               <span>Hỗ trợ nhanh</span>
             </DialogTitle>
           </DialogHeader>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="chat-name">Họ và tên</Label>
-              <Input 
+              <Input
                 id="chat-name"
                 placeholder="Nhập họ và tên của bạn"
                 required
+                value={name}
+                onChange={e => setName(e.target.value)}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="chat-phone">Số điện thoại</Label>
-              <Input 
+              <Input
                 id="chat-phone"
                 type="tel"
                 placeholder="Nhập số điện thoại"
                 required
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="chat-message">Tin nhắn</Label>
-              <Textarea 
+              <Textarea
                 id="chat-message"
                 placeholder="Bạn cần hỗ trợ gì?"
                 rows={3}
                 required
+                value={message}
+                onChange={e => setMessage(e.target.value)}
               />
             </div>
-            
+
             <div className="flex justify-end space-x-2">
-              <Button 
-                type="button" 
-                variant="outline" 
+              <Button
+                type="button"
+                variant="outline"
                 onClick={() => setIsOpen(false)}
               >
                 Hủy
               </Button>
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="eco-button"
               >

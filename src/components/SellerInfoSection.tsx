@@ -127,7 +127,16 @@ export function SellerInfoSection() {
                   </div>
                   <div className="flex items-center justify-center space-x-3 text-muted-foreground">
                     <MapPin className="w-5 h-5 text-blue-400" />
-                    <span>{Profile.location}</span>
+                    <span>
+                      <a
+                        href="https://www.google.com/maps?q=VinFast+Mi%E1%BB%81n+Nam+CN+%C4%90%E1%BB%93ng+Nai,+270+-+369+QL51,+Ph%C6%B0%E1%BB%9Dng,+Bi%C3%AAn+H%C3%B2a,+%C4%90%E1%BB%93ng+Nai+76100&ftid=0x3174df3825029573:0xf2a40a8de7690ac6&entry=gps&lucs=,94275415,94224825,94227247,94227248,94231188,47071704,47069508,94218641,94282134,94203019,47084304&g_ep=CAISEjI1LjM1LjAuNzk5MDg4MzU1MBgAIIgnKmMsOTQyNzU0MTUsOTQyMjQ4MjUsOTQyMjcyNDcsOTQyMjcyNDgsOTQyMzExODgsNDcwNzE3MDQsNDcwNjk1MDgsOTQyMTg2NDEsOTQyODIxMzQsOTQyMDMwMTksNDcwODQzMDRCAlZO&skid=e6c5bc88-6d1d-4af2-b6a2-d7431b7de9b9&g_st=ipc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline underline-offset-2 cursor-pointer text-blue-600"
+                      >
+                        {Profile.location}
+                      </a>
+                    </span>
                   </div>
                 </div>
               </div>

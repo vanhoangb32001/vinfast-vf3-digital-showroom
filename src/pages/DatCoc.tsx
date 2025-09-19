@@ -139,10 +139,10 @@ export default function DatCoc() {
             className="text-center"
           >
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Đặt cọc VinFast VF3/VF5
+              Đặt cọc VinFast
             </h1>
             <p className="mt-6 text-lg leading-8 text-white/90 max-w-2xl mx-auto">
-              Đặt cọc ngay hôm nay để nhận ưu đãi đặc biệt và là người đầu tiên sở hữu VF3/VF5
+              Đặt cọc ngay hôm nay để nhận ưu đãi đặc biệt
             </p>
             <div className="mt-8">
               <Badge className="bg-white/20 border-white/30 text-white text-lg px-4 py-2">
@@ -169,7 +169,7 @@ export default function DatCoc() {
                   Thông tin đặt cọc
                 </CardTitle>
                 <CardDescription>
-                  Vui lòng điền đầy đủ thông tin để hoàn tất việc đặt cọc VF3/VF5
+                  Vui lòng điền đầy đủ thông tin để hoàn tất việc đặt cọc
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -346,14 +346,14 @@ export default function DatCoc() {
                   <Zap className="h-5 w-5 text-primary" />
                   <span className="text-sm">Hỗ trợ sạc miễn phí 2 năm (30/06/2027)</span>
                 </div>
-                  <div className="flex items-center space-x-2">
-                    <Car className="h-5 w-5 text-primary" />
-                    <span className="text-sm">Sẵn xe - Đủ màu - Giao ngay</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <HandCoins className="h-5 w-5 text-primary" />
-                    <span className="text-sm">Hỗ trợ lãi suất 3% trong 3 năm đầu</span>
-                  </div>
+                <div className="flex items-center space-x-2">
+                  <Car className="h-5 w-5 text-primary" />
+                  <span className="text-sm">Sẵn xe - Đủ màu - Giao ngay</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <HandCoins className="h-5 w-5 text-primary" />
+                  <span className="text-sm">Hỗ trợ lãi suất 3% trong 3 năm đầu</span>
+                </div>
                 <div className="flex items-center space-x-2">
                   <Landmark className="h-5 w-5 text-primary" />
                   <span className="text-sm">Hỗ trợ vay ngân hàng lên đến 90%</span>
