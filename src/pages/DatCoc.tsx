@@ -23,6 +23,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
+import emailjs from "emailjs-com"
 
 const colorOptions = [
   { value: "summer-yellow", label: "Summer Yellow", color: "#FFD700" },
@@ -93,18 +94,35 @@ export default function DatCoc() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // Gửi email qua EmailJS
+    try {
+      await emailjs.send(
+        "service_06llyup", // Thay bằng service ID của bạn
+        "template_m5pbuzf", // Thay bằng template ID của bạn
+        {
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          variant: formData.variant,
+          color: formData.color,
+          batteryOption: formData.batteryOption,
+          message: formData.message
+        },
+        "VY8SLpepauLuTGjVF" // Thay bằng user ID của bạn
+      )
 
-    console.log("Form submitted:", formData)
-
-    toast({
-      title: "Đặt cọc thành công!",
-      description: "Cảm ơn bạn đã đặt cọc VinFast VF3. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
-    })
+      toast({
+        title: "Đặt cọc thành công!",
+        description: "Cảm ơn bạn đã đặt cọc VinFast VF3. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
+      })
+    } catch (error) {
+      toast({
+        title: "Gửi email thất bại!",
+        description: "Vui lòng thử lại hoặc liên hệ hỗ trợ."
+      })
+    }
 
     setIsSubmitting(false)
   }

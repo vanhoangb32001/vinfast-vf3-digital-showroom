@@ -9,6 +9,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import emailjs from "emailjs-com"
 
+function isValidPhone(phone: string) {
+  // Số Việt Nam: bắt đầu bằng 0, 10 số, chỉ số
+  return /^0\d{9}$/.test(phone);
+}
+
 export function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -20,6 +25,16 @@ export function FloatingChat() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+
+    if (!isValidPhone(phone)) {
+      toast({
+        title: "Số điện thoại không hợp lệ!",
+        description: "Vui lòng nhập đúng số điện thoại Việt Nam (10 số, bắt đầu bằng 0).",
+        variant: "destructive",
+      })
+      setIsSubmitting(false)
+      return
+    }
 
     // Gửi email qua EmailJS
     try {
@@ -35,7 +50,7 @@ export function FloatingChat() {
       )
       toast({
         title: "Gửi thành công!",
-        description: "Thông tin đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
+        description: "Thông tin đã được gửi thành công. Em Phúc Vinfast sẽ liên hệ anh/chị trong thời gian sớm nhất ạ.",
       })
       setIsOpen(false)
       setName("")

@@ -3,14 +3,27 @@ import { Button } from "@/components/ui/button";
 import { Profile } from "@/config/globalconfig";
 import { useState } from "react";
 import emailjs from "emailjs-com";
-import { useToast } from "@/hooks/use-toast"; // Thêm dòng này
+import { useToast } from "@/hooks/use-toast";
+
+function isValidPhone(phone: string) {
+  // Số Việt Nam: bắt đầu bằng 0, 10 số
+  return /^0\d{9}$/.test(phone);
+}
 
 export function ContactForm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const { toast } = useToast(); // Thêm dòng này
+  const { toast } = useToast();
 
   const handleClick = async () => {
+    if (!isValidPhone(phone)) {
+      toast({
+        title: "Số điện thoại không hợp lệ!",
+        description: "Vui lòng nhập đúng số điện thoại Việt Nam (10 số, bắt đầu bằng 0).",
+        variant: "destructive",
+      });
+      return;
+    }
     try {
       await emailjs.send(
         "service_06llyup",
@@ -21,7 +34,7 @@ export function ContactForm() {
       toast({
         title: "Gửi thành công!",
         description: "Thông tin đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
-      }); // Sử dụng toast thay alert
+      });
       setName("");
       setPhone("");
     } catch (error) {
@@ -29,7 +42,7 @@ export function ContactForm() {
         title: "Gửi thất bại!",
         description: "Vui lòng thử lại sau.",
         variant: "destructive",
-      }); // Sử dụng toast thay alert
+      });
     }
   };
 
