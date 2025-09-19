@@ -65,6 +65,7 @@ interface FormData {
   batteryOption: string
   message: string
   agreeTerms: boolean
+  type: string
 }
 
 export default function DatCoc() {
@@ -76,7 +77,8 @@ export default function DatCoc() {
     color: "",
     batteryOption: "",
     message: "",
-    agreeTerms: false
+    agreeTerms: false,
+    type: ""
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
@@ -99,8 +101,8 @@ export default function DatCoc() {
     // Gửi email qua EmailJS
     try {
       await emailjs.send(
-        "service_06llyup", // Thay bằng service ID của bạn
-        "template_m5pbuzf", // Thay bằng template ID của bạn
+        "service_06llyup",
+        "template_m5pbuzf",
         {
           fullName: formData.fullName,
           email: formData.email,
@@ -108,9 +110,23 @@ export default function DatCoc() {
           variant: formData.variant,
           color: formData.color,
           batteryOption: formData.batteryOption,
-          message: formData.message
+          message: formData.message,
+          // Gửi tên loại xe đầy đủ
+          type: {
+            "vf3": "VINFAST VF3",
+            "vf5": "VINFAST VF5",
+            "vf6": "VINFAST VF6",
+            "vf7": "VINFAST VF7",
+            "vf8": "VINFAST VF8",
+            "vf9": "VINFAST VF9",
+            "minio-green": "VINFAST MINIO GREEN",
+            "herio-green": "VINFAST HERIO GREEN",
+            "nerio-green": "VINFAST NERIO GREEN",
+            "limo-green": "VINFAST LIMO GREEN",
+            "ec-van": "VINFAST EC VAN"
+          }[formData.type] || formData.type
         },
-        "VY8SLpepauLuTGjVF" // Thay bằng user ID của bạn
+        "VY8SLpepauLuTGjVF"
       )
 
       toast({
@@ -232,18 +248,26 @@ export default function DatCoc() {
                   {/* Vehicle Configuration */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="variant">Loại xe</Label>
-                      <Select value={formData.variant} onValueChange={(value) => handleInputChange("variant", value)}>
+                      <Label htmlFor="type">Loại xe</Label>
+                      <Select value={formData.type} onValueChange={(value) => handleInputChange("type", value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Chọn loại xe" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="eco">VF3</SelectItem>
-                          <SelectItem value="plus">VF5</SelectItem>
+                          <SelectItem value="vf3">VINFAST VF3</SelectItem>
+                          <SelectItem value="vf5">VINFAST VF5</SelectItem>
+                          <SelectItem value="vf6">VINFAST VF6</SelectItem>
+                          <SelectItem value="vf7">VINFAST VF7</SelectItem>
+                          <SelectItem value="vf8">VINFAST VF8</SelectItem>
+                          <SelectItem value="vf9">VINFAST VF9</SelectItem>
+                          <SelectItem value="minio-green">VINFAST MINIO GREEN</SelectItem>
+                          <SelectItem value="herio-green">VINFAST HERIO GREEN</SelectItem>
+                          <SelectItem value="nerio-green">VINFAST NERIO GREEN</SelectItem>
+                          <SelectItem value="limo-green">VINFAST LIMO GREEN</SelectItem>
+                          <SelectItem value="ec-van">VINFAST EC VAN</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-
                     <div>
                       <Label htmlFor="color">Màu sắc</Label>
                       <Select value={formData.color} onValueChange={(value) => handleInputChange("color", value)}>
