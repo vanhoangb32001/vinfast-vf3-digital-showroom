@@ -1,11 +1,36 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Profile } from "@/config/globalconfig";
+import { useState } from "react";
+import emailjs from "emailjs-com";
+import { useToast } from "@/hooks/use-toast"; // Thêm dòng này
 
 export function ContactForm() {
-  const handleClick = () => {
-    // Placeholder cho việc submit form hoặc gọi API
-    console.log("Form submitted");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const { toast } = useToast(); // Thêm dòng này
+
+  const handleClick = async () => {
+    try {
+      await emailjs.send(
+        "service_06llyup",
+        "template_rqoj8cj",
+        { from_name: name, phone },
+        "VY8SLpepauLuTGjVF"
+      );
+      toast({
+        title: "Gửi thành công!",
+        description: "Thông tin đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
+      }); // Sử dụng toast thay alert
+      setName("");
+      setPhone("");
+    } catch (error) {
+      toast({
+        title: "Gửi thất bại!",
+        description: "Vui lòng thử lại sau.",
+        variant: "destructive",
+      }); // Sử dụng toast thay alert
+    }
   };
 
   return (
@@ -53,11 +78,15 @@ export function ContactForm() {
             <input
               type="text"
               placeholder="Họ và tên"
+              value={name}
+              onChange={e => setName(e.target.value)}
               className="bg-transparent border-b border-white text-white placeholder-white/70 focus:outline-none focus:border-blue-500 py-2"
             />
             <input
               type="text"
               placeholder="Số điện thoại"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
               className="bg-transparent border-b border-white text-white placeholder-white/70 focus:outline-none focus:border-blue-500 py-2"
             />
             <Button

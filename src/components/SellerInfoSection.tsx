@@ -177,14 +177,16 @@ export function SellerInfoSection() {
                   <p className="text-muted-foreground text-sm">Đẳng cấp quốc tế</p>
                 </div>
               </div>
-              <Button
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Liên Hệ Ngay
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Button>
+              <a href={`tel:${Profile.phone}`}>
+                <Button
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Liên Hệ Ngay
+                  <ChevronRight className="w-5 h-5 ml-2" />
+                </Button>
+              </a>
             </CardContent>
           </Card>
         </motion.div>

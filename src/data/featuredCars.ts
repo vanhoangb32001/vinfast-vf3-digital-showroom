@@ -73,7 +73,7 @@ export const featuredCars: FeaturedCar[] = [
       { label: "Phạm vi", value: "215 km" },
       { label: "Tăng tốc", value: "0-50km/h: 5.3s" },
       { label: "Sạc nhanh", value: "36 phút (10-70%)" },
-      { label: "Động cơ", value: "32 kW / 43.5 PS" }
+      { label: "Động cơ", value: "32 kW / 43.5 HP" }
     ]
   },
   {
@@ -142,7 +142,7 @@ export const featuredCars: FeaturedCar[] = [
       { label: "Phạm vi", value: "326 km" },
       { label: "Tăng tốc", value: "0-100km/h: 9.9s" },
       { label: "Sạc nhanh", value: "31 phút (10-70%)" },
-      { label: "Động cơ", value: "100 kW / 134 PS" }
+      { label: "Động cơ", value: "100 kW / 134 HP" }
     ]
   },
   {
@@ -187,7 +187,7 @@ export const featuredCars: FeaturedCar[] = [
       { label: "Phạm vi", value: "450 km" },
       { label: "Tăng tốc", value: "0-100km/h: 6.8s" },
       { label: "Sạc nhanh", value: "31 phút (10-70%)" },
-      { label: "Động cơ", value: "150 kW / 201 PS" }
+      { label: "Động cơ", value: "150 kW / 201 HP" }
     ]
   }
 ]

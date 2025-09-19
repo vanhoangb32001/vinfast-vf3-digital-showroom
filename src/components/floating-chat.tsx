@@ -35,7 +35,7 @@ export function FloatingChat() {
       )
       toast({
         title: "Gửi thành công!",
-        description: "Thông tin đã được gửi đến chủ page.",
+        description: "Thông tin đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
       })
       setIsOpen(false)
       setName("")
