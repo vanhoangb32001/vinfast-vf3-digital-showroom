@@ -41,7 +41,7 @@ export function Header() {
                 alt="VinFast Logo"
                 className="h-8 w-8"
               />
-              <span className="text-2xl font-bold text-foreground">
+              <span className="text-2xl font-bold text-foreground w-2xs:text-lg lg:text-xl">
                 VinFast Miền Nam
               </span>
             </motion.div>
