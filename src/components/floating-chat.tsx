@@ -74,6 +74,19 @@ export function FloatingChat() {
           from_name: name,
           phone: phone,
           message: message,
+          type: {
+            "vf3": "VINFAST VF3",
+            "vf5": "VINFAST VF5",
+            "vf6": "VINFAST VF6",
+            "vf7": "VINFAST VF7",
+            "vf8": "VINFAST VF8",
+            "vf9": "VINFAST VF9",
+            "minio-green": "VINFAST MINIO GREEN",
+            "herio-green": "VINFAST HERIO GREEN",
+            "nerio-green": "VINFAST NERIO GREEN",
+            "limo-green": "VINFAST LIMO GREEN",
+            "ec-van": "VINFAST EC VAN"
+          }[formData.type] || formData.type
         },
         "VY8SLpepauLuTGjVF" // Thay bằng user ID của bạn
       );
@@ -117,9 +130,8 @@ export function FloatingChat() {
       {/* Chat Dialog */}
       <div className="">
         <div
-          className={`fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center ${
-            isOpen ? "block" : "hidden"
-          }`}
+          className={`fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center ${isOpen ? "block" : "hidden"
+            }`}
         >
           <div className="lg:max-w-5xl md:max-w-xl sm:max-w-xs bg-white p-6 rounded-lg relative flex justify-center items-center">
             <div className="grid lg:grid-cols-3 lg:gap-6 md:gap-2">
