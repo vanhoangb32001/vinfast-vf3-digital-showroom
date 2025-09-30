@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 const navigation = [
   { name: "Trang chủ", href: "/" },
   { name: "Chi tiết xe", href: "/chi-tiet-xe" },
+  {name: "Vinfast Green", href:"/vinfast-green"},
   { name: "Đặt cọc", href: "/dat-coc" },
 ]
 
@@ -37,9 +38,9 @@ export function Header() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <img
-                src="https://vinfast-vn.vn/wp-content/uploads/2023/10/VinFast_2022.png"
+                src="/Logo.png"
                 alt="VinFast Logo"
-                className="h-8 w-8"
+                className="h-10 w-10"
               />
               <span className="text-2xl font-bold text-foreground w-2xs:text-lg lg:text-xl">
                 VinFast Miền Nam

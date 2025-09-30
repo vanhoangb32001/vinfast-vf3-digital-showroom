@@ -1,42 +1,62 @@
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Link } from "react-router-dom"
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ColorPicker } from "@/components/ColorPicker"
-import { featuredCars } from "@/data/featuredCars"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ColorPicker } from "@/components/ColorPicker";
+import { featuredCars } from "@/data/featuredCars";
 
 export function FeaturedCarSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [selectedColors, setSelectedColors] = useState<Record<string, string>>({})
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedColors, setSelectedColors] = useState<Record<string, string>>(
+    {}
+  );
 
   // Initialize selected colors (first color for each car)
   useEffect(() => {
-    const initialColors: Record<string, string> = {}
-    featuredCars.forEach(car => {
-      initialColors[car.id] = car.colors[0].code
-    })
-    setSelectedColors(initialColors)
-  }, [])
+    const initialColors: Record<string, string> = {};
+    featuredCars.forEach((car) => {
+      initialColors[car.id] = car.colors[0].code;
+    });
+    setSelectedColors(initialColors);
+  }, []);
 
-  const currentCar = featuredCars[currentIndex]
-  const selectedColor = selectedColors[currentCar?.id] || currentCar?.colors[0]?.code
-  const currentCarImage = currentCar?.colors.find(c => c.code === selectedColor)?.image
+  const currentCar = featuredCars[currentIndex];
+  const selectedColor =
+    selectedColors[currentCar?.id] || currentCar?.colors[0]?.code;
+  const currentCarImage = currentCar?.colors.find(
+    (c) => c.code === selectedColor
+  )?.image;
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % featuredCars.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % featuredCars.length);
+  };
 
   const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + featuredCars.length) % featuredCars.length)
-  }
+    setCurrentIndex(
+      (prev) => (prev - 1 + featuredCars.length) % featuredCars.length
+    );
+  };
 
   const handleColorChange = (carId: string, colorCode: string) => {
-    setSelectedColors(prev => ({ ...prev, [carId]: colorCode }))
-  }
+    setSelectedColors((prev) => ({ ...prev, [carId]: colorCode }));
+  };
 
-  if (!currentCar) return null
+  // Calculate billions
+  const formatPrice = (basePrice: string | number) => {
+    const cleaned = String(basePrice).replace(/[^\d]/g, "");
+    if (!cleaned) return "";
+    let num = parseFloat(cleaned);
+    num = num / 1_000_000;
+
+    if (num >= 1000) {
+      return `${(num / 1000).toFixed(2)} tỷ VNĐ`;
+    }
+    return `${num.toLocaleString()} triệu VNĐ`;
+  };
+
+  if (!currentCar) return null;
 
   return (
     <section className="relative h-screen overflow-hidden">
@@ -51,7 +71,9 @@ export function FeaturedCarSlider() {
         >
           <img
             src={currentCarImage}
-            alt={`${currentCar.name} màu ${currentCar.colors.find(c => c.code === selectedColor)?.name}`}
+            alt={`${currentCar.name} màu ${
+              currentCar.colors.find((c) => c.code === selectedColor)?.name
+            }`}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
@@ -74,7 +96,9 @@ export function FeaturedCarSlider() {
                 {currentCar.name}
               </h1>
               {currentCar.isNew && (
-                <Badge className="bg-primary text-primary-foreground">Mới</Badge>
+                <Badge className="bg-primary text-primary-foreground">
+                  Mới
+                </Badge>
               )}
             </div>
 
@@ -88,7 +112,7 @@ export function FeaturedCarSlider() {
 
             <div className="mb-6">
               <div className="text-3xl font-bold mb-2">
-                {parseInt(currentCar.basePrice).toLocaleString()} triệu VNĐ
+                {formatPrice(currentCar.basePrice)}
               </div>
               <div className="text-white/80 text-sm">Giá khởi điểm</div>
             </div>
@@ -99,22 +123,31 @@ export function FeaturedCarSlider() {
               <ColorPicker
                 colors={currentCar.colors}
                 selectedColor={selectedColor}
-                onColorChange={(colorCode) => handleColorChange(currentCar.id, colorCode)}
+                onColorChange={(colorCode) =>
+                  handleColorChange(currentCar.id, colorCode)
+                }
               />
               <div className="text-sm text-white/80 mt-2">
-                {currentCar.colors.find(c => c.code === selectedColor)?.name}
+                {currentCar.colors.find((c) => c.code === selectedColor)?.name}
               </div>
             </div>
 
             <div className="flex gap-4">
               <Link to="/chi-tiet-xe">
-                <Button size="lg" className="bg-white text-black hover:bg-white/90">
+                <Button
+                  size="lg"
+                  className="bg-white text-black hover:bg-white/90"
+                >
                   Xem chi tiết
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/dat-coc">
-                <Button size="lg" variant="outline" className="border-white text-black hover:bg-white/10">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-black hover:bg-white/10"
+                >
                   Đặt cọc ngay
                 </Button>
               </Link>
@@ -130,16 +163,16 @@ export function FeaturedCarSlider() {
             className="lg:justify-self-end"
           >
             <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <h3 className="text-white text-xl font-semibold mb-4">Thông số kỹ thuật</h3>
+              <h3 className="text-white text-xl font-semibold mb-4">
+                Thông số kỹ thuật
+              </h3>
               <div className="grid grid-cols-2 gap-4">
                 {currentCar.specs.map((spec, index) => (
                   <div key={index} className="text-center">
                     <div className="text-2xl font-bold text-white mb-1">
                       {spec.value}
                     </div>
-                    <div className="text-white/70 text-sm">
-                      {spec.label}
-                    </div>
+                    <div className="text-white/70 text-sm">{spec.label}</div>
                   </div>
                 ))}
               </div>
@@ -165,10 +198,11 @@ export function FeaturedCarSlider() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all ${index === currentIndex
-                  ? "bg-white"
-                  : "bg-white/40 hover:bg-white/60"
-                  }`}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentIndex
+                    ? "bg-white"
+                    : "bg-white/40 hover:bg-white/60"
+                }`}
               />
             ))}
           </div>
@@ -191,5 +225,5 @@ export function FeaturedCarSlider() {
         </div>
       </div>
     </section>
-  )
+  );
 }

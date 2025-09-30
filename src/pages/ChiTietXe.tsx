@@ -22,17 +22,17 @@ import { Link } from "react-router-dom"
 
 // Component data
 const technicalSpecs = [
-  { category: "Động cơ", detail: "01 Motor, 32 kW / 43.5 PS" },
-  { category: "Mô-men xoắn", detail: "110 Nm" },
-  { category: "Tăng tốc", detail: "5.3s (0-50km/h)" },
-  { category: "Quãng đường", detail: "215 km (theo NEDC/WLTP)" },
-  { category: "Thời gian sạc nhanh", detail: "36 phút (10%-70%)" },
-  { category: "Dẫn động", detail: "RWD (Dẫn động cầu sau)" },
-  { category: "Dung lượng pin", detail: "18.64 kWh" },
-  { category: "Kích thước", detail: "3.190 x 1.679 x 1.622 mm" },
-  { category: "Khoảng sáng gầm", detail: "191 mm" },
-  { category: "Dung tích cốp", detail: "285 lít" }
-]
+  { category: "Động cơ", detail: "02 Motor, 70 kW / 95 PS" },
+  { category: "Mô-men xoắn", detail: "220 Nm" },
+  { category: "Tăng tốc", detail: "4.9s (0-50km/h)" },
+  { category: "Quãng đường", detail: "300 km (theo NEDC/WLTP)" },
+  { category: "Thời gian sạc nhanh", detail: "30 phút (10%-80%)" },
+  { category: "Dẫn động", detail: "AWD (Dẫn động 4 bánh toàn thời gian)" },
+  { category: "Dung lượng pin", detail: "35 kWh" },
+  { category: "Kích thước", detail: "3.500 x 1.800 x 1.650 mm" },
+  { category: "Khoảng sáng gầm", detail: "200 mm" },
+  { category: "Dung tích cốp", detail: "350 lít" }
+];
 
 const safetyFeatures = [
   "Hệ thống túi khí đa điểm",
