@@ -1,23 +1,31 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
+import { vinFastData, VinFastModel } from "@/data/specifications"
 
 const navigation = [
   { name: "Trang chủ", href: "/" },
   { name: "Chi tiết xe", href: "/chi-tiet-xe" },
   {name: "Vinfast Green", href:"/vinfast-green"},
   { name: "Đặt cọc", href: "/dat-coc" },
+  { name: "Sản phẩm", href: "/danh-sach-xe", isDropdown: true },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
   const location = useLocation()
 
-  const isActivePath = (path: string) => location.pathname === path
+  const isActivePath = (path: string) => {
+    if (path === "/danh-sach-xe") {
+      return location.pathname === path || location.pathname.startsWith("/danh-sach-xe/")
+    }
+    return location.pathname === path
+  }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -68,26 +76,65 @@ export function Header() {
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              to={item.href}
-              onClick={scrollToTop}
-              className={cn(
-                "text-sm font-semibold leading-6 transition-colors hover:text-primary",
-                isActivePath(item.href)
-                  ? "text-primary"
-                  : "text-muted-foreground"
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navigation.map((item) =>
+            item.isDropdown ? (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => setDropdownOpen(true)}
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
+                <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+                  <DropdownMenuTrigger asChild>
+                    <Link
+                      to={item.href}
+                      onClick={scrollToTop}
+                      className={cn(
+                        "text-sm font-semibold leading-6 flex items-center gap-1 px-3 rounded-md",
+                        isActivePath(item.href)
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-primary"
+                      )}
+                    >
+                      {item.name}
+                      <ChevronDown className="h-4 w-4" />
+                    </Link>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-50">
+                    {vinFastData.map((model: VinFastModel) => (
+                      <DropdownMenuItem key={model.id} asChild>
+                        <Link
+                          to={`/danh-sach-xe/${model.id}`}
+                          onClick={scrollToTop}
+                          className="block w-full text-sm"
+                        >
+                          {model.model}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            ) : (
+              <Link
+                key={item.name}
+                to={item.href}
+                onClick={scrollToTop}
+                className={cn(
+                  "text-sm font-semibold leading-6 transition-colors hover:text-primary",
+                  isActivePath(item.href)
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                )}
+              >
+                {item.name}
+              </Link>
+            )
+          )}
         </div>
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
-          {/* <ThemeToggle /> */}
           <Link to="/dat-coc" onClick={scrollToTop}>
             <Button>Đăng ký tư vấn</Button>
           </Link>
@@ -104,26 +151,65 @@ export function Header() {
           transition={{ duration: 0.2 }}
         >
           <div className="space-y-2 px-4 pb-4 pt-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={() => {
-                  scrollToTop()
-                  setMobileMenuOpen(false)
-                }}
-                className={cn(
-                  "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
-                  isActivePath(item.href)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) =>
+              item.isDropdown ? (
+                <div key={item.name}>
+                  <Link
+                    to={item.href}
+                    onClick={() => {
+                      scrollToTop()
+                      setMobileMenuOpen(false)
+                    }}
+                    className={cn(
+                      "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
+                      isActivePath(item.href)
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                  <div className="pl-6 space-y-1">
+                    {vinFastData.map((model: VinFastModel) => (
+                      <Link
+                        key={model.id}
+                        to={`/danh-sach-xe/${model.id}`}
+                        onClick={() => {
+                          scrollToTop()
+                          setMobileMenuOpen(false)
+                        }}
+                        className={cn(
+                          "block px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                          isActivePath(`/danh-sach-xe/${model.id}`)
+                            ? "bg-primary text-primary-foreground"
+                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                        )}
+                      >
+                        {model.model}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  onClick={() => {
+                    scrollToTop()
+                    setMobileMenuOpen(false)
+                  }}
+                  className={cn(
+                    "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
+                    isActivePath(item.href)
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
             <div className="flex items-center justify-between pt-4 border-t border-border">
-              {/* <ThemeToggle /> */}
               <Link
                 to="/dat-coc"
                 onClick={() => {
