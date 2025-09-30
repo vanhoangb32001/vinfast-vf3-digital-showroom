@@ -13,7 +13,8 @@ import DatCoc from "./pages/DatCoc";
 import NotFound from "./pages/NotFound";
 import { ContactForm } from "./components/ContactForm";
 import { FloatingButtons } from "./components/FloatingButtons";
-import ChiTietXeDetail from "./pages/[id]";
+import ChiTietXeVFDetail from "./pages/VF/[id]";
+import ChiTietXeGreenDetail from "./pages/Green/[id]";
 import DanhSachXe from "./pages/DanhSachXe";
 const queryClient = new QueryClient();
 
@@ -32,7 +33,8 @@ const App = () => (
                 <Route path="/chi-tiet-xe" element={<ChiTietXe />} />
                 <Route path="/dat-coc" element={<DatCoc />} />
                 <Route path="/danh-sach-xe" element={<DanhSachXe />} />
-                <Route path="/danh-sach-xe/:id" element={<ChiTietXeDetail />} />
+                <Route path="/danh-sach-xe/vf/:id" element={<ChiTietXeVFDetail />} />
+                <Route path="/danh-sach-xe/green/:id" element={<ChiTietXeGreenDetail />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

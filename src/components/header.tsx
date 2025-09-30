@@ -8,16 +8,15 @@ import { cn } from "@/lib/utils"
 import { vinFastData, VinFastModel } from "@/data/specifications"
 
 const navigation = [
+  { name: "Sản phẩm Green", href: "/danh-sach-xe", isDropdown: true, type: "green" },
   { name: "Trang chủ", href: "/" },
-  { name: "Chi tiết xe", href: "/chi-tiet-xe" },
-  {name: "Vinfast Green", href:"/vinfast-green"},
   { name: "Đặt cọc", href: "/dat-coc" },
-  { name: "Sản phẩm", href: "/danh-sach-xe", isDropdown: true },
+  { name: "Sản phẩm vf", href: "/danh-sach-xe", isDropdown: true, type: "vf" },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [dropdownOpens, setDropdownOpens] = useState<{ [key: string]: boolean }>({})
   const location = useLocation()
 
   const isActivePath = (path: string) => {
@@ -29,6 +28,16 @@ export function Header() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const handleTriggerClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault() // Ngăn dropdown mở khi click
+    scrollToTop()
+    window.location.href = href // Chuyển hướng thủ công đến /danh-sach-xe
+  }
+
+  const setDropdownOpen = (name: string, open: boolean) => {
+    setDropdownOpens((prev) => ({ ...prev, [name]: open }))
   }
 
   return (
@@ -81,14 +90,14 @@ export function Header() {
               <div
                 key={item.name}
                 className="relative"
-                onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}
+                onMouseEnter={() => setDropdownOpen(item.name, true)}
+                onMouseLeave={() => setDropdownOpen(item.name, false)}
               >
-                <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+                <DropdownMenu open={dropdownOpens[item.name]} onOpenChange={(open) => setDropdownOpen(item.name, open)}>
                   <DropdownMenuTrigger asChild>
                     <Link
                       to={item.href}
-                      onClick={scrollToTop}
+                      onClick={(e) => handleTriggerClick(e, item.href)}
                       className={cn(
                         "text-sm font-semibold leading-6 flex items-center gap-1 px-3 rounded-md",
                         isActivePath(item.href)
@@ -101,10 +110,10 @@ export function Header() {
                     </Link>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start" className="w-50">
-                    {vinFastData.map((model: VinFastModel) => (
+                    {vinFastData.filter((model) => model.type === item.type).map((model: VinFastModel) => (
                       <DropdownMenuItem key={model.id} asChild>
                         <Link
-                          to={`/danh-sach-xe/${model.id}`}
+                          to={`/danh-sach-xe/${model.type}/${model.id}`}
                           onClick={scrollToTop}
                           className="block w-full text-sm"
                         >
@@ -170,7 +179,7 @@ export function Header() {
                     {item.name}
                   </Link>
                   <div className="pl-6 space-y-1">
-                    {vinFastData.map((model: VinFastModel) => (
+                    {vinFastData.filter((model) => model.type === item.type).map((model: VinFastModel) => (
                       <Link
                         key={model.id}
                         to={`/danh-sach-xe/${model.id}`}

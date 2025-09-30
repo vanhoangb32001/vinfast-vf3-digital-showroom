@@ -21,7 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link, useParams } from "react-router-dom";
 import { vinFastData, VinFastModel } from "@/data/specifications";
 
-export default function ChiTietXeDetail() {
+export default function ChiTietXeGreenDetail() {
   const { id } = useParams<{ id: string }>();
   const [is360Open, setIs360Open] = useState(false);
 
@@ -41,7 +41,7 @@ export default function ChiTietXeDetail() {
   };
 
   // Find the model based on the id from the URL
-  const model = vinFastData.find(model => model.id === id);
+  const model = vinFastData.find(model => model.id === id && model.type === "green");
 
   // Fallback if no model is found
   if (!model) {
@@ -119,10 +119,13 @@ export default function ChiTietXeDetail() {
       >
         {/* Technical Specifications */}
         <motion.section variants={itemVariants} className="mb-16">
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct1 }} />
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct2 }} />
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
               Thông số kỹ thuật
             </h2>
+            
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Chi tiết đầy đủ về hiệu suất và tính năng của {model.model}
             </p>

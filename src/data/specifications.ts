@@ -1,10 +1,55 @@
 export interface VinFastModel {
   id: string;
   model: string;
+  type: string;
   specs: { [key: string]: string };
   vfNameInComp: string;
   competitors: string[];
   comparisons: Comparison[];
+  content: {
+    ct1: string;
+      ct11: string;
+      ct12: string;
+      ct13: string;
+      ct14: string;
+      ct15: string;
+      ct16: string;
+    ct2: string;
+      ct21: string;
+      ct22: string;
+      ct23: string;
+      ct24: string;
+      ct25: string;
+      ct26: string;
+    ct3: string;
+      ct31: string;
+      ct32: string;
+      ct33: string;
+      ct34: string;
+      ct35: string;
+      ct36: string;
+    ct4: string;
+      ct41: string;
+      ct42: string;
+      ct43: string;
+      ct44: string;
+      ct45: string;
+      ct46: string;
+    ct5: string;
+      ct51: string;
+      ct52: string;
+      ct53: string;
+      ct54: string;
+      ct55: string;
+      ct56: string;
+    ct6: string;
+      ct61: string;
+      ct62: string;
+      ct63: string;
+      ct64: string;
+      ct65: string;
+      ct66: string;
+  }
 }
 
 export interface Comparison {
@@ -16,6 +61,7 @@ export const vinFastData: VinFastModel[] = [
   {
     id: 'vf3',
     model: 'VF3',
+    type: "vf",
     specs: {
       'Động cơ': '01 Motor, 32 kW / 43.5 PS',
       'Mô-men xoắn': '110 Nm',
@@ -72,10 +118,59 @@ export const vinFastData: VinFastModel[] = [
         ],
       },
     ],
+    content: {
+    ct1: '<h1 class="uppercase font-bold text-3xl">VinFast VF 3 - Xe nhỏ, giá trị lớn.</h1><p>Với thiết kế tối giản, nhỏ gọn, cá tính và năng động, VinFast VF 3 sẽ luôn cùng bạn hoà nhịp với xu thế công nghệ di chuyển xanh toàn cầu, trải nghiệm giá trị trên mỗi hành trình, và tự do thể hiện phong cách sống.</p><iframe width="1230" height="722" src="https://www.youtube.com/embed/z56derDAHVo" title="VINFAST VF 3 - CẢM HỨNG TỪ THẾ GIỚI TRUYỆN TRANH | OFFICIAL TVC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+      ct11: null,
+      ct12: null,
+      ct13: null,
+      ct14: null,
+      ct15: null,
+      ct16: null,
+    ct2: `<h1>VinFast VF 3 - Tự do sáng tạo, toả sáng chất riêng!</h1>
+              <p>Với dải màu ngoại thất đa dạng và độc đáo, bao gồm 7 tùy chọn màu sắc trẻ trung và thời thượng, 
+              VF 3 là sự lựa chọn hoàn hảo giúp bạn thoả sức thể hiện sự khác biệt và cá tính của riêng mình. 
+              Dù bạn là ai, hãy lựa chọn màu sắc và trang bị VF 3 theo sở thích của bạn, và cùng VinFast biến ước mơ của bạn thành hiện thực.</p>
+              <div><img src="/images/vf3-2.jpg" alf="Ảnh vf3" /><img src="/images/vf3-3.jpg" alf="Ảnh vf3" /></div>`,
+      ct21: null,
+      ct22: null,
+      ct23: null,
+      ct24: null,
+      ct25: null,
+      ct26: null,
+    ct3: '<h1>La-zăng vượt trội về kích thước & phong cách.</h1><p>VF 3 là mẫu xe hiếm hoi trong phân khúc xe sở hữu la-zăng kích thước 16 inch, không chỉ tạo điểm nhấn về thiết kế mà còn góp phần gia tăng khả năng di chuyển trên địa hình đa dạng trong đô thị. Đặc biệt, VF 3 được trang bị tuỳ chọn ốp la-zăng, tăng thêm vẻ cá tính, sự sang trọng cho chiếc xe.</p>',
+      ct31: null,
+      ct32: null,
+      ct33: null,
+      ct34: null,
+      ct35: null,
+      ct36: null,
+    ct4: '<h1>VinFast VF 3 - Biểu tượng mới của cuộc sống đô thị.</h1><p>Vượt lên trên một phương tiện di chuyển thông thường, VinFast VF 3 là biểu tượng mới mang tính cách mạng trong cuộc sống đô thị. Với thiết kế hiện đại, hiệu suất vận hành linh hoạt, tính năng an toàn tiên tiến, cùng chi phí vận hành siêu rẻ, VF 3 sẽ mở ra một cách tiếp cận hoàn toàn mới trong việc lựa chọn phương tiện di chuyển hàng ngày, mang lại sự thuận tiện, dễ dàng và đặc biệt thoải mái cho tất cả mọi người.</p>',
+      ct41: null,
+      ct42: null,
+      ct43: null,
+      ct44: null,
+      ct45: null,
+      ct46: null,
+    ct5: '<h1>VF 3 không chỉ là một chiếc xe điện tiên tiến.</h1><p>Mà còn là một tác phẩm nghệ thuật kết hợp giữa công nghệ và sự sáng tạo trong thiết kế.</p>',
+      ct51: null,
+      ct52: null,
+      ct53: null,
+      ct54: null,
+      ct55: null,
+      ct56: null,
+    ct6: '<h1>VinFast VF 3 - Luôn đủ chỗ cho mọi người!</h1><p>Thiết kế thông minh và không gian nội thất tối ưu hóa của VF 3 mang lại trải nghiệm di chuyển tiện lợi, đảm bảo sự thoải mái và tiện nghi cho cả 4 chỗ ngồi. Màu sắc nội thất trang nhã, trẻ trung và cá tính, cùng chất liệu thân thiện tạo ra một không gian đặc biệt, nơi chứa đựng những kỷ niệm đáng nhớ trên mọi hành trình khám phá phong cách sống của riêng bạn!</p>',
+      ct61: null,
+      ct62: null,
+      ct63: null,
+      ct64: null,
+      ct65: null,
+      ct66: null,
+    }
   },
   {
     id: 'vf5',
     model: 'VF5',
+    type: "vf",
     specs: {
       'Động cơ': '01 Motor, 100 kW / 134 PS',
       'Mô-men xoắn': '135 Nm',
@@ -132,10 +227,55 @@ export const vinFastData: VinFastModel[] = [
         ],
       },
     ],
+    content: {
+    ct1: '<h1>VinFast VF 5 Plus. Xứng danh “đàn anh” Xanh Sành hợp ví</h1><p>Sống thần thái và phong cách cùng dải màu mới đầy cảm hứng đến từ “đàn anh” VF 5 Plus. VF 5 Plus với dải màu đa dạng, gồm 4 màu cơ bản đã có là Xám, Đỏ, Xanh dương, Trắng; và 4 màu nâng cao mới là Vàng, Hồng tím, Xanh dương nhạt và Xanh lá nhạt.</p>',
+      ct11: '<h3>VF 5 – Summer Yellow</h3><h4 class="uppercase">Tự Teen Dẫn Lối Tự Do</h4><p>Chọn khai mở cung đường mới thay vì lối mòn rập khuôn, năng lượng từ Summer Yellow giúp Kaity tự tin vào chất trẻ trung trong mình – để tinh thần tự do phóng khoáng luôn vượt lên những rào cản không tên. Giới hạn sẽ không bao giờ nằm trong từ điển cuộc sống, một khi có sắc vàng của VinFast 5 Plus dẫn lối.</p>',
+      ct12: '<h3>VF 5 – Urban mint</h3><h4 class="uppercase">Phiêu nhịp sống xanh</h4><p>Hiện đại với sắc xanh tươi mát, sống động và thân thiện với môi trường. Màu xanh mint mang đến cho Hà cảm giác tươi mới, đầy năng lượng, giúp Hà tận hưởng nhịp sống đô thị một cách trọn vẹn và đầy cảm hứng.</p>',
+      ct13: '<h3>VF 5 – Aquatic Azure</h3><h4 class="uppercase">Chuyển động đa Z năng</h4><p>Hơn cả một màu sắc, Aquatic Azure đối với Amee đại diện cho cá tính đậm nét Gen Z, chất “đa-zi-năng” và phong cách trẻ trung năng động. Mọi chuyển động cùng sắc xanh Aquatic Azure chính là tuyên ngôn cho thần thái khác biệt của hội Gen Z.</p>',
+      ct14: '<h3>VF 5 – Zenith Grey</h3><h4 class="uppercase">Toàn tâm công tác</h4><p>Lựa chọn sắc xám chính là lựa chọn thành công – toàn tâm toàn ý cho mọi “công task” trên hành trình sự nghiệp. Là biểu tượng của sự uy tín và mạnh mẽ, GreyD tin rằng Zenith Grey sẽ mang đến thần thái chuyên nghiệp, đẳng cấp và tự tin trên mọi con đường bạn lựa chọn.</p>',
+      ct15: null,
+      ct16: null,
+    ct2: '<h1>VinFast VF 3 - Tự do sáng tạo, toả sáng chất riêng!</h1><p>Với dải màu ngoại thất đa dạng và độc đáo, bao gồm 7 tùy chọn màu sắc trẻ trung và thời thượng, VF 3 là sự lựa chọn hoàn hảo giúp bạn thoả sức thể hiện sự khác biệt và cá tính của riêng mình. Dù bạn là ai, hãy lựa chọn màu sắc và trang bị VF 3 theo sở thích của bạn, và cùng VinFast biến ước mơ của bạn thành hiện thực.</p>',
+      ct21: null,
+      ct22: null,
+      ct23: null,
+      ct24: null,
+      ct25: null,
+      ct26: null,
+    ct3: '<h1>La-zăng vượt trội về kích thước & phong cách.</h1><p>VF 3 là mẫu xe hiếm hoi trong phân khúc xe sở hữu la-zăng kích thước 16 inch, không chỉ tạo điểm nhấn về thiết kế mà còn góp phần gia tăng khả năng di chuyển trên địa hình đa dạng trong đô thị. Đặc biệt, VF 3 được trang bị tuỳ chọn ốp la-zăng, tăng thêm vẻ cá tính, sự sang trọng cho chiếc xe.</p>',
+      ct31: null,
+      ct32: null,
+      ct33: null,
+      ct34: null,
+      ct35: null,
+      ct36: null,
+    ct4: '<h1>VinFast VF 3 - Biểu tượng mới của cuộc sống đô thị.</h1><p>Vượt lên trên một phương tiện di chuyển thông thường, VinFast VF 3 là biểu tượng mới mang tính cách mạng trong cuộc sống đô thị. Với thiết kế hiện đại, hiệu suất vận hành linh hoạt, tính năng an toàn tiên tiến, cùng chi phí vận hành siêu rẻ, VF 3 sẽ mở ra một cách tiếp cận hoàn toàn mới trong việc lựa chọn phương tiện di chuyển hàng ngày, mang lại sự thuận tiện, dễ dàng và đặc biệt thoải mái cho tất cả mọi người.</p>',
+      ct41: null,
+      ct42: null,
+      ct43: null,
+      ct44: null,
+      ct45: null,
+      ct46: null,
+    ct5: '<h1>VF 3 không chỉ là một chiếc xe điện tiên tiến.</h1><p>Mà còn là một tác phẩm nghệ thuật kết hợp giữa công nghệ và sự sáng tạo trong thiết kế.</p>',
+      ct51: null,
+      ct52: null,
+      ct53: null,
+      ct54: null,
+      ct55: null,
+      ct56: null,
+    ct6: '<h1>VinFast VF 3 - Luôn đủ chỗ cho mọi người!</h1><p>Thiết kế thông minh và không gian nội thất tối ưu hóa của VF 3 mang lại trải nghiệm di chuyển tiện lợi, đảm bảo sự thoải mái và tiện nghi cho cả 4 chỗ ngồi. Màu sắc nội thất trang nhã, trẻ trung và cá tính, cùng chất liệu thân thiện tạo ra một không gian đặc biệt, nơi chứa đựng những kỷ niệm đáng nhớ trên mọi hành trình khám phá phong cách sống của riêng bạn!</p>',
+      ct61: null,
+      ct62: null,
+      ct63: null,
+      ct64: null,
+      ct65: null,
+      ct66: null,
+    }
   },
   {
     id: 'vf6',
     model: 'VF6',
+    type: "vf",
     specs: {
       'Động cơ': '01 Motor, 125 kW / 174 PS',
       'Mô-men xoắn': '250 Nm',
@@ -192,10 +332,55 @@ export const vinFastData: VinFastModel[] = [
         ],
       },
     ],
+    content: {
+    ct1: '<h1>VinFast VF 3 - Xe nhỏ, giá trị lớn.</h1><p>Với thiết kế tối giản, nhỏ gọn, cá tính và năng động, VinFast VF 3 sẽ luôn cùng bạn hoà nhịp với xu thế công nghệ di chuyển xanh toàn cầu, trải nghiệm giá trị trên mỗi hành trình, và tự do thể hiện phong cách sống.</p>',
+      ct11: null,
+      ct12: null,
+      ct13: null,
+      ct14: null,
+      ct15: null,
+      ct16: null,
+    ct2: '<h1>VinFast VF 3 - Tự do sáng tạo, toả sáng chất riêng!</h1><p>Với dải màu ngoại thất đa dạng và độc đáo, bao gồm 7 tùy chọn màu sắc trẻ trung và thời thượng, VF 3 là sự lựa chọn hoàn hảo giúp bạn thoả sức thể hiện sự khác biệt và cá tính của riêng mình. Dù bạn là ai, hãy lựa chọn màu sắc và trang bị VF 3 theo sở thích của bạn, và cùng VinFast biến ước mơ của bạn thành hiện thực.</p>',
+      ct21: null,
+      ct22: null,
+      ct23: null,
+      ct24: null,
+      ct25: null,
+      ct26: null,
+    ct3: '<h1>La-zăng vượt trội về kích thước & phong cách.</h1><p>VF 3 là mẫu xe hiếm hoi trong phân khúc xe sở hữu la-zăng kích thước 16 inch, không chỉ tạo điểm nhấn về thiết kế mà còn góp phần gia tăng khả năng di chuyển trên địa hình đa dạng trong đô thị. Đặc biệt, VF 3 được trang bị tuỳ chọn ốp la-zăng, tăng thêm vẻ cá tính, sự sang trọng cho chiếc xe.</p>',
+      ct31: null,
+      ct32: null,
+      ct33: null,
+      ct34: null,
+      ct35: null,
+      ct36: null,
+    ct4: '<h1>VinFast VF 3 - Biểu tượng mới của cuộc sống đô thị.</h1><p>Vượt lên trên một phương tiện di chuyển thông thường, VinFast VF 3 là biểu tượng mới mang tính cách mạng trong cuộc sống đô thị. Với thiết kế hiện đại, hiệu suất vận hành linh hoạt, tính năng an toàn tiên tiến, cùng chi phí vận hành siêu rẻ, VF 3 sẽ mở ra một cách tiếp cận hoàn toàn mới trong việc lựa chọn phương tiện di chuyển hàng ngày, mang lại sự thuận tiện, dễ dàng và đặc biệt thoải mái cho tất cả mọi người.</p>',
+      ct41: null,
+      ct42: null,
+      ct43: null,
+      ct44: null,
+      ct45: null,
+      ct46: null,
+    ct5: '<h1>VF 3 không chỉ là một chiếc xe điện tiên tiến.</h1><p>Mà còn là một tác phẩm nghệ thuật kết hợp giữa công nghệ và sự sáng tạo trong thiết kế.</p>',
+      ct51: null,
+      ct52: null,
+      ct53: null,
+      ct54: null,
+      ct55: null,
+      ct56: null,
+    ct6: '<h1>VinFast VF 3 - Luôn đủ chỗ cho mọi người!</h1><p>Thiết kế thông minh và không gian nội thất tối ưu hóa của VF 3 mang lại trải nghiệm di chuyển tiện lợi, đảm bảo sự thoải mái và tiện nghi cho cả 4 chỗ ngồi. Màu sắc nội thất trang nhã, trẻ trung và cá tính, cùng chất liệu thân thiện tạo ra một không gian đặc biệt, nơi chứa đựng những kỷ niệm đáng nhớ trên mọi hành trình khám phá phong cách sống của riêng bạn!</p>',
+      ct61: null,
+      ct62: null,
+      ct63: null,
+      ct64: null,
+      ct65: null,
+      ct66: null,
+    }
   },
   {
     id: 'vf7',
     model: 'VF7',
+    type: "vf",
     specs: {
       'Động cơ': '01 Motor, 150 kW / 201 PS',
       'Mô-men xoắn': '310 Nm',
@@ -252,10 +437,55 @@ export const vinFastData: VinFastModel[] = [
         ],
       },
     ],
+    content: {
+    ct1: '<h1>VinFast VF 3 - Xe nhỏ, giá trị lớn.</h1><p>Với thiết kế tối giản, nhỏ gọn, cá tính và năng động, VinFast VF 3 sẽ luôn cùng bạn hoà nhịp với xu thế công nghệ di chuyển xanh toàn cầu, trải nghiệm giá trị trên mỗi hành trình, và tự do thể hiện phong cách sống.</p>',
+      ct11: null,
+      ct12: null,
+      ct13: null,
+      ct14: null,
+      ct15: null,
+      ct16: null,
+    ct2: '<h1>VinFast VF 3 - Tự do sáng tạo, toả sáng chất riêng!</h1><p>Với dải màu ngoại thất đa dạng và độc đáo, bao gồm 7 tùy chọn màu sắc trẻ trung và thời thượng, VF 3 là sự lựa chọn hoàn hảo giúp bạn thoả sức thể hiện sự khác biệt và cá tính của riêng mình. Dù bạn là ai, hãy lựa chọn màu sắc và trang bị VF 3 theo sở thích của bạn, và cùng VinFast biến ước mơ của bạn thành hiện thực.</p>',
+      ct21: null,
+      ct22: null,
+      ct23: null,
+      ct24: null,
+      ct25: null,
+      ct26: null,
+    ct3: '<h1>La-zăng vượt trội về kích thước & phong cách.</h1><p>VF 3 là mẫu xe hiếm hoi trong phân khúc xe sở hữu la-zăng kích thước 16 inch, không chỉ tạo điểm nhấn về thiết kế mà còn góp phần gia tăng khả năng di chuyển trên địa hình đa dạng trong đô thị. Đặc biệt, VF 3 được trang bị tuỳ chọn ốp la-zăng, tăng thêm vẻ cá tính, sự sang trọng cho chiếc xe.</p>',
+      ct31: null,
+      ct32: null,
+      ct33: null,
+      ct34: null,
+      ct35: null,
+      ct36: null,
+    ct4: '<h1>VinFast VF 3 - Biểu tượng mới của cuộc sống đô thị.</h1><p>Vượt lên trên một phương tiện di chuyển thông thường, VinFast VF 3 là biểu tượng mới mang tính cách mạng trong cuộc sống đô thị. Với thiết kế hiện đại, hiệu suất vận hành linh hoạt, tính năng an toàn tiên tiến, cùng chi phí vận hành siêu rẻ, VF 3 sẽ mở ra một cách tiếp cận hoàn toàn mới trong việc lựa chọn phương tiện di chuyển hàng ngày, mang lại sự thuận tiện, dễ dàng và đặc biệt thoải mái cho tất cả mọi người.</p>',
+      ct41: null,
+      ct42: null,
+      ct43: null,
+      ct44: null,
+      ct45: null,
+      ct46: null,
+    ct5: '<h1>VF 3 không chỉ là một chiếc xe điện tiên tiến.</h1><p>Mà còn là một tác phẩm nghệ thuật kết hợp giữa công nghệ và sự sáng tạo trong thiết kế.</p>',
+      ct51: null,
+      ct52: null,
+      ct53: null,
+      ct54: null,
+      ct55: null,
+      ct56: null,
+    ct6: '<h1>VinFast VF 3 - Luôn đủ chỗ cho mọi người!</h1><p>Thiết kế thông minh và không gian nội thất tối ưu hóa của VF 3 mang lại trải nghiệm di chuyển tiện lợi, đảm bảo sự thoải mái và tiện nghi cho cả 4 chỗ ngồi. Màu sắc nội thất trang nhã, trẻ trung và cá tính, cùng chất liệu thân thiện tạo ra một không gian đặc biệt, nơi chứa đựng những kỷ niệm đáng nhớ trên mọi hành trình khám phá phong cách sống của riêng bạn!</p>',
+      ct61: null,
+      ct62: null,
+      ct63: null,
+      ct64: null,
+      ct65: null,
+      ct66: null,
+    }
   },
   {
     id: 'vf8',
     model: 'VF8',
+    type: "green",
     specs: {
       'Động cơ': '02 Motor, 201 kW / 348 PS',
       'Mô-men xoắn': '620 Nm',
@@ -312,10 +542,55 @@ export const vinFastData: VinFastModel[] = [
         ],
       },
     ],
+    content: {
+    ct1: '<h1>VinFast VF 3 - Xe nhỏ, giá trị lớn.</h1><p>Với thiết kế tối giản, nhỏ gọn, cá tính và năng động, VinFast VF 3 sẽ luôn cùng bạn hoà nhịp với xu thế công nghệ di chuyển xanh toàn cầu, trải nghiệm giá trị trên mỗi hành trình, và tự do thể hiện phong cách sống.</p>',
+      ct11: null,
+      ct12: null,
+      ct13: null,
+      ct14: null,
+      ct15: null,
+      ct16: null,
+    ct2: '<h1>VinFast VF 3 - Tự do sáng tạo, toả sáng chất riêng!</h1><p>Với dải màu ngoại thất đa dạng và độc đáo, bao gồm 7 tùy chọn màu sắc trẻ trung và thời thượng, VF 3 là sự lựa chọn hoàn hảo giúp bạn thoả sức thể hiện sự khác biệt và cá tính của riêng mình. Dù bạn là ai, hãy lựa chọn màu sắc và trang bị VF 3 theo sở thích của bạn, và cùng VinFast biến ước mơ của bạn thành hiện thực.</p>',
+      ct21: null,
+      ct22: null,
+      ct23: null,
+      ct24: null,
+      ct25: null,
+      ct26: null,
+    ct3: '<h1>La-zăng vượt trội về kích thước & phong cách.</h1><p>VF 3 là mẫu xe hiếm hoi trong phân khúc xe sở hữu la-zăng kích thước 16 inch, không chỉ tạo điểm nhấn về thiết kế mà còn góp phần gia tăng khả năng di chuyển trên địa hình đa dạng trong đô thị. Đặc biệt, VF 3 được trang bị tuỳ chọn ốp la-zăng, tăng thêm vẻ cá tính, sự sang trọng cho chiếc xe.</p>',
+      ct31: null,
+      ct32: null,
+      ct33: null,
+      ct34: null,
+      ct35: null,
+      ct36: null,
+    ct4: '<h1>VinFast VF 3 - Biểu tượng mới của cuộc sống đô thị.</h1><p>Vượt lên trên một phương tiện di chuyển thông thường, VinFast VF 3 là biểu tượng mới mang tính cách mạng trong cuộc sống đô thị. Với thiết kế hiện đại, hiệu suất vận hành linh hoạt, tính năng an toàn tiên tiến, cùng chi phí vận hành siêu rẻ, VF 3 sẽ mở ra một cách tiếp cận hoàn toàn mới trong việc lựa chọn phương tiện di chuyển hàng ngày, mang lại sự thuận tiện, dễ dàng và đặc biệt thoải mái cho tất cả mọi người.</p>',
+      ct41: null,
+      ct42: null,
+      ct43: null,
+      ct44: null,
+      ct45: null,
+      ct46: null,
+    ct5: '<h1>VF 3 không chỉ là một chiếc xe điện tiên tiến.</h1><p>Mà còn là một tác phẩm nghệ thuật kết hợp giữa công nghệ và sự sáng tạo trong thiết kế.</p>',
+      ct51: null,
+      ct52: null,
+      ct53: null,
+      ct54: null,
+      ct55: null,
+      ct56: null,
+    ct6: '<h1>VinFast VF 3 - Luôn đủ chỗ cho mọi người!</h1><p>Thiết kế thông minh và không gian nội thất tối ưu hóa của VF 3 mang lại trải nghiệm di chuyển tiện lợi, đảm bảo sự thoải mái và tiện nghi cho cả 4 chỗ ngồi. Màu sắc nội thất trang nhã, trẻ trung và cá tính, cùng chất liệu thân thiện tạo ra một không gian đặc biệt, nơi chứa đựng những kỷ niệm đáng nhớ trên mọi hành trình khám phá phong cách sống của riêng bạn!</p>',
+      ct61: null,
+      ct62: null,
+      ct63: null,
+      ct64: null,
+      ct65: null,
+      ct66: null,
+    }
   },
   {
     id: 'vf9',
     model: 'VF9',
+    type: "green",
     specs: {
       'Động cơ': '02 Motor, 300 kW / 402 PS',
       'Mô-men xoắn': '620 Nm',
@@ -372,5 +647,49 @@ export const vinFastData: VinFastModel[] = [
         ],
       },
     ],
+    content: {
+    ct1: '<h1>VinFast VF 3 - Xe nhỏ, giá trị lớn.</h1><p>Với thiết kế tối giản, nhỏ gọn, cá tính và năng động, VinFast VF 3 sẽ luôn cùng bạn hoà nhịp với xu thế công nghệ di chuyển xanh toàn cầu, trải nghiệm giá trị trên mỗi hành trình, và tự do thể hiện phong cách sống.</p>',
+      ct11: null,
+      ct12: null,
+      ct13: null,
+      ct14: null,
+      ct15: null,
+      ct16: null,
+    ct2: '<h1>VinFast VF 3 - Tự do sáng tạo, toả sáng chất riêng!</h1><p>Với dải màu ngoại thất đa dạng và độc đáo, bao gồm 7 tùy chọn màu sắc trẻ trung và thời thượng, VF 3 là sự lựa chọn hoàn hảo giúp bạn thoả sức thể hiện sự khác biệt và cá tính của riêng mình. Dù bạn là ai, hãy lựa chọn màu sắc và trang bị VF 3 theo sở thích của bạn, và cùng VinFast biến ước mơ của bạn thành hiện thực.</p>',
+      ct21: null,
+      ct22: null,
+      ct23: null,
+      ct24: null,
+      ct25: null,
+      ct26: null,
+    ct3: '<h1>La-zăng vượt trội về kích thước & phong cách.</h1><p>VF 3 là mẫu xe hiếm hoi trong phân khúc xe sở hữu la-zăng kích thước 16 inch, không chỉ tạo điểm nhấn về thiết kế mà còn góp phần gia tăng khả năng di chuyển trên địa hình đa dạng trong đô thị. Đặc biệt, VF 3 được trang bị tuỳ chọn ốp la-zăng, tăng thêm vẻ cá tính, sự sang trọng cho chiếc xe.</p>',
+      ct31: null,
+      ct32: null,
+      ct33: null,
+      ct34: null,
+      ct35: null,
+      ct36: null,
+    ct4: '<h1>VinFast VF 3 - Biểu tượng mới của cuộc sống đô thị.</h1><p>Vượt lên trên một phương tiện di chuyển thông thường, VinFast VF 3 là biểu tượng mới mang tính cách mạng trong cuộc sống đô thị. Với thiết kế hiện đại, hiệu suất vận hành linh hoạt, tính năng an toàn tiên tiến, cùng chi phí vận hành siêu rẻ, VF 3 sẽ mở ra một cách tiếp cận hoàn toàn mới trong việc lựa chọn phương tiện di chuyển hàng ngày, mang lại sự thuận tiện, dễ dàng và đặc biệt thoải mái cho tất cả mọi người.</p>',
+      ct41: null,
+      ct42: null,
+      ct43: null,
+      ct44: null,
+      ct45: null,
+      ct46: null,
+    ct5: '<h1>VF 3 không chỉ là một chiếc xe điện tiên tiến.</h1><p>Mà còn là một tác phẩm nghệ thuật kết hợp giữa công nghệ và sự sáng tạo trong thiết kế.</p>',
+      ct51: null,
+      ct52: null,
+      ct53: null,
+      ct54: null,
+      ct55: null,
+      ct56: null,
+    ct6: '<h1>VinFast VF 3 - Luôn đủ chỗ cho mọi người!</h1><p>Thiết kế thông minh và không gian nội thất tối ưu hóa của VF 3 mang lại trải nghiệm di chuyển tiện lợi, đảm bảo sự thoải mái và tiện nghi cho cả 4 chỗ ngồi. Màu sắc nội thất trang nhã, trẻ trung và cá tính, cùng chất liệu thân thiện tạo ra một không gian đặc biệt, nơi chứa đựng những kỷ niệm đáng nhớ trên mọi hành trình khám phá phong cách sống của riêng bạn!</p>',
+      ct61: null,
+      ct62: null,
+      ct63: null,
+      ct64: null,
+      ct65: null,
+      ct66: null,
+    }
   },
 ];
