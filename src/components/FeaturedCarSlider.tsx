@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ColorPicker } from "@/components/ColorPicker";
-import { featuredCars } from "@/data/featuredCars";
+import {  FeaturedCar, featuredDataCars } from "@/data/featuredCars";
 
 export function FeaturedCarSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,13 +16,13 @@ export function FeaturedCarSlider() {
   // Initialize selected colors (first color for each car)
   useEffect(() => {
     const initialColors: Record<string, string> = {};
-    featuredCars.forEach((car) => {
+    featuredDataCars.forEach((car) => {
       initialColors[car.id] = car.colors[0].code;
     });
     setSelectedColors(initialColors);
   }, []);
 
-  const currentCar = featuredCars[currentIndex];
+  const currentCar = featuredDataCars[currentIndex];
   const selectedColor =
     selectedColors[currentCar?.id] || currentCar?.colors[0]?.code;
   const currentCarImage = currentCar?.colors.find(
@@ -30,12 +30,12 @@ export function FeaturedCarSlider() {
   )?.image;
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % featuredCars.length);
+    setCurrentIndex((prev) => (prev + 1) % featuredDataCars.length);
   };
 
   const goToPrev = () => {
     setCurrentIndex(
-      (prev) => (prev - 1 + featuredCars.length) % featuredCars.length
+      (prev) => (prev - 1 + featuredDataCars.length) % featuredDataCars.length
     );
   };
 
@@ -194,7 +194,7 @@ export function FeaturedCarSlider() {
           </Button>
 
           <div className="flex gap-2">
-            {featuredCars.map((_, index) => (
+            {featuredDataCars.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -221,7 +221,7 @@ export function FeaturedCarSlider() {
       {/* Auto-advance (optional) */}
       <div className="absolute top-4 right-4 z-20">
         <div className="text-white/60 text-sm">
-          {currentIndex + 1} / {featuredCars.length}
+          {currentIndex + 1} / {featuredDataCars.length}
         </div>
       </div>
     </section>

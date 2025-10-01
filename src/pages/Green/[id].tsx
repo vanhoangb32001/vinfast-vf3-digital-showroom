@@ -19,7 +19,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link, useParams } from "react-router-dom";
-import { vinFastData, VinFastModel } from "@/data/specifications";
+import { vinFastGreenData, VinFastGreenModel } from "@/data/specificationsGreen";
 
 export default function ChiTietXeGreenDetail() {
   const { id } = useParams<{ id: string }>();
@@ -41,7 +41,7 @@ export default function ChiTietXeGreenDetail() {
   };
 
   // Find the model based on the id from the URL
-  const model = vinFastData.find(model => model.id === id && model.type === "green");
+  const model = vinFastGreenData.find(model => model.id === id && model.type === "green");
 
   // Fallback if no model is found
   if (!model) {

@@ -24,7 +24,7 @@ export interface FeaturedCar {
   specs: CarSpec[];
 }
 
-export const featuredCars: FeaturedCar[] = [
+export const featuredDataCars: FeaturedCar[] = [
   {
     id: "vf3",
     name: "VinFast VF3",

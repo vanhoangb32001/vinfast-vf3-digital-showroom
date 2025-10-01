@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
-import { Car, Battery, Zap, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { vinFastData, VinFastModel } from "@/data/specifications";
+import { motion } from "framer-motion"
+import { Car, Battery, Zap, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Link } from "react-router-dom"
+import { vinFastData, VinFastModel } from "@/data/specifications"
 
-export default function DanhSachXe() {
+export default function DanhSachXeVf() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -20,6 +20,18 @@ export default function DanhSachXe() {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
   };
+
+  // Kiểm tra dữ liệu vinFastData
+  if (!vinFastData || !Array.isArray(vinFastData) || vinFastData.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Không tìm thấy dữ liệu xe</h2>
+          <p className="text-muted-foreground">Vui lòng kiểm tra lại nguồn dữ liệu hoặc liên hệ hỗ trợ.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -50,7 +62,7 @@ export default function DanhSachXe() {
         animate="visible"
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
-        <div className="text-center mb-10">
+        <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
             Các Mẫu Xe Điện
           </h2>
@@ -62,35 +74,37 @@ export default function DanhSachXe() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {vinFastData.map((model: VinFastModel) => (
             <motion.div key={model.id} variants={itemVariants}>
-              <Card className="h-[320px] hover:shadow-lg transition-shadow duration-300">
+              <Card className="flex flex-col hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
                     <Car className="mr-2 h-6 w-6 text-primary" />
                     {model.model}
                   </CardTitle>
-                  <CardDescription>{model.vfNameInComp}</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1">
                   <div className="space-y-4">
+                    <div dangerouslySetInnerHTML={{ __html: model.ava }} />
                     <div className="flex items-center space-x-2">
                       <Battery className="h-5 w-5 text-primary" />
                       <span className="text-sm">
-                        <strong>Phạm vi: </strong>{model.specs['Quãng đường']}
+                        <strong>Phạm vi: </strong>
+                        {model.distance || 'N/A'}
                       </span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Zap className="h-5 w-5 text-primary" />
                       <span className="text-sm">
-                        <strong>Công suất: </strong>{model.specs['Động cơ'].split(', ')[1]}
+                        <strong>Công suất: </strong>
+                        {model.operate || 'N/A'}
                       </span>
                     </div>
-                    <div className="flex items-top space-x-2 h-[70px]">
+                    <div className="flex items-start space-x-2 h-[70px]">
                       <span className="text-sm">
                         <strong>Giá bán: </strong>
-                        {model.comparisons.find(comp => comp.parameter === 'Giá bán (ước tính)')?.values[0]}
+                        {model.priceEco || model.pricePlus || model.pricePlus2 || 'N/A'}
                       </span>
                     </div>
-                    <Link to={`/danh-sach-xe/${model.id}`}>
+                    <Link to={`/danh-sach-xe-vf/${model.id}`}>
                       <Button className="w-full bg-primary hover:bg-primary/90">
                         Xem chi tiết
                         <ArrowRight className="ml-2 h-5 w-5" />

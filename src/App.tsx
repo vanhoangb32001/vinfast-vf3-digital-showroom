@@ -15,7 +15,8 @@ import { ContactForm } from "./components/ContactForm";
 import { FloatingButtons } from "./components/FloatingButtons";
 import ChiTietXeVFDetail from "./pages/VF/[id]";
 import ChiTietXeGreenDetail from "./pages/Green/[id]";
-import DanhSachXe from "./pages/DanhSachXe";
+import DanhSachXeVf from "./pages/DanhSachXeVf";
+import DanhSachXeGreen from "./pages/DanhSachXeGreen";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,9 +33,10 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/chi-tiet-xe" element={<ChiTietXe />} />
                 <Route path="/dat-coc" element={<DatCoc />} />
-                <Route path="/danh-sach-xe" element={<DanhSachXe />} />
-                <Route path="/danh-sach-xe/vf/:id" element={<ChiTietXeVFDetail />} />
-                <Route path="/danh-sach-xe/green/:id" element={<ChiTietXeGreenDetail />} />
+                <Route path="/danh-sach-xe-vf" element={<DanhSachXeVf />} />
+                <Route path="/danh-sach-xe-green" element={<DanhSachXeGreen />} />
+                <Route path="/danh-sach-xe-vf/:id" element={<ChiTietXeVFDetail />} />
+                <Route path="/danh-sach-xe-green/:id" element={<ChiTietXeGreenDetail />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

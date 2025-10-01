@@ -1,352 +1,500 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { 
-  Car, 
-  Battery, 
-  Shield, 
-  Zap, 
-  Settings, 
-  RotateCw,
-  ChevronRight,
-  CheckCircle,
-  ArrowRight
-} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Battery, Zap, ArrowRight, Phone, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Progress } from "@/components/ui/progress";
+import { Card, CardContent } from "@/components/ui/card";
+import { useParams } from "react-router-dom";
+import { vinFastData, VinFastModel, CarColor } from "@/data/specifications";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { Link, useParams } from "react-router-dom";
-import { vinFastData, VinFastModel } from "@/data/specifications";
+import { ColorPicker } from "@/components/ColorPicker";
 
 export default function ChiTietXeVFDetail() {
   const { id } = useParams<{ id: string }>();
-  const [is360Open, setIs360Open] = useState(false);
-
+  const [selectedColor, setSelectedColor] = useState<string>("");
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
-  // Find the model based on the id from the URL
-  const model = vinFastData.find(model => model.id === id && model.type === "vf");
+  // Find the model based on id
+  const model = vinFastData.find((m) => m.id === id);
 
-  // Fallback if no model is found
+  // Initialize selected color with the first color of the model
+  useEffect(() => {
+    if (model && model.colors.length > 0) {
+      setSelectedColor(model.colors[0].code);
+    }
+  }, [model]);
+
   if (!model) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Card>
-          <CardHeader>
-            <CardTitle>Lỗi</CardTitle>
-            <CardDescription>Xe với ID {id} không được tìm thấy.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Link to="/">
-              <Button>Quay lại trang chính</Button>
-            </Link>
-          </CardContent>
-        </Card>
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Không tìm thấy mẫu xe</h2>
+          <p className="text-muted-foreground">Vui lòng kiểm tra lại ID hoặc liên hệ hỗ trợ.</p>
+        </div>
       </div>
     );
   }
 
-  // Extract safety features from the comparison data
-  const safetyFeatures = model.comparisons
-    .find(comp => comp.parameter === 'Điểm an toàn')
-    ?.values[0]
-    .split('; ')[1]
-    ?.replace(/.*?\((.*?)\)/, '$1')
-    .split(', ') || [];
+  // Price fallback
+  const price = model.priceEco || model.pricePlus || model.pricePlus2 || "Liên hệ để biết giá";
+  const currentCarImage = model.colors.find((c) => c.code === selectedColor)?.image;
+
+  const handleColorChange = (carId: string, colorCode: string) => {
+    setSelectedColor(colorCode);
+  };
+
+  // Get previous and next car IDs for navigation
+  const currentIndex = vinFastData.findIndex((m) => m.id === id);
+  const prevId = vinFastData[currentIndex > 0 ? currentIndex - 1 : vinFastData.length - 1].id;
+  const nextId = vinFastData[currentIndex < vinFastData.length - 1 ? currentIndex + 1 : 0].id;
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-700">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Hero Section with Slider */}
+      <section className="relative h-[500px] overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${model.id}-${selectedColor}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0"
           >
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              {model.model}
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-white/90 max-w-2xl mx-auto">
-              Khám phá mọi chi tiết của chiếc xe điện {model.model} từ VinFast
-            </p>
-            
-            <div className="mt-8 flex justify-center">
-              <Dialog open={is360Open} onOpenChange={setIs360Open}>
-                <DialogTrigger asChild>
-                  <Button size="lg" variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-                    <RotateCw className="mr-2 h-5 w-5" />
-                    Xem 360°
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl">
-                  <DialogHeader>
-                    <DialogTitle>{model.model} - Góc nhìn 360°</DialogTitle>
-                  </DialogHeader>
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <p className="text-muted-foreground">Demo xem 360° (sẽ tích hợp thực tế)</p>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
+            <img
+              src={currentCarImage || "/placeholder.jpg"}
+              alt={`${model.model} màu ${model.colors.find((c) => c.code === selectedColor)?.name || "mặc định"}`}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
           </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Buttons */}
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
+          asChild
+        >
+          <Link to={`/vf/${prevId}`}>
+            <ChevronLeft className="h-6 w-6" />
+          </Link>
+        </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
+          asChild
+        >
+          <Link to={`/vf/${nextId}`}>
+            <ChevronRight className="h-6 w-6" />
+          </Link>
+        </Button>
+
+        {/* Content */}
+        <div className="relative z-10 h-full flex items-center">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Left: Car Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-white"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
+                  {model.model}
+                </h1>
+                {model.isNew && (
+                  <Badge className="bg-primary text-primary-foreground">Mới</Badge>
+                )}
+              </div>
+
+              <p className="text-xl sm:text-2xl text-white/90 mb-4">
+                {model.tagline}
+              </p>
+
+              <p className="text-white/80 mb-6 max-w-lg">
+                {model.description}
+              </p>
+
+              <div className="mb-6">
+                <div className="text-3xl font-bold mb-2">
+                  {model.priceEco || model.pricePlus || "Liên hệ"}
+                </div>
+                <div className="text-white/80 text-sm">Giá khởi điểm</div>
+              </div>
+
+              {/* Color Picker */}
+              <div className="mb-8">
+                <div className="text-sm text-white/80 mb-3">Chọn màu sắc:</div>
+                <ColorPicker
+                  colors={model.colors}
+                  selectedColor={selectedColor}
+                  onColorChange={(colorCode) => handleColorChange(model.id, colorCode)}
+                />
+                <div className="text-sm text-white/80 mt-2">
+                  {model.colors.find((c) => c.code === selectedColor)?.name}
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <Link to={`/vf/${model.id}`}>
+                  <Button
+                    size="lg"
+                    className="bg-white text-black hover:bg-white/90"
+                  >
+                    Xem chi tiết
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link to="/dat-coc">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white text-black hover:bg-white/10 hover:text-white"
+                  >
+                    Đặt cọc ngay
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Right: Specs */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="lg:justify-self-end"
+            >
+              <Card className="bg-black/30 backdrop-blur-sm border-white/20">
+                <CardContent className="p-6">
+                  <h3 className="text-white text-xl font-semibold mb-4">Thông số kỹ thuật</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white mb-1">{model.distance}</div>
+                      <div className="text-white/70 text-sm">Quãng đường</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white mb-1">{model.operate}</div>
+                      <div className="text-white/70 text-sm">Công suất</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white mb-1">{model.charging}</div>
+                      <div className="text-white/70 text-sm">Thời gian sạc</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      <motion.div 
+      {/* Color Selection Section */}
+      <section className="bg-white py-8">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-2xl font-semibold text-center mb-6">Chọn màu xe</h2>
+          <div className="flex justify-center gap-4 flex-wrap">
+            {model.colors.map((color) => (
+              <Button
+                key={color.code}
+                variant={selectedColor === color.code ? "default" : "outline"}
+                className="flex items-center gap-2"
+                onClick={() => handleColorChange(model.id, color.code)}
+              >
+                <img
+                  src={color.image}
+                  alt={`${model.model} - ${color.name}`}
+                  className="w-12 h-12 object-cover rounded-full border-2 border-gray-300"
+                />
+                <span className="capitalize">{color.name}</span>
+              </Button>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <p className="text-lg font-medium">Màu đã chọn: <span className="text-primary">{model.colors.find((c) => c.code === selectedColor)?.name}</span></p>
+            <img
+              src={currentCarImage || model.colors[0].image}
+              alt={`${model.model} - ${model.colors.find((c) => c.code === selectedColor)?.name}`}
+              className="mt-4 w-full max-w-xl mx-auto rounded-lg shadow-md"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Specs Section */}
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
+        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
       >
-        {/* Technical Specifications */}
-        <motion.section variants={itemVariants} className="mb-16">
-          <div dangerouslySetInnerHTML={{ __html: model.content.ct1 }} />
-          <div dangerouslySetInnerHTML={{ __html: model.content.ct2 }} />
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
-              Thông số kỹ thuật
-            </h2>
-            
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Chi tiết đầy đủ về hiệu suất và tính năng của {model.model}
-            </p>
-          </div>
-          
-          <Card>
-            <CardContent className="p-0">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[300px] font-semibold">Danh mục</TableHead>
-                    <TableHead className="font-semibold">Chi tiết</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {Object.entries(model.specs).map(([category, detail], index) => (
-                    <TableRow key={index} className="hover:bg-muted/50">
-                      <TableCell className="font-medium">{category}</TableCell>
-                      <TableCell>{detail}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </motion.section>
-
-        {/* Safety Features */}
-        <motion.section variants={itemVariants} className="mb-16">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
-              Tính năng an toàn
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Tính năng an toàn tiên tiến đảm bảo an toàn cho mọi hành trình
-            </p>
-          </div>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Shield className="mr-2 h-6 w-6 text-primary" />
-                Hệ thống an toàn toàn diện
-              </CardTitle>
-              <CardDescription>
-                {model.model} được trang bị đầy đủ các tính năng an toàn hiện đại
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {safetyFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.section>
-
-        {/* Battery & Performance */}
-        <motion.section variants={itemVariants} className="mb-16">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
-              Pin & Hiệu suất
-            </h2>
-          </div>
-          
-          <Tabs defaultValue="battery" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="battery" className="flex items-center">
-                <Battery className="mr-2 h-4 w-4" />
-                Pin
-              </TabsTrigger>
-              <TabsTrigger value="performance" className="flex items-center">
-                <Zap className="mr-2 h-4 w-4" />
-                Hiệu suất
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="battery" className="mt-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Hệ thống pin tiên tiến</CardTitle>
-                  <CardDescription>
-                    Pin Lithium-ion hiệu suất cao với công nghệ quản lý nhiệt thông minh
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <div>
-                      <h4 className="font-semibold mb-2">Dung lượng pin</h4>
-                      <div className="flex items-center space-x-2">
-                        <Progress value={85} className="flex-1" />
-                        <span className="text-sm font-medium">{model.specs['Dung lượng pin']}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Bảo hành</h4>
-                      <Badge variant="secondary" className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-                        8 năm không giới hạn km
-                      </Badge>
-                    </div>
-                  </div>
-                  <div className="grid gap-4 sm:grid-cols-3">
-                    <div className="text-center p-4 bg-muted/50 rounded-lg">
-                      <div className="text-2xl font-bold text-primary">
-                        {model.specs['Thời gian sạc nhanh'].split(' ')[0]}
-                      </div>
-                      <div className="text-sm text-muted-foreground">phút sạc nhanh</div>
-                      <div className="text-xs text-muted-foreground">(10%-70%)</div>
-                    </div>
-                    <div className="text-center p-4 bg-muted/50 rounded-lg">
-                      <div className="text-2xl font-bold text-primary">
-                        {model.specs['Quãng đường'].split(' ')[0]}
-                      </div>
-                      <div className="text-sm text-muted-foreground">km phạm vi</div>
-                      <div className="text-xs text-muted-foreground">(NEDC/WLTP)</div>
-                    </div>
-                    <div className="text-center p-4 bg-muted/50 rounded-lg">
-                      <div className="text-2xl font-bold text-primary">1₫</div>
-                      <div className="text-sm text-muted-foreground">ly cà phê/km</div>
-                      <div className="text-xs text-muted-foreground">chi phí vận hành</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            
-            <TabsContent value="performance" className="mt-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Hiệu suất vượt trội</CardTitle>
-                  <CardDescription>
-                    3 chế độ lái linh hoạt, {model.specs['Dẫn động'].toLowerCase()} mạnh mẽ
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid gap-6 sm:grid-cols-3">
-                    <div className="text-center p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                      <Settings className="h-8 w-8 text-primary mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2">Eco Mode</h4>
-                      <p className="text-sm text-muted-foreground">Tối ưu hóa phạm vi hoạt động</p>
-                    </div>
-                    <div className="text-center p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                      <Car className="h-8 w-8 text-primary mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2">Comfort Mode</h4>
-                      <p className="text-sm text-muted-foreground">Cân bằng hiệu suất & tiết kiệm</p>
-                    </div>
-                    <div className="text-center p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                      <Zap className="h-8 w-8 text-primary mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2">Sport Mode</h4>
-                      <p className="text-sm text-muted-foreground">Hiệu suất tối đa, tăng tốc nhanh</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </motion.section>
-
-        {/* Comparison */}
-        <motion.section variants={itemVariants} className="mb-16">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
-              So sánh với đối thủ
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {model.model} vượt trội so với các đối thủ trong phân khúc
-            </p>
-          </div>
-          
-          <Card>
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[200px] font-semibold">Tính năng</TableHead>
-                      <TableHead className="font-semibold text-primary">{model.vfNameInComp}</TableHead>
-                      {model.competitors.map((competitor, index) => (
-                        <TableHead key={index} className="font-semibold">{competitor}</TableHead>
-                      ))}
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {model.comparisons.map((row, index) => (
-                      <TableRow key={index} className="hover:bg-muted/50">
-                        <TableCell className="font-medium">{row.parameter}</TableCell>
-                        {row.values.map((value, idx) => (
-                          <TableCell key={idx} className={idx === 0 ? "font-semibold text-primary" : ""}>{value}</TableCell>
-                        ))}
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.section>
-
-        {/* CTA Section */}
-        <motion.section 
-          variants={itemVariants} 
-          className="text-center bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-12 text-white"
-        >
-          <h2 className="text-3xl font-bold mb-4">
-            Sẵn sàng trải nghiệm {model.model}?
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
+            Thông số nổi bật
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Đặt cọc ngay hôm nay để nhận ưu đãi đặc biệt và là người đầu tiên sở hữu {model.model}
-          </p>
-          <Link to="/dat-coc">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4">
-              Đặt cọc ngay
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-3">
+          <motion.div variants={itemVariants}>
+            <Card className="flex flex-col items-center text-center">
+              <CardContent className="pt-6">
+                <Battery className="h-8 w-8 text-primary mb-2 mx-auto" />
+                <h3 className="font-bold text-lg mb-1">Quãng đường</h3>
+                <p className="text-2xl font-bold">{model.distance}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Card className="flex flex-col items-center text-center">
+              <CardContent className="pt-6">
+                <Zap className="h-8 w-8 text-primary mb-2 mx-auto" />
+                <h3 className="font-bold text-lg mb-1">Công suất</h3>
+                <p className="text-2xl font-bold">{model.operate}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Card className="flex flex-col items-center text-center">
+              <CardContent className="pt-6">
+                <Zap className="h-8 w-8 text-primary mb-2 mx-auto" />
+                <h3 className="font-bold text-lg mb-1">Thời gian sạc</h3>
+                <p className="text-2xl font-bold">{model.charging}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Promotion Section */}
+      <motion.section
+        variants={itemVariants}
+        className="text-center bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-white mb-16"
+      >
+        <h2 className="text-3xl font-bold mb-4 uppercase">VinFast Khuyến Mãi</h2>
+        <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          KHUYẾN MÃI & GIẢM GIÁ<br />
+          Liên hệ ngay để nhận Khuyến Mãi & Giá Ưu Đãi mới nhất hôm nay.
+        </p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Button
+            size="lg"
+            className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4"
+            asChild
+          >
+            <a href="tel:+840328184676">
+              <Phone className="mr-2 h-5 w-5" />
+              Gọi Ngay
+            </a>
+          </Button>
+          <Button
+            size="lg"
+            className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4"
+            asChild
+          >
+            <a href="https://zalo.me/0328184676" target="_blank" rel="noopener noreferrer">
+              <MessageSquare className="mr-2 h-5 w-5" />
+              Nhắn Zalo
+            </a>
+          </Button>
+        </div>
+      </motion.section>
+
+      {/* Content Sections */}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
+      >
+        {model.content.ct1 && model.content.ct1.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct1 }} />
+        )}
+        {model.content.ct11 && model.content.ct11.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct11 }} />
+        )}
+        {model.content.ct12 && model.content.ct12.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct12 }} />
+        )}
+        {model.content.ct13 && model.content.ct13.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct13 }} />
+        )}
+        {model.content.ct14 && model.content.ct14.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct14 }} />
+        )}
+        {model.content.ct15 && model.content.ct15.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct15 }} />
+        )}
+        {model.content.ct16 && model.content.ct16.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct16 }} />
+        )}
+        {model.content.ct2 && model.content.ct2.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct2 }} />
+        )}
+        {model.content.ct21 && model.content.ct21.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct21 }} />
+        )}
+        {model.content.ct22 && model.content.ct22.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct22 }} />
+        )}
+        {model.content.ct23 && model.content.ct23.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct23 }} />
+        )}
+        {model.content.ct24 && model.content.ct24.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct24 }} />
+        )}
+        {model.content.ct25 && model.content.ct25.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct25 }} />
+        )}
+        {model.content.ct26 && model.content.ct26.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct26 }} />
+        )}
+        {model.content.ct3 && model.content.ct3.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct3 }} />
+        )}
+        {model.content.ct31 && model.content.ct31.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct31 }} />
+        )}
+        {model.content.ct32 && model.content.ct32.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct32 }} />
+        )}
+        {model.content.ct33 && model.content.ct33.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct33 }} />
+        )}
+        {model.content.ct34 && model.content.ct34.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct34 }} />
+        )}
+        {model.content.ct35 && model.content.ct35.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct35 }} />
+        )}
+        {model.content.ct36 && model.content.ct36.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct36 }} />
+        )}
+        {model.content.ct4 && model.content.ct4.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct4 }} />
+        )}
+        {model.content.ct41 && model.content.ct41.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct41 }} />
+        )}
+        {model.content.ct42 && model.content.ct42.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct42 }} />
+        )}
+        {model.content.ct43 && model.content.ct43.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct43 }} />
+        )}
+        {model.content.ct44 && model.content.ct44.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct44 }} />
+        )}
+        {model.content.ct45 && model.content.ct45.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct45 }} />
+        )}
+        {model.content.ct46 && model.content.ct46.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct46 }} />
+        )}
+        {model.content.ct5 && model.content.ct5.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct5 }} />
+        )}
+        {model.content.ct51 && model.content.ct51.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct51 }} />
+        )}
+        {model.content.ct52 && model.content.ct52.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct52 }} />
+        )}
+        {model.content.ct53 && model.content.ct53.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct53 }} />
+        )}
+        {model.content.ct54 && model.content.ct54.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct54 }} />
+        )}
+        {model.content.ct55 && model.content.ct55.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct55 }} />
+        )}
+        {model.content.ct56 && model.content.ct56.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct56 }} />
+        )}
+        {model.content.ct6 && model.content.ct6.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct6 }} />
+        )}
+        {model.content.ct61 && model.content.ct61.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct61 }} />
+        )}
+        {model.content.ct62 && model.content.ct62.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct62 }} />
+        )}
+        {model.content.ct63 && model.content.ct63.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct63 }} />
+        )}
+        {model.content.ct64 && model.content.ct64.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct64 }} />
+        )}
+        {model.content.ct65 && model.content.ct65.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct65 }} />
+        )}
+        {model.content.ct66 && model.content.ct66.trim() && (
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct66 }} />
+        )}
+      </motion.section>
+
+      {/* Comparisons Table if available */}
+      {model.competitors.length > 0 && model.comparisons.length > 0 && (
+        <motion.section
+          variants={itemVariants}
+          className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
+        >
+          <h2 className="text-3xl font-bold text-center mb-8">So sánh thông số</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Thông số
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    {model.vfNameInComp || model.model}
+                  </th>
+                  {model.competitors.map((comp, index) => (
+                    <th
+                      key={index}
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      {comp}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {model.comparisons.map((comp, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {comp.parameter}
+                    </td>
+                    {comp.values.map((value, vIndex) => (
+                      <td
+                        key={vIndex}
+                        className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                      >
+                        {value}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </motion.section>
-      </motion.div>
+      )}
     </div>
   );
 }

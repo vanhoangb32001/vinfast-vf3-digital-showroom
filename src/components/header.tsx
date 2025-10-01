@@ -6,22 +6,25 @@ import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 import { vinFastData, VinFastModel } from "@/data/specifications"
+import { vinFastGreenData, VinFastGreenModel } from "@/data/specificationsGreen";
 
 const navigation = [
-  { name: "Sản phẩm Green", href: "/danh-sach-xe", isDropdown: true, type: "green" },
+  { name: "Sản phẩm Green", href: "/danh-sach-xe-green", isDropdown: true, type: "green" },
   { name: "Trang chủ", href: "/" },
   { name: "Đặt cọc", href: "/dat-coc" },
-  { name: "Sản phẩm vf", href: "/danh-sach-xe", isDropdown: true, type: "vf" },
+  { name: "Sản phẩm Vf", href: "/danh-sach-xe-vf", isDropdown: true, type: "vf" },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [dropdownOpens, setDropdownOpens] = useState<{ [key: string]: boolean }>({})
   const location = useLocation()
-
   const isActivePath = (path: string) => {
-    if (path === "/danh-sach-xe") {
-      return location.pathname === path || location.pathname.startsWith("/danh-sach-xe/")
+    if (path === "/danh-sach-xe-green") {
+      return location.pathname === path || location.pathname.startsWith("/danh-sach-xe-green/")
+    }
+    else if (path === "/danh-sach-xe-vf") {
+      return location.pathname === path || location.pathname.startsWith("/danh-sach-xe-vf/")
     }
     return location.pathname === path
   }
@@ -86,7 +89,7 @@ export function Header() {
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) =>
-            item.isDropdown ? (
+            item.isDropdown && item.type ==="vf" ? (
               <div
                 key={item.name}
                 className="relative"
@@ -113,7 +116,46 @@ export function Header() {
                     {vinFastData.filter((model) => model.type === item.type).map((model: VinFastModel) => (
                       <DropdownMenuItem key={model.id} asChild>
                         <Link
-                          to={`/danh-sach-xe/${model.type}/${model.id}`}
+                          to={`/danh-sach-xe-vf/${model.id}`}
+                          onClick={scrollToTop}
+                          className="block w-full text-sm"
+                        >
+                          {model.model}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            ) : 
+            item.isDropdown && item.type ==="green" ? (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => setDropdownOpen(item.name, true)}
+                onMouseLeave={() => setDropdownOpen(item.name, false)}
+              >
+                <DropdownMenu open={dropdownOpens[item.name]} onOpenChange={(open) => setDropdownOpen(item.name, open)}>
+                  <DropdownMenuTrigger asChild>
+                    <Link
+                      to={item.href}
+                      onClick={(e) => handleTriggerClick(e, item.href)}
+                      className={cn(
+                        "text-sm font-semibold leading-6 flex items-center gap-1 px-3 rounded-md",
+                        isActivePath(item.href)
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-primary"
+                      )}
+                    >
+                      {item.name}
+                      <ChevronDown className="h-4 w-4" />
+                    </Link>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-50">
+                    {vinFastGreenData.filter((model) => model.type === item.type).map((model: VinFastGreenModel) => (
+                      <DropdownMenuItem key={model.id} asChild>
+                        <Link
+                          to={`/danh-sach-xe-green/${model.id}`}
                           onClick={scrollToTop}
                           className="block w-full text-sm"
                         >
