@@ -61,8 +61,7 @@ export default function ChiTietXeVFDetail() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section with Slider */}
-      <section className="relative h-[500px] overflow-hidden">
+      <section className="relative overflow-hidden py-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${model.id}-${selectedColor}`}
@@ -81,32 +80,8 @@ export default function ChiTietXeVFDetail() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation Buttons */}
-        <Button
-          variant="outline"
-          size="icon"
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
-          asChild
-        >
-          <Link to={`/vf/${prevId}`}>
-            <ChevronLeft className="h-6 w-6" />
-          </Link>
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/70"
-          asChild
-        >
-          <Link to={`/vf/${nextId}`}>
-            <ChevronRight className="h-6 w-6" />
-          </Link>
-        </Button>
-
-        {/* Content */}
         <div className="relative z-10 h-full flex items-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Left: Car Info */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -281,12 +256,18 @@ export default function ChiTietXeVFDetail() {
       {/* Promotion Section */}
       <motion.section
         variants={itemVariants}
-        className="text-center bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-white mb-16"
+        className="text-center bg-gradient-to-r from-blue-300 to-indigo-600 rounded-2xl mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-gray-200 mb-16"
       >
         <h2 className="text-3xl font-bold mb-4 uppercase">VinFast Khuyến Mãi</h2>
-        <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-          KHUYẾN MÃI & GIẢM GIÁ<br />
-          Liên hệ ngay để nhận Khuyến Mãi & Giá Ưu Đãi mới nhất hôm nay.
+        <p className="text-md text-left mb-8 opacity-90 text-black mx-auto">
+          <span className="font-bold">Giá công bố niêm yết từ Vinfast, chưa bao gồm Khuyến mãi Độc Quyền dành riêng cho Quý Khách. Liên hệ Hôm Nay để nhận giá lăn bánh Ưu đãi nhất!</span>
+          <ul className="list-disc ml-6">
+            <li>Gọi, Nhắn tin để nhận Ưu đãi Đặc Quyền.</li>
+            <li>Tư Vấn & Lái Thử Xe Tận nhà.</li>
+            <li>Đăng ký xe & Giao xe trọn gói Tận nhà.</li>
+            <li>Thủ tục Trả Góp Nhanh + Gọn + Lẹ. Lãi suất Thấp & Trả Linh Động.</li>
+            <li>Vay tối đa giá trị xe, thời gian đến 8 năm.</li>
+          </ul>
         </p>
         <div className="flex justify-center gap-4 flex-wrap">
           <Button
@@ -311,7 +292,18 @@ export default function ChiTietXeVFDetail() {
           </Button>
         </div>
       </motion.section>
-
+      <div className="flex mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-x-5 mt-[-60px]">
+        <div>
+            <img src={`/images/${model.id}/post.jpg`} alt='ảnh' width={'800px'}/>
+        </div>
+        <div className="space-y-5 text-gray-700">
+          <div className="text-[45px] font-bold" dangerouslySetInnerHTML={{ __html: model.specs.tt1 }} />
+          <div className="text-[60px] font-bold" dangerouslySetInnerHTML={{ __html: model.specs.tt2 }} />
+          <div dangerouslySetInnerHTML={{ __html: model.specs.tt3 }} />
+          <div dangerouslySetInnerHTML={{ __html: model.specs.tt4 }} />
+          <div dangerouslySetInnerHTML={{ __html: model.specs.tt5 }} />
+        </div>
+      </div>
       {/* Content Sections */}
       <motion.section
         variants={containerVariants}
@@ -451,9 +443,9 @@ export default function ChiTietXeVFDetail() {
       {model.competitors.length > 0 && model.comparisons.length > 0 && (
         <motion.section
           variants={itemVariants}
-          className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <h2 className="text-3xl font-bold text-center mb-8">So sánh thông số</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 uppercase">So sánh thông số</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
@@ -495,6 +487,22 @@ export default function ChiTietXeVFDetail() {
           </div>
         </motion.section>
       )}
+      <div className="flex space-x-5 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="w-[50%]">
+          <h1 className="text-4xl font-bold">3,5 km – Khoảng cách nhỏ cho mục tiêu lớn</h1>
+          <p className="my-3">Định hình tiên phong thúc đẩy ngành công nghiệp xe điện, hướng tới một tương lai Xanh và Thông Minh, VinFast đã đầu tư hàng trăm triệu USD phát triển hạ tầng, từng bước “phủ rộng” trạm sạc xe điện:</p>
+          <ul className="list-disc ml-6">
+            <li className="my-3">Hệ thống trạm sạc xe điện VinFast trải dài 63 tỉnh và thành phố.</li>
+            <li className="my-3">106 tuyến quốc lộ quan trọng đều có trạm sạc.</li>
+            <li className="my-3">80/85 thành phố đã được lắp đặt hệ thống trạm sạc.</li>
+            <li className="my-3">Khoảng cách ngắn 3,5 km giữa 2 trạm sạc trong thành phố.</li>
+          </ul>
+          <p className="my-3">VinFast cam kết nỗ lực mang đến nhiều tiện ích, giúp hành trình lái xe điện của người Việt thật dễ dàng!</p>
+        </div>
+        <div className="w-[50%]">
+          <img src='/images/chung.jpg' alt="Ảnh" />
+        </div>
+      </div>
     </div>
   );
 }
