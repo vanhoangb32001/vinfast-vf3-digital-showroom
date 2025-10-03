@@ -83,7 +83,7 @@ export default function DanhSachXeVf() {
                 </CardHeader>
                 <CardContent className="flex-1">
                   <div className="space-y-4">
-                    <div dangerouslySetInnerHTML={{ __html: model.ava }} />
+                    <div dangerouslySetInnerHTML={{ __html: model.ava }} className="h-[300px]"/>
                     <div className="flex items-center space-x-2">
                       <Battery className="h-5 w-5 text-primary" />
                       <span className="text-sm">
