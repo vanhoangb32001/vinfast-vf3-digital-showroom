@@ -121,7 +121,7 @@ export function FloatingChat() {
         <Button
           onClick={() => setIsOpen(true)}
           size="icon"
-          className="h-14 w-14 p-1 rounded-full shadow-lg bg-gradient-primary  bg-blue-500"
+          className="h-10 w-10 p-1 rounded-full shadow-lg bg-gradient-primary  bg-blue-500"
         >
           <MessageCircleMore className="h-7 w-7" />
         </Button>
@@ -207,7 +207,7 @@ export function FloatingChat() {
                           <SelectItem value="limo-green">
                             VINFAST LIMO GREEN
                           </SelectItem>
-                          <SelectItem value="ec-van">VINFAST EC VAN</SelectItem>
+                          {/* <SelectItem value="ec-van">VINFAST EC VAN</SelectItem> */}
                         </SelectContent>
                       </Select>
                     </div>

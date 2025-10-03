@@ -133,7 +133,7 @@ export function FeaturedCarSlider() {
             </div>
 
             <div className="flex gap-4">
-              <Link to="/chi-tiet-xe">
+              {/* <Link to="/chi-tiet-xe">
                 <Button
                   size="lg"
                   className="bg-white text-black hover:bg-white/90"
@@ -141,7 +141,7 @@ export function FeaturedCarSlider() {
                   Xem chi tiết
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </Link>
+              </Link> */}
               <Link to="/dat-coc">
                 <Button
                   size="lg"

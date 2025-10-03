@@ -35,6 +35,7 @@ const App = () => (
                 <Route path="/dat-coc" element={<DatCoc />} />
                 <Route path="/danh-sach-xe-vf" element={<DanhSachXeVf />} />
                 <Route path="/danh-sach-xe-green" element={<DanhSachXeGreen />} />
+                {/* <Route path="/chi-tiet-xe/:id" element={<ChiTietXeDetail/>}/> */}
                 <Route path="/danh-sach-xe-vf/:id" element={<ChiTietXeVFDetail />} />
                 <Route path="/danh-sach-xe-green/:id" element={<ChiTietXeGreenDetail />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

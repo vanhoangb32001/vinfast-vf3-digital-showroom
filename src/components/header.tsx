@@ -9,10 +9,11 @@ import { vinFastData, VinFastModel } from "@/data/specifications"
 import { vinFastGreenData, VinFastGreenModel } from "@/data/specificationsGreen";
 
 const navigation = [
-  { name: "Sản phẩm Green", href: "/danh-sach-xe-green", isDropdown: true, type: "green" },
   { name: "Trang chủ", href: "/" },
+    { name: "Sản phẩm Green", href: "/danh-sach-xe-green", isDropdown: true, type: "green" },
+      { name: "Sản phẩm Vf", href: "/danh-sach-xe-vf", isDropdown: true, type: "vf" },
   { name: "Đặt cọc", href: "/dat-coc" },
-  { name: "Sản phẩm Vf", href: "/danh-sach-xe-vf", isDropdown: true, type: "vf" },
+
 ]
 
 export function Header() {

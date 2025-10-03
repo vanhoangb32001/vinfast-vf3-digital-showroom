@@ -221,8 +221,7 @@ export function Footer() {
                 whileTap={{ scale: 0.95 }}
               >
                 <CircleChevronUp
-                  className="h-12 w-12 p-1 rounded-full
-             bg-blue-600 "
+                  className="h-12 w-12 p-1 rounded-full"
                 />
               </motion.button>
             </div>
