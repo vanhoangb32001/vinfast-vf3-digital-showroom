@@ -14,6 +14,7 @@ import {
   VinFastGreenModel,
 } from "@/data/specificationsGreen";
 import { FeaturedCarGreen } from "@/components/FeaturedCarGreen";
+import { carExtraExtensions,carExtraExtension } from "@/data/carExtraExtensions";
 
 export default function DanhSachXeGreen() {
   const containerVariants = {
@@ -31,7 +32,10 @@ export default function DanhSachXeGreen() {
     visible: { opacity: 1, y: 0 },
   };
 
-
+  const getCarImage = (id: string) => {
+  const car = carExtraExtensions.find((c) => c.id === id);
+  return car?.colors[0]?.image || "/fallback-car.png"; 
+};
 
 
   return (
@@ -77,17 +81,20 @@ export default function DanhSachXeGreen() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {vinFastGreenData.map((model: VinFastGreenModel) => (
             <motion.div key={model.id} variants={itemVariants}>
-              <Card className="h-[320px] hover:shadow-lg transition-shadow duration-300">
+              <Card className="lg:h-[400px] md:h-[375px] hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
                     <Car className="mr-2 h-6 w-6 text-primary" />
                     {model.model}
                   </CardTitle>
-                  <CardDescription>{model.vfNameInComp}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    
+                    <img
+          src={getCarImage(model.id)}
+          alt={model.model}
+          className="h-20 object-contain"
+        />
                     <div className="flex items-center space-x-2">
                       <Battery className="h-5 w-5 text-primary" />
                       <span className="text-sm">
@@ -102,7 +109,7 @@ export default function DanhSachXeGreen() {
                         {model.specs["Động cơ"].split(", ")[1]}
                       </span>
                     </div>
-                    <div className="flex items-top space-x-2 h-[70px]">
+                    <div className="flex items-top space-x-2 lg:h-[90px] md:h-[65px]">
                       <span className="text-sm">
                         <strong>Giá bán: </strong>
                         {
@@ -115,7 +122,7 @@ export default function DanhSachXeGreen() {
                     <Link to={`/danh-sach-xe-green/${model.id}`}>
                       <Button className="w-full bg-primary hover:bg-primary/90">
                         Xem chi tiết
-                        <ArrowRight className="ml-2 h-5 w-5" />
+                        <ArrowRight className="ml- h-5 w-5" />
                       </Button>
                     </Link>
                   </div>

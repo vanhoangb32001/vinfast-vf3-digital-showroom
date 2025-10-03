@@ -1,7 +1,28 @@
-import { Phone } from "lucide-react"
+import { Phone, CircleChevronUp, } from "lucide-react"
+import { motion } from "framer-motion";
 import { Profile } from "@/config/globalconfig"
+import { useState, useEffect } from "react";
+
 
 export function FloatingButtons() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const [showScroll, setShowScroll] = useState(false);
+
+  // Lắng nghe sự kiện scroll để bật/tắt nút scrollToTop
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
       {/* CSS toàn cục cho ripple */}
@@ -76,6 +97,18 @@ export function FloatingButtons() {
           />
           <Phone className="w-7 h-7 text-white relative z-10" />
         </a>
+
+        {/* Nút scrollToTop bên phải */}
+      {showScroll && (
+        <motion.button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-9 w-8 h-8 shadow-lg z-50 flex items-center justify-center bg-gray-800 text-white rounded-full"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <CircleChevronUp className="h-7 w-7" />
+        </motion.button>)}
+
       </div>
     </>
   )

@@ -5,19 +5,15 @@ import {
   Phone,
   Mail,
   MapPin,
-  CircleChevronUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Profile } from "@/config/globalconfig";
 
 export function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
-    <footer className="bg-card border-t border-border flex relative">
+    <footer className="bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Company Info - Left Side */}
@@ -213,18 +209,6 @@ export function Footer() {
             <p className="text-xs text-muted-foreground">
               © 2025 VinFast. Tất cả quyền được bảo lưu.
             </p>
-            <div>
-              <motion.button
-                onClick={scrollToTop}
-                className="text-muted-foreground text-sm text-black bottom-6 right-7 z-50 flex items-center absolute"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <CircleChevronUp
-                  className="h-12 w-12 p-1 rounded-full"
-                />
-              </motion.button>
-            </div>
           </div>
         </div>
       </div>

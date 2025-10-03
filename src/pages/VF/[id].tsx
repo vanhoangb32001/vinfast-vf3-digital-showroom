@@ -445,7 +445,7 @@ export default function ChiTietXeVFDetail() {
           variants={itemVariants}
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <h2 className="text-3xl font-bold text-center mb-8 uppercase">So sánh thông số</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 uppercase">Thông số kỹ thuật</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">

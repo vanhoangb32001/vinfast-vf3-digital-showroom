@@ -74,19 +74,20 @@ export function FloatingChat() {
           from_name: name,
           phone: phone,
           message: message,
-          type: {
-            "vf3": "VINFAST VF3",
-            "vf5": "VINFAST VF5",
-            "vf6": "VINFAST VF6",
-            "vf7": "VINFAST VF7",
-            "vf8": "VINFAST VF8",
-            "vf9": "VINFAST VF9",
-            "minio-green": "VINFAST MINIO GREEN",
-            "herio-green": "VINFAST HERIO GREEN",
-            "nerio-green": "VINFAST NERIO GREEN",
-            "limo-green": "VINFAST LIMO GREEN",
-            "ec-van": "VINFAST EC VAN"
-          }[formData.type] || formData.type
+          type:
+            {
+              vf3: "VINFAST VF3",
+              vf5: "VINFAST VF5",
+              vf6: "VINFAST VF6",
+              vf7: "VINFAST VF7",
+              vf8: "VINFAST VF8",
+              vf9: "VINFAST VF9",
+              "minio-green": "VINFAST MINIO GREEN",
+              "herio-green": "VINFAST HERIO GREEN",
+              "nerio-green": "VINFAST NERIO GREEN",
+              "limo-green": "VINFAST LIMO GREEN",
+              "ec-van": "VINFAST EC VAN",
+            }[formData.type] || formData.type,
         },
         "VY8SLpepauLuTGjVF" // Thay bằng user ID của bạn
       );
@@ -120,24 +121,29 @@ export function FloatingChat() {
       >
         <Button
           onClick={() => setIsOpen(true)}
-          size="icon"
-          className="h-10 w-10 p-1 rounded-full shadow-lg bg-gradient-primary  bg-blue-500"
+          className="flex flex-col items-center justify-center h-16 w-16 p-2 shadow-lg bg-gradient-primary bg-red-500 text-white"
         >
-          <MessageCircleMore className="h-7 w-7" />
+          <MessageCircleMore className="h-8 w-8 mb-1" />
+          <span className="text-xs font-semibold">Báo giá</span>
         </Button>
       </motion.div>
 
       {/* Chat Dialog */}
       <div className="">
         <div
-          className={`fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center ${isOpen ? "block" : "hidden"
-            }`}
+          className={`fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center ${
+            isOpen ? "block" : "hidden"
+          }`}
+          onClick={() => setIsOpen(false)}
         >
-          <div className="lg:max-w-5xl md:max-w-xl sm:max-w-xs bg-white p-6 rounded-lg relative flex justify-center items-center">
+          <div
+            className="lg:max-w-5xl md:max-w-xl sm:max-w-xs bg-white p-6 rounded-lg relative flex justify-center items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="grid lg:grid-cols-3 lg:gap-6 md:gap-2">
               <div className="col-span-2 lg:col-span-2 sm:col-span-1">
                 <img
-                  src="Vf3_Dia.jpg" // Thay bằng đường dẫn đầy đủ nếu cần
+                  src="/Vf3_Dia.jpg" // Thay bằng đường dẫn đầy đủ nếu cần
                   alt="Tư vấn hình ảnh"
                   className="w-full lg:h-full md:h-40 object-contain rounded-md hidden md:block"
                 />
@@ -245,7 +251,7 @@ export function FloatingChat() {
               </div>
             </div>
             <button
-              className="absolute top-4 right-4 sm:top-1 sm:right-2 text-gray-500 hover:text-gray-700"
+              className="absolute top-4 right-4 sm:top-1 sm:right-2 text-gray-500 hover:text-gray-700 text-3xl leading-none"
               onClick={() => setIsOpen(false)}
             >
               ×
