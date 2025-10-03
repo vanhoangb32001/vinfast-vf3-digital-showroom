@@ -23,8 +23,6 @@ export interface VinFastModel {
     tt5: string;
   };
   vfNameInComp: string;
-  competitors: string[];
-  comparisons: Comparison[];
   content: {
     ct1: string;
       ct11: string;
@@ -158,51 +156,6 @@ export const vinFastData: VinFastModel[] = [
       tt5: '<p><span class="text-4xl font-bold">4</span> Số chỗ ngồi</p>',
     },
     vfNameInComp: '',
-    competitors: [''],
-    comparisons: [
-      {
-        parameter: 'Động cơ',
-        values: [
-          '01 Motor',
-        ],
-      },
-      {
-        parameter: 'Công suất tối đa (kW)',
-        values: [
-          '30',
-        ],
-      },
-      {
-        parameter: 'Mô men xoắn cực đại (Nm)',
-        values: [
-          '110',
-        ],
-      },
-      {
-        parameter: 'Tăng tốc',
-        values: [
-          '5,3s (0-50 km/h)',
-        ],
-      },
-      {
-        parameter: 'Quãng đường chạy một lần sạc đầy (km)',
-        values: [
-          '215',
-        ],
-      },
-      {
-        parameter: 'Thời gian nạp pin nhanh nhất',
-        values: [
-          '36 phút (10% – 70%)',
-        ],
-      },
-      {
-        parameter: 'Dẫn động',
-        values: [
-          'RWD/Cầu sau',
-        ],
-      },
-    ],
     content: {
     ct1: '<h1 class="uppercase font-bold text-3xl mt-[-50px]">VinFast VF 3 - Xe nhỏ, giá trị lớn.</h1><p class="my-3">Với thiết kế tối giản, nhỏ gọn, cá tính và năng động, VinFast VF 3 sẽ luôn cùng bạn hoà nhịp với xu thế công nghệ di chuyển xanh toàn cầu, trải nghiệm giá trị trên mỗi hành trình, và tự do thể hiện phong cách sống.</p><iframe width="1230" height="722" src="https://www.youtube.com/embed/z56derDAHVo" title="VINFAST VF 3 - CẢM HỨNG TỪ THẾ GIỚI TRUYỆN TRANH | OFFICIAL TVC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
       ct11: '',
@@ -321,49 +274,6 @@ export const vinFastData: VinFastModel[] = [
       Bảo hành xe mới: 7 năm/ 160.000 km. Pin cao áp (Mua lần đầu theo xe mới): 8 năm/ không giới hạn số km.</p>`,
     },
     vfNameInComp: 'VinFast VF5 Plus',
-    competitors: ['BYD Dolphin GLX', 'ORA Good Cat (bản cao cấp)'],
-    comparisons: [
-      {
-        parameter: 'Giá bán (ước tính)',
-        values: [
-          '508 triệu VNĐ (niêm yết 529 triệu, sau ưu đãi 4% + hỗ trợ lăn bánh; kèm pin)',
-          '659 triệu VNĐ (niêm yết, không ưu đãi lớn)',
-          '538-588 triệu VNĐ (niêm yết, tùy pin LFP/Ternary)',
-        ],
-      },
-      {
-        parameter: 'Phạm vi hoạt động',
-        values: [
-          '326 km (NEDC, thực tế ~260 km)',
-          '405 km (NEDC, thực tế ~320 km)',
-          '420 km (NEDC, thực tế ~340 km)',
-        ],
-      },
-      {
-        parameter: 'Công suất',
-        values: [
-          '134 mã lực (100 kW), 135 Nm',
-          '94 mã lực (70 kW), 180 Nm',
-          '171 mã lực (126 kW), 250 Nm',
-        ],
-      },
-      {
-        parameter: 'Thời gian sạc',
-        values: [
-          '30 phút (10-70% DC); 6 giờ AC đầy',
-          '30 phút (30-80% DC); 6.5 giờ AC đầy',
-          '45 phút (0-80% DC); 8 giờ AC đầy',
-        ],
-      },
-      {
-        parameter: 'Điểm an toàn',
-        values: [
-          '4-5 sao (dự kiến ASEAN NCAP; 6 túi khí, ABS, EBD, ESC, ADAS Level 2, camera 360°, hỗ trợ phanh khẩn cấp)',
-          '5 sao (Euro NCAP; 7 túi khí, ABS, ESC, hỗ trợ tránh va chạm, cảnh báo lệch làn)',
-          '5 sao (C-NCAP; 6 túi khí, ABS, EBD, kiểm soát ổn định, hỗ trợ đỗ xe)',
-        ],
-      },
-    ],
     content: {
     ct1: `<h1 class="uppercase font-bold text-3xl my-3">VinFast VF 5 Plus. Xứng danh “đàn anh” Xanh Sành hợp ví</h1>
       <p class="my-3">Sống thần thái và phong cách cùng dải màu mới đầy cảm hứng đến từ “đàn anh” VF 5 Plus. VF 5 Plus với dải màu đa dạng, gồm 4 màu cơ bản đã có là Xám, Đỏ, Xanh dương, Trắng; và 4 màu nâng cao mới là Vàng, Hồng tím, Xanh dương nhạt và Xanh lá nhạt.</p>
@@ -531,49 +441,6 @@ export const vinFastData: VinFastModel[] = [
       Bảo hành xe mới: 7 năm/ 160.000 km. Pin cao áp (Mua lần đầu theo xe mới): 8 năm/ không giới hạn số km.</p>`,
     },
     vfNameInComp: 'VinFast VF6 (Eco/Plus)',
-    competitors: ['BYD Atto 3 (Dynamic/Premium)', 'Hyundai Kona Electric (Standard/Long Range)'],
-    comparisons: [
-      {
-        parameter: 'Giá bán (ước tính)',
-        values: [
-          '675-749 triệu VNĐ (Eco 675 triệu, Plus 749 triệu sau ưu đãi 4%; lăn bánh ~720-800 triệu, kèm pin)',
-          '766-886 triệu VNĐ (Dynamic 766 triệu, Premium 886 triệu; lăn bánh ~850-980 triệu)',
-          '850-950 triệu VNĐ (ước tính nhập khẩu, bản Standard ~850 triệu; chưa ưu đãi lớn)',
-        ],
-      },
-      {
-        parameter: 'Phạm vi hoạt động',
-        values: [
-          '399-468 km (NEDC, thực tế ~350-420 km; pin 59.6 kWh)',
-          '410-480 km (NEDC, thực tế ~350-420 km; pin 49.92-60.48 kWh)',
-          '420 km (EPA, thực tế ~350 km; pin 64.8 kWh)',
-        ],
-      },
-      {
-        parameter: 'Công suất',
-        values: [
-          '174-201 mã lực (128-150 kW), 250-310 Nm',
-          '204 mã lực (150 kW), 310 Nm',
-          '201 mã lực (150 kW), 255 Nm',
-        ],
-      },
-      {
-        parameter: 'Thời gian sạc',
-        values: [
-          '25-30 phút (10-70% DC); 6-7 giờ AC đầy',
-          '30 phút (10-80% DC); 7-9 giờ AC đầy',
-          '43 phút (10-80% DC); 5-6 giờ AC đầy',
-        ],
-      },
-      {
-        parameter: 'Điểm an toàn',
-        values: [
-          '5 sao (dự kiến ASEAN NCAP/Global NCAP; 8 túi khí, ABS, EBD, ESC, 20 ADAS Level 2 như hỗ trợ phanh khẩn cấp, camera 360°, cảnh báo lệch làn)',
-          '5 sao (Euro NCAP/ASEAN NCAP; 7 túi khí, 91% bảo vệ người lớn, ABS, ESC, hỗ trợ tránh va chạm, cảnh báo điểm mù)',
-          '5 sao (Euro NCAP/ASEAN NCAP; 6 túi khí, ABS, ESC, ADAS nâng cao, hỗ trợ tránh va chạm, cảnh báo lệch làn)',
-        ],
-      },
-    ],
     content: {
     ct1: `<img  class="w-full" src="/images/vf6/1.jpg" alf="Ảnh vf6"/>
     <h1 class="uppercase font-bold text-3xl my-3">Triết lý thiết kế “Cặp đối lập tự nhiên”</h1>
@@ -707,51 +574,6 @@ export const vinFastData: VinFastModel[] = [
       tt5: '<p><span class="text-4xl font-bold">8</span><span class="font-bold text-2xl">túi khí</span> Trang bị an toàn</p>',
     },
     vfNameInComp: 'VF 7 Plus',
-    competitors: ['VF 7 Eco'],
-    comparisons: [
-      {
-        parameter: 'Chiều dài cơ sở',
-        values: [
-          '2.840 mm',
-          '2.840 mm',
-        ],
-      },
-      {
-        parameter: 'Dài x Rộng x Cao (mm)',
-        values: [
-          '4.545 x 1.890 x 1.635,75',
-          '4.545 x 1.890 x 1.635,75',
-        ],
-      },
-      {
-        parameter: 'Quãng đường chạy một lần sạc đầy (km)*',
-        values: [
-          '498',
-          '496',
-        ],
-      },
-      {
-        parameter: 'Công suất tối đa (kW)',
-        values: [
-          '130',
-          '150',
-        ],
-      },
-      {
-        parameter: 'Mô men xoắn cực đại (Nm)',
-        values: [
-          '250',
-          '310',
-        ],
-      },
-            {
-        parameter: 'Dung lượng pin khả dụng (kWh)',
-        values: [
-          '59,6',
-          '70,8',
-        ],
-      },
-    ],
    content: {
     ct1: `<h1 class="uppercase font-bold text-3xl my-3">VinFast VF 7 là một bước tiến đột phá trong thiết kế xe ô tô của VinFast</h1>
     <img  class="w-full" src="/images/vf7/1.jpg" alf="Ảnh vf7"/>  
@@ -966,37 +788,6 @@ export const vinFastData: VinFastModel[] = [
       tt5: '<p><span class="text-4xl font-bold">31</span><span class="font-bold text-2xl">phút</span><span class="text-3xl">(10%-70%)</span> Hoặc 200.000km</p>',
     },
     vfNameInComp: 'VinFast VF8 Plus',
-    competitors: ['VinFast VF8 Eco'],
-    comparisons: [
-      {
-        parameter: 'Màu sắc',
-        values: [
-          '4 màu tiêu chuẩn và 3 màu nâng cao',
-          '4 màu tiêu chuẩn và 3 màu nâng cao',
-        ],
-      },
-      {
-        parameter: 'Công suất',
-        values: [
-          '201 hp',
-          '402 hp',
-        ],
-      },
-      {
-        parameter: 'Quãng đường chạy một lần sạc đầy (km)*',
-        values: [
-          '562 km (theo NEDC)',
-          '457km (theo WLTP)',
-        ],
-      },
-      {
-        parameter: 'Trợ lý ảo',
-        values: [
-          'Trợ lý ảo ViVi',
-          '	Trợ lý ảo ViVi',
-        ],
-      },
-    ],
     content: {
     ct1: `<h1 class="uppercase font-bold text-3xl my-3">Sẵn sàng cho mọi hành trình</h1>
     <p class="my-3">Với quãng đường di chuyển mỗi lần sạc đầy lên tới 562 km, kết hợp với 
@@ -1217,51 +1008,6 @@ export const vinFastData: VinFastModel[] = [
       tt5: '<p><span class="text-4xl font-bold">10</span><span class="font-bold text-2xl">năm bảo hành</span> Hoặc 200.000km</p>',
     },
     vfNameInComp: 'VF 9 Plus',
-    competitors: ['VF 9 Eco'],
-    comparisons: [
-      {
-        parameter: 'Chiều dài cơ sở',
-        values: [
-          '3.150 mm',
-          '3.150 mm',
-        ],
-      },
-      {
-        parameter: 'Dài x Rộng x Cao (mm)',
-        values: [
-          '5.118 x 2.254 x 1.696',
-          '5.118 x 2.254 x 1.696',
-        ],
-      },
-      {
-        parameter: 'Quãng đường chạy một lần sạc đầy (km)*',
-        values: [
-          '626',
-          '602',
-        ],
-      },
-      {
-        parameter: 'Công suất tối đa (kW)',
-        values: [
-          '402/300',
-          '402/300',
-        ],
-      },
-      {
-        parameter: 'Mô men xoắn cực đại (Nm)',
-        values: [
-          '620',
-          '620',
-        ],
-      },
-      {
-        parameter: 'Dung lượng pin khả dụng (kWh)',
-        values: [
-          '123',
-          '123',
-        ],
-      },
-    ],
     content: {
     ct1: `<h1 class="uppercase font-bold text-3xl my-3">Mẫu eSUV cỡ lớn Hạng sang</h1>
     <p class="my-3">VF 9 là mẫu xe SUV 7 chỗ hàng đầu của VinFast. Với kiểu dáng tinh 
