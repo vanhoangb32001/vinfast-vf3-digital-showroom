@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ColorPicker } from "@/components/ColorPicker";
 import { carExtraExtension, carExtraExtensions } from "@/data/carExtraExtensions";
+import { VinFastGreenModel, vinFastGreenData } from "@/data/specificationsGreen";
 
 
 export function FeaturedCarGreen() {
@@ -45,17 +46,18 @@ export function FeaturedCarGreen() {
   };
 
   // Calculate billions
-  const formatPrice = (basePrice: string | number) => {
-    const cleaned = String(basePrice).replace(/[^\d]/g, "");
-    if (!cleaned) return "";
-    let num = parseFloat(cleaned);
-    num = num / 1_000_000;
+  // const formatPrice = (basePrice: string | number) => {
+  //   const cleaned = String(basePrice).replace(/[^\d]/g, "");
+  //   if (!cleaned) return "";
+  //   let num = parseFloat(cleaned);
+  //   num = num / 1_000_000;
 
-    if (num >= 1000) {
-      return `${(num / 1000).toFixed(2)} tỷ VNĐ`;
-    }
-    return `${num.toLocaleString()} triệu VNĐ`;
-  };
+  //   if (num >= 1000) {
+  //     return `${(num / 1000).toFixed(2)} tỷ VNĐ`;
+  //   }
+  //   return `${num.toLocaleString()} triệu VNĐ`;
+  // };
+
 
   if (!currentCar) return null;
 
@@ -113,7 +115,7 @@ export function FeaturedCarGreen() {
 
             <div className="mb-6">
               <div className="text-3xl font-bold mb-2">
-                {formatPrice(currentCar.basePrice)}
+                {currentCar.basePrice}
               </div>
               <div className="text-white/80 text-sm">Giá khởi điểm</div>
             </div>
@@ -152,31 +154,6 @@ export function FeaturedCarGreen() {
                   Đặt cọc ngay
                 </Button>
               </Link>
-            </div>
-          </motion.div>
-
-          {/* Right: Specs */}
-          <motion.div
-            key={`specs-${currentIndex}`}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="lg:justify-self-end"
-          >
-            <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <h3 className="text-white text-xl font-semibold mb-4">
-                Thông số kỹ thuật
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {currentCar.specs.map((spec, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-2xl font-bold text-white mb-1">
-                      {spec.value}
-                    </div>
-                    <div className="text-white/70 text-sm">{spec.label}</div>
-                  </div>
-                ))}
-              </div>
             </div>
           </motion.div>
         </div>

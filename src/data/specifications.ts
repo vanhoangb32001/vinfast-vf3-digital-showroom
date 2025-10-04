@@ -577,7 +577,7 @@ export const vinFastData: VinFastModel[] = [
     content: {
     ct1: `<img  class="w-full" src="/images/vf6/1.jpg" alf="Ảnh vf6"/>
     <h1 class="uppercase font-bold text-3xl my-3">Triết lý thiết kế “Cặp đối lập tự nhiên”</h1>
-      <p class="my-3">VinFast VF 6 là tuyệt tác nghệ thuật được thiết kế dựa trên triết lý “Cặp đối lập tự nhiên”, tạo nên sự cân bằng hoàn hảo giữa các yếu tố tưởng chừng như đối lập: thú vị – tinh tế, công nghệ – con người.</p>`,
+          <p class="my-3">VinFast VF 6 là tuyệt tác nghệ thuật được thiết kế dựa trên triết lý “Cặp đối lập tự nhiên”, tạo nên sự cân bằng hoàn hảo giữa các yếu tố tưởng chừng như đối lập: thú vị – tinh tế, công nghệ – con người.</p>`,
       ct11: `<div class='flex space-x-7 my-5'>
               <div class="w-[50%]">
                 <img  class="w-full" src="/images/vf6/2.jpg" alf="Ảnh vf6"/>              </div>

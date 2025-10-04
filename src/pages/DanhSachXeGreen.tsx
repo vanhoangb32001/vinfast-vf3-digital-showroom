@@ -14,7 +14,10 @@ import {
   VinFastGreenModel,
 } from "@/data/specificationsGreen";
 import { FeaturedCarGreen } from "@/components/FeaturedCarGreen";
-import { carExtraExtensions,carExtraExtension } from "@/data/carExtraExtensions";
+import {
+  carExtraExtensions,
+  carExtraExtension,
+} from "@/data/carExtraExtensions";
 
 export default function DanhSachXeGreen() {
   const containerVariants = {
@@ -33,15 +36,14 @@ export default function DanhSachXeGreen() {
   };
 
   const getCarImage = (id: string) => {
-  const car = carExtraExtensions.find((c) => c.id === id);
-  return car?.colors[0]?.image || "/fallback-car.png"; 
-};
-
+    const car = carExtraExtensions.find((c) => c.id === id);
+    return car?.colors[0]?.image || "/fallback-car.png";
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <FeaturedCarGreen />
-      {/* Hero Section */}
+      {/* <FeaturedCarGreen /> */}
+      {/* Hero Section  */}
       <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-700">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
@@ -52,7 +54,7 @@ export default function DanhSachXeGreen() {
             className="text-center"
           >
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Danh Sách Xe Điện VinFast
+              Danh Sách Xe Điện Green
             </h1>
             <p className="mt-6 text-lg leading-8 text-white/90 max-w-2xl mx-auto">
               Khám phá dòng xe điện hiện đại, tiết kiệm và thân thiện với môi
@@ -81,20 +83,22 @@ export default function DanhSachXeGreen() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {vinFastGreenData.map((model: VinFastGreenModel) => (
             <motion.div key={model.id} variants={itemVariants}>
-              <Card className="lg:h-[400px] md:h-[375px] hover:shadow-lg transition-shadow duration-300">
+              <Card className="lg:h-[auto] md:h-[auto] hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-2xl">
-                    <Car className="mr-2 h-6 w-6 text-primary" />
+                  <CardTitle className="flex items-center justify-center text-2xl ">
+                    <Car className="mr-2 h-6 w-6 text-primary " />
                     {model.model}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-4 ">
+                    <div className="flex justify-center">
                     <img
-          src={getCarImage(model.id)}
-          alt={model.model}
-          className="h-20 object-contain"
-        />
+                      src={getCarImage(model.id)}
+                      alt={model.model}
+                      className="h-40 object-contain "
+                    />
+                    </div>
                     <div className="flex items-center space-x-2">
                       <Battery className="h-5 w-5 text-primary" />
                       <span className="text-sm">
@@ -109,7 +113,7 @@ export default function DanhSachXeGreen() {
                         {model.specs["Động cơ"].split(", ")[1]}
                       </span>
                     </div>
-                    <div className="flex items-top space-x-2 lg:h-[90px] md:h-[65px]">
+                    <div className="flex items-top space-x-2 lg:h-[60px] md:h-[65px]">
                       <span className="text-sm">
                         <strong>Giá bán: </strong>
                         {
@@ -120,7 +124,7 @@ export default function DanhSachXeGreen() {
                       </span>
                     </div>
                     <Link to={`/danh-sach-xe-green/${model.id}`}>
-                      <Button className="w-full bg-primary hover:bg-primary/90">
+                      <Button className="w-full bg-primary hover:bg-primary/90 lg:mt-0 md:mt-0 mt-4">
                         Xem chi tiết
                         <ArrowRight className="ml- h-5 w-5" />
                       </Button>
@@ -139,7 +143,7 @@ export default function DanhSachXeGreen() {
         className="text-center bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-white mb-16"
       >
         <h2 className="text-3xl font-bold mb-4">
-          Sẵn sàng trải nghiệm xe điện VinFast?
+          Sẵn sàng trải nghiệm xe điện Green?
         </h2>
         <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
           Khám phá các mẫu xe và đặt cọc ngay hôm nay để nhận ưu đãi đặc biệt

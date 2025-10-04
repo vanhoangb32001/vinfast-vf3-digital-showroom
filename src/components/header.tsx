@@ -10,8 +10,8 @@ import { vinFastGreenData, VinFastGreenModel } from "@/data/specificationsGreen"
 
 const navigation = [
   { name: "Trang chủ", href: "/" },
+    { name: "Sản phẩm VinFast", href: "/danh-sach-xe-vf", isDropdown: true, type: "vf" },
     { name: "Sản phẩm Green", href: "/danh-sach-xe-green", isDropdown: true, type: "green" },
-      { name: "Sản phẩm VinFast", href: "/danh-sach-xe-vf", isDropdown: true, type: "vf" },
   { name: "Đặt cọc", href: "/dat-coc" },
 
 ]

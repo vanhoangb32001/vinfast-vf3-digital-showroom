@@ -86,9 +86,9 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "215 triệu VNĐ (kèm pin; tương đương ~INR 8.99 lakh.",
-          "190-265 triệu VNĐ (7-9.8 lakh INR, bản cao cấp ~265 triệu)",
-          "215-300 triệu VNĐ (8-11 lakh INR, tùy pin 19.2/24 kWh)",
+          "215.000.000 VNĐ (kèm pin; tương đương ~INR 8.99 lakh.",
+          "190-265.000.000 VNĐ (7-9.8 lakh INR, bản cao cấp ~265.000.000)",
+          "215-300.000.000 VNĐ (8-11 lakh INR, tùy pin 19.2/24 kWh)",
         ],
       },
       {
@@ -245,9 +245,9 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "458 triệu VNĐ (sau ưu đãi 4%, kèm pin; tối ưu cho dịch vụ)",
-          "659 triệu VNĐ (niêm yết, không ưu đãi lớn)",
-          "538-588 triệu VNĐ (niêm yết, tùy pin LFP/Ternary)",
+          "458.000.000 VNĐ (sau ưu đãi 4%, kèm pin; tối ưu cho dịch vụ)",
+          "659.000.000 VNĐ (niêm yết, không ưu đãi lớn)",
+          "538-588.000.000 VNĐ (niêm yết, tùy pin LFP/Ternary)",
         ],
       },
       {
@@ -397,9 +397,9 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "550 triệu VNĐ (sau ưu đãi, kèm pin; tối ưu cho taxi)",
-          "766-886 triệu VNĐ (Dynamic 766 triệu, Premium 886 triệu)",
-          "850-950 triệu VNĐ (bản Standard ~850 triệu; nhập khẩu)",
+          "550.000.000 VNĐ (sau ưu đãi, kèm pin; tối ưu cho taxi)",
+          "766-886.000.000 VNĐ (Dynamic 766.000.000, Premium 886.000.000)",
+          "850-950.000.000 VNĐ (bản Standard ~850.000.000; nhập khẩu)",
         ],
       },
       {
@@ -542,9 +542,9 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "749 triệu VNĐ (kèm pin, ưu đãi đến 30/9/2025; lăn bánh ~800 triệu)",
-          "560-658 triệu VNĐ (xăng, không ưu đãi lớn)",
-          "638-660 triệu VNĐ (xăng, tùy bản)",
+          "749.000.000 VNĐ (kèm pin, ưu đãi đến 30/9/2025; lăn bánh ~800.000.000)",
+          "560-658.000.000 VNĐ (xăng, không ưu đãi lớn)",
+          "638-660.000.000 VNĐ (xăng, tùy bản)",
         ],
       },
       {
@@ -581,20 +581,21 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       },
     ],
     content: {
-      ct1: `<div class="flex flex-col items-center h-full">
-      <div>
-        <img src="/asset/Green/Limo/Limo-1.png" 
-       alt="Limo Green" 
-       class="p-3.5 justify-center " /></div>
-       <div class="flex basis-1/2 ">
-       <div>
-       <img src="/asset/Green/Limo/Limo-2.png" 
-       alt="Limo Green" 
-       class="p-3.5"/></div>
-       <div><img src="/asset/Green/Limo/Limo-3.png" 
-       alt="Limo Green" 
-       class="p-3.5" /></div>
-       </div>`,
+       ct1: //`<div class="flex flex-col items-center h-full">
+      // <div>
+      //   <img src="/asset/Green/Limo/Limo-1.png" 
+      //  alt="Limo Green" 
+      //  class="p-3.5 justify-center " /></div>
+      //  <div class="flex basis-1/2 ">
+      //  <div>
+      //  <img src="/asset/Green/Limo/Limo-2.png" 
+      //  alt="Limo Green" 
+      //  class="p-3.5"/></div>
+      //  <div><img src="/asset/Green/Limo/Limo-3.png" 
+      //  alt="Limo Green" 
+      //  class="p-3.5" /></div>
+      //  </div>`
+      null,
       ct11: ` <div class="grid grid-cols-2 gap-4 p-3.5 w-full">
   <div>
     <img src="/asset/Green/Limo/Limo-4.png" alt="Limo Green" class="w-full p-3.5" />

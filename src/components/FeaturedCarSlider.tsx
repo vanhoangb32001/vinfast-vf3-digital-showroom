@@ -44,17 +44,17 @@ export function FeaturedCarSlider() {
   };
 
   // Calculate billions
-  const formatPrice = (basePrice: string | number) => {
-    const cleaned = String(basePrice).replace(/[^\d]/g, "");
-    if (!cleaned) return "";
-    let num = parseFloat(cleaned);
-    num = num / 1_000_000;
+  // const formatPrice = (basePrice: string | number) => {
+  //   const cleaned = String(basePrice).replace(/[^\d]/g, "");
+  //   if (!cleaned) return "";
+  //   let num = parseFloat(cleaned);
+  //   num = num / 1_000_000;
 
-    if (num >= 1000) {
-      return `${(num / 1000).toFixed(2)} tỷ VNĐ`;
-    }
-    return `${num.toLocaleString()} triệu VNĐ`;
-  };
+  //   if (num >= 1000) {
+  //     return `${(num / 1000).toFixed(2)} tỷ VNĐ`;
+  //   }
+  //   return `${num.toLocaleString()} triệu VNĐ`;
+  // };
 
   if (!currentCar) return null;
 
@@ -112,7 +112,7 @@ export function FeaturedCarSlider() {
 
             <div className="mb-6">
               <div className="text-3xl font-bold mb-2">
-                {formatPrice(currentCar.basePrice)}
+                {currentCar.basePrice } VNĐ
               </div>
               <div className="text-white/80 text-sm">Giá khởi điểm</div>
             </div>

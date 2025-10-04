@@ -41,17 +41,17 @@ export default function SwiperCar() {
   };
 
   // Calculate billions
-  const formatPrice = (basePrice: string | number) => {
-    const cleaned = String(basePrice).replace(/[^\d]/g, "");
-    if (!cleaned) return "";
-    let num = parseFloat(cleaned);
-    num = num / 1_000_000;
+  // const formatPrice = (basePrice: string | number) => {
+  //   const cleaned = String(basePrice).replace(/[^\d]/g, "");
+  //   if (!cleaned) return "";
+  //   let num = parseFloat(cleaned);
+  //   num = num / 1_000_000;
 
-    if (num >= 1000) {
-      return `${(num / 1000).toFixed(2)} tỷ VNĐ`;
-    }
-    return `${num.toLocaleString()} triệu VNĐ`;
-  };
+  //   if (num >= 1000) {
+  //     return `${(num / 1000).toFixed(2)} tỷ VNĐ`;
+  //   }
+  //   return `${num.toLocaleString()} triệu VNĐ`;
+  // };
 
   if (!currentCar) return null;
 
@@ -107,7 +107,7 @@ export default function SwiperCar() {
 
             <div className="mb-6">
               <div className="text-3xl font-bold mb-2">
-                {formatPrice(model2.basePrice)}
+                {(model2.basePrice)}
               </div>
               <div className="text-white/80 text-sm">Giá khởi điểm</div>
             </div>
@@ -156,7 +156,7 @@ export default function SwiperCar() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:justify-self-end">
-            <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            {/* <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
               <h3 className="text-white text-xl font-semibold mb-4">
                 Thông số kỹ thuật
               </h3>
@@ -170,7 +170,7 @@ export default function SwiperCar() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </div>

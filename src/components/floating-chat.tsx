@@ -213,7 +213,7 @@ export function FloatingChat() {
                           <SelectItem value="limo-green">
                             VINFAST LIMO GREEN
                           </SelectItem>
-                          {/* <SelectItem value="ec-van">VINFAST EC VAN</SelectItem> */}
+                          <SelectItem value="ec-van">VINFAST EC VAN</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
