@@ -438,6 +438,60 @@ export default function ChiTietXeVFDetail() {
           <div dangerouslySetInnerHTML={{ __html: model.content.ct66 }} />
         )}
       </motion.section>
+      )}
+</motion.section>
+
+      {/* Comparisons Table if available */}
+      {model.competitors.length > 0 && model.comparisons.length > 0 && (
+        <motion.section
+          variants={itemVariants}
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        >
+          <h2 className="text-3xl font-bold text-center mb-8 uppercase">So sánh thông số</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Thông số
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    {model.vfNameInComp || model.model}
+                  </th>
+                  {model.competitors.map((comp, index) => (
+                    <th
+                      key={index}
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      {comp}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {model.comparisons.map((comp, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {comp.parameter}
+                    </td>
+                    {comp.values.map((value, vIndex) => (
+                      <td
+                        key={vIndex}
+                        className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                      >
+                        {value}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </motion.section>
+      )}
+<div className="flex space-x-5 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+<div className="w-[50%]">
+<h1 className="text-4xl font-bold">3,5 km – Khoảng cách nhỏ cho mục tiêu lớn</h1>
 
       <div className="flex space-x-5 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-[50%]">
