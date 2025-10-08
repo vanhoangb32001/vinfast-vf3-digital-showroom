@@ -25,7 +25,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function ChiTietXeVFDetail() {
+export default function ChiTietXeVanDetail() {
   const { id } = useParams<{ id: string }>();
   const [selectedColor, setSelectedColor] = useState<string>("");
   const containerVariants = {

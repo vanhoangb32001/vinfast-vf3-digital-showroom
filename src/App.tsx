@@ -17,6 +17,7 @@ import ChiTietXeVFDetail from "./pages/VF/[id]";
 import ChiTietXeGreenDetail from "./pages/Green/[id]";
 import DanhSachXeVf from "./pages/DanhSachXeVf";
 import DanhSachXeGreen from "./pages/DanhSachXeGreen";
+import Product from "./pages/Product";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -35,6 +36,8 @@ const App = () => (
                 <Route path="/dat-coc" element={<DatCoc />} />
                 <Route path="/danh-sach-xe-vf" element={<DanhSachXeVf />} />
                 <Route path="/danh-sach-xe-green" element={<DanhSachXeGreen />} />
+                <Route path="/danh-sach-xe" element={<Product/>}/>
+                
                 {/* <Route path="/chi-tiet-xe/:id" element={<ChiTietXeDetail/>}/> */}
                 <Route path="/danh-sach-xe-vf/:id" element={<ChiTietXeVFDetail />} />
                 <Route path="/danh-sach-xe-green/:id" element={<ChiTietXeGreenDetail />} />

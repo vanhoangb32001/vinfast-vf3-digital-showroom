@@ -16,6 +16,7 @@ export interface CarSpec {
 export interface FeaturedCar {
   id: string;
   name: string;
+  isFeatured: boolean;
   tagline: string;
   description: string;
   basePrice: string;
@@ -28,10 +29,11 @@ export const featuredDataCars: FeaturedCar[] = [
   {
     id: "vf3",
     name: "VinFast VF3",
+    isFeatured: true,
     tagline: "Xe điện nhỏ gọn thông minh",
     description:
       "Thiết kế tối giản, phù hợp đô thị, công nghệ hiện đại với chi phí vận hành tiết kiệm.",
-    basePrice: "299.000.000",
+    basePrice: "299.000.000 VNĐ",
     isNew: true,
     colors: [
       {
@@ -86,10 +88,11 @@ export const featuredDataCars: FeaturedCar[] = [
   {
     id: "vf5",
     name: "VinFast VF5",
+    isFeatured: true,
     tagline: "SUV điện đa năng",
     description:
       "Không gian rộng rãi, khả năng vận hành mạnh mẽ, phù hợp cho gia đình và du lịch.",
-    basePrice: "529.000.000",
+    basePrice: "529.000.000 VNĐ",
     colors: [
       {
         name: "Trắng",
@@ -142,12 +145,54 @@ export const featuredDataCars: FeaturedCar[] = [
     ],
   },
   {
+  id: "vf6",
+  name: "VinFast VF6",
+  isFeatured: false,
+  tagline: "SUV cỡ nhỏ hiện đại",
+  description:
+    "Thiết kế năng động, trang bị công nghệ thông minh, phù hợp di chuyển linh hoạt trong đô thị.",
+  basePrice: "675.000.000 VNĐ",
+  colors: [
+    {
+      name: "Đen",
+      code: "den",
+      hex: "#000000",
+      image: "/asset/VF/VF6/VF-6-black.png",
+    },
+    {
+      name: "Đỏ",
+      code: "do",
+      hex: "#C3322E",
+      image: "/asset/VF/VF6/VF6-red.png",
+    },
+    {
+      name: "Trắng",
+      code: "trang",
+      hex: "#F3F4F6",
+      image: "/asset/VF/VF6/VF-6-white.png",
+    },
+    {
+      name: "Xanh dương",
+      code: "xanh-duong",
+      hex: "#3659B7",
+      image: "/asset/VF/VF6/VF-6-blue.png",
+    },
+  ],
+  specs: [
+    { label: "Phạm vi", value: "399 km" },
+    { label: "Tăng tốc", value: "0-100km/h: 7.5s" },
+    { label: "Sạc nhanh", value: "26 phút (10-70%)" },
+    { label: "Động cơ", value: "130 kW / 174 HP" },
+  ],
+},
+  {
     id: "vf7",
     name: "VinFast VF7",
+    isFeatured: false,
     tagline: "SUV cao cấp thông minh",
     description:
       "Thiết kế sang trọng, công nghệ ADAS tiên tiến, trải nghiệm lái xe đẳng cấp.",
-    basePrice: "799.000.000",
+    basePrice: "799.000.000 VNĐ",
     colors: [
       {
         name: "Xanh lá",
@@ -191,10 +236,11 @@ export const featuredDataCars: FeaturedCar[] = [
   {
     id: "vf8",
     name: "VinFast VF8",
+    isFeatured: false,
     tagline: "SUV điện hạng D",
     description:
       "Thiết kế hiện đại, vận hành mạnh mẽ, công nghệ thông minh, phù hợp cho gia đình và doanh nhân.",
-    basePrice: "1.090.000.000",
+    basePrice: "1.090.000.000 VNĐ",
     colors: [
       {
         name: "Trắng",
@@ -244,10 +290,11 @@ export const featuredDataCars: FeaturedCar[] = [
   {
     id: "vf9",
     name: "VinFast VF9",
+    isFeatured: true,
     tagline: "SUV điện hạng E",
     description:
       "Không gian 7 chỗ rộng rãi, tiện nghi sang trọng, tầm hoạt động dài, phù hợp gia đình lớn hoặc doanh nghiệp.",
-    basePrice: "1.491.000.000",
+    basePrice: "1.491.000.000 VNĐ",
     colors: [
       {
         name: "Trắng",

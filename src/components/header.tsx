@@ -1,48 +1,86 @@
-import { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
-import { motion } from "framer-motion"
-import { Menu, X, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { cn } from "@/lib/utils"
-import { vinFastData, VinFastModel } from "@/data/specifications"
-import { vinFastGreenData, VinFastGreenModel } from "@/data/specificationsGreen";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+} from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
+import { vinFastData, VinFastModel } from "@/data/specifications";
+import {
+  vinFastGreenData,
+  VinFastGreenModel,
+} from "@/data/specificationsGreen";
 
 const navigation = [
   { name: "Trang chủ", href: "/" },
-    { name: "Sản phẩm VinFast", href: "/danh-sach-xe-vf", isDropdown: true, type: "vf" },
-    { name: "Sản phẩm Green", href: "/danh-sach-xe-green", isDropdown: true, type: "green" },
+  {
+    name: "Sản phẩm",
+    href: "/danh-sach-xe",
+    isDropdown: true,
+    type: ["vf", "green"],
+  },
+  // {
+  //   name: "Sản phẩm VinFast",
+  //   href: "/danh-sach-xe-vf",
+  //   isDropdown: true,
+  //   type: "vf",
+  // },
+  // {
+  //   name: "Sản phẩm Green",
+  //   href: "/danh-sach-xe-green",
+  //   isDropdown: true,
+  //   type: "green",
+  // },
+  {
+    name: "Chương trình",
+    href: "/chuong-trinh",
+  },
   { name: "Đặt cọc", href: "/dat-coc" },
-
-]
+];
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [dropdownOpens, setDropdownOpens] = useState<{ [key: string]: boolean }>({})
-  const location = useLocation()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedid, setSelectedid] = useState("");
+  const [dropdownOpens, setDropdownOpens] = useState<{
+    [key: string]: boolean;
+  }>({});
+  const location = useLocation();
   const isActivePath = (path: string) => {
     if (path === "/danh-sach-xe-green") {
-      return location.pathname === path || location.pathname.startsWith("/danh-sach-xe-green/")
+      return (
+        location.pathname === path ||
+        location.pathname.startsWith("/danh-sach-xe-green/")
+      );
+    } else if (path === "/danh-sach-xe-vf") {
+      return (
+        location.pathname === path ||
+        location.pathname.startsWith("/danh-sach-xe-vf/")
+      );
     }
-    else if (path === "/danh-sach-xe-vf") {
-      return location.pathname === path || location.pathname.startsWith("/danh-sach-xe-vf/")
-    }
-    return location.pathname === path
-  }
+    return location.pathname === path;
+  };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleTriggerClick = (e: React.MouseEvent, href: string) => {
-    e.preventDefault() // Ngăn dropdown mở khi click
-    scrollToTop()
-    window.location.href = href // Chuyển hướng thủ công đến /danh-sach-xe
-  }
+    e.preventDefault(); // Ngăn dropdown mở khi click
+    scrollToTop();
+    window.location.href = href; // Chuyển hướng thủ công đến /danh-sach-xe
+  };
 
   const setDropdownOpen = (name: string, open: boolean) => {
-    setDropdownOpens((prev) => ({ ...prev, [name]: open }))
-  }
+    setDropdownOpens((prev) => ({ ...prev, [name]: open }));
+  };
 
   return (
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b border-border/40">
@@ -58,12 +96,8 @@ export function Header() {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <img
-                src="/Logo.png"
-                alt="VinFast Logo"
-                className="h-10 w-10"
-              />
-              <span className="text-2xl font-bold text-foreground w-2xs:text-lg lg:text-xl">
+              <img src="/Logo.png" alt="VinFast Logo" className="h-10 w-10" />
+              <span className="text-2xl font-bold text-foreground w-2xs:text-lg lg:text-xl sm:text-xl">
                 VinFast Miền Nam
               </span>
             </motion.div>
@@ -84,20 +118,25 @@ export function Header() {
             ) : (
               <Menu className="h-6 w-6" aria-hidden="true" />
             )}
+            
           </Button>
         </div>
 
         {/* Desktop navigation */}
+
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) =>
-            item.isDropdown && item.type ==="vf" ? (
+            item.isDropdown ? (
               <div
                 key={item.name}
                 className="relative"
                 onMouseEnter={() => setDropdownOpen(item.name, true)}
                 onMouseLeave={() => setDropdownOpen(item.name, false)}
               >
-                <DropdownMenu open={dropdownOpens[item.name]} onOpenChange={(open) => setDropdownOpen(item.name, open)}>
+                <DropdownMenu
+                  open={dropdownOpens[item.name]}
+                  onOpenChange={(open) => setDropdownOpen(item.name, open)}
+                >
                   <DropdownMenuTrigger asChild>
                     <Link
                       to={item.href}
@@ -113,57 +152,83 @@ export function Header() {
                       <ChevronDown className="h-4 w-4" />
                     </Link>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-50">
-                    {vinFastData.filter((model) => model.type === item.type).map((model: VinFastModel) => (
-                      <DropdownMenuItem key={model.id} asChild>
-                        <Link
-                          to={`/danh-sach-xe-vf/${model.id}`}
-                          onClick={scrollToTop}
-                          className="block w-full text-sm"
-                        >
-                          {model.model}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            ) : 
-            item.isDropdown && item.type ==="green" ? (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => setDropdownOpen(item.name, true)}
-                onMouseLeave={() => setDropdownOpen(item.name, false)}
-              >
-                <DropdownMenu open={dropdownOpens[item.name]} onOpenChange={(open) => setDropdownOpen(item.name, open)}>
-                  <DropdownMenuTrigger asChild>
-                    <Link
-                      to={item.href}
-                      onClick={(e) => handleTriggerClick(e, item.href)}
-                      className={cn(
-                        "text-sm font-semibold leading-6 flex items-center gap-1 px-3 rounded-md",
-                        isActivePath(item.href)
-                          ? "text-primary"
-                          : "text-muted-foreground hover:text-primary"
-                      )}
-                    >
-                      {item.name}
-                      <ChevronDown className="h-4 w-4" />
-                    </Link>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-50">
-                    {vinFastGreenData.filter((model) => model.type === item.type).map((model: VinFastGreenModel) => (
-                      <DropdownMenuItem key={model.id} asChild>
-                        <Link
-                          to={`/danh-sach-xe-green/${model.id}`}
-                          onClick={scrollToTop}
-                          className="block w-full text-sm"
-                        >
-                          {model.model}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
+
+                  {/* Dropdown chứa 2 nhóm: VinFast + Green */}
+                  <DropdownMenuContent align="start" className="w-56">
+                    {/* --- Nhóm VinFast --- */}
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger
+                        className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase mx-0"
+                        onMouseEnter={() => setSelectedid("vf")}
+                      >
+                        VinFast →
+                      </DropdownMenuSubTrigger>
+
+                      <DropdownMenuSubContent>
+                        {vinFastData.map((model: VinFastModel) => (
+                          <DropdownMenuItem key={model.id} asChild>
+                            <Link
+                              to={`/danh-sach-xe-vf/${model.id}`}
+                              onClick={scrollToTop}
+                              className="block w-full text-sm"
+                            >
+                              {model.model}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
+
+                    {/* --- Ngăn cách --- */}
+                    <div className="border-t border-border my-1" />
+
+                    {/* --- Nhóm Green --- */}
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger
+                        className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase"
+                        onMouseEnter={() => setSelectedid("green")}
+                      >
+                        Green →
+                      </DropdownMenuSubTrigger>
+
+                      <DropdownMenuSubContent>
+                        {vinFastGreenData.map((model: VinFastGreenModel) => (
+                          <DropdownMenuItem key={model.id} asChild>
+                            <Link
+                              to={`/danh-sach-xe-green/${model.id}`}
+                              onClick={scrollToTop}
+                              className="block w-full text-sm"
+                            >
+                              {model.model}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
+
+                        <div className="border-t border-border my-1" />
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger
+                        className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase mx-0"
+                        onMouseEnter={() => setSelectedid("vf")}
+                      >
+                        EC Van →
+                      </DropdownMenuSubTrigger>
+
+                      <DropdownMenuSubContent>
+                        {vinFastData.map((model: VinFastModel) => (
+                          <DropdownMenuItem key={model.id} asChild>
+                            <Link
+                              to={`/danh-sach-xe-van/${model.id}`}
+                              onClick={scrollToTop}
+                              className="block w-full text-sm"
+                            >
+                              {model.model}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -209,8 +274,8 @@ export function Header() {
                   <Link
                     to={item.href}
                     onClick={() => {
-                      scrollToTop()
-                      setMobileMenuOpen(false)
+                      scrollToTop();
+                      setMobileMenuOpen(false);
                     }}
                     className={cn(
                       "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
@@ -222,24 +287,26 @@ export function Header() {
                     {item.name}
                   </Link>
                   <div className="pl-6 space-y-1">
-                    {vinFastData.filter((model) => model.type === item.type).map((model: VinFastModel) => (
-                      <Link
-                        key={model.id}
-                        to={`/danh-sach-xe/${model.id}`}
-                        onClick={() => {
-                          scrollToTop()
-                          setMobileMenuOpen(false)
-                        }}
-                        className={cn(
-                          "block px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                          isActivePath(`/danh-sach-xe/${model.id}`)
-                            ? "bg-primary text-primary-foreground"
-                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                        )}
-                      >
-                        {model.model}
-                      </Link>
-                    ))}
+                    {vinFastData
+                      .filter((model) => model.type.includes(model.type))
+                      .map((model: VinFastModel) => (
+                        <Link
+                          key={model.id}
+                          to={`/danh-sach-xe/${model.id}`}
+                          onClick={() => {
+                            scrollToTop();
+                            setMobileMenuOpen(false);
+                          }}
+                          className={cn(
+                            "block px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                            isActivePath(`/danh-sach-xe/${model.id}`)
+                              ? "bg-primary text-primary-foreground"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          )}
+                        >
+                          {model.model}
+                        </Link>
+                      ))}
                   </div>
                 </div>
               ) : (
@@ -247,8 +314,8 @@ export function Header() {
                   key={item.name}
                   to={item.href}
                   onClick={() => {
-                    scrollToTop()
-                    setMobileMenuOpen(false)
+                    scrollToTop();
+                    setMobileMenuOpen(false);
                   }}
                   className={cn(
                     "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
@@ -265,8 +332,8 @@ export function Header() {
               <Link
                 to="/dat-coc"
                 onClick={() => {
-                  scrollToTop()
-                  setMobileMenuOpen(false)
+                  scrollToTop();
+                  setMobileMenuOpen(false);
                 }}
               >
                 <Button size="sm" className="hero-button">
@@ -278,5 +345,5 @@ export function Header() {
         </motion.div>
       )}
     </header>
-  )
+  );
 }
