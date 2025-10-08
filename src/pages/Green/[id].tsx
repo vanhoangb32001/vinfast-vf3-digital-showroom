@@ -38,8 +38,12 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link, useParams } from "react-router-dom";
-import { vinFastGreenData, VinFastGreenModel } from "@/data/specificationsGreen";
+import {
+  vinFastGreenData,
+  VinFastGreenModel,
+} from "@/data/specificationsGreen";
 import SwiperCar from "./components/swipercar";
+import ProductSelect from "../Product";
 export default function ChiTietXeGreenDetail() {
   const { id } = useParams<{ id: string }>();
   const [is360Open, setIs360Open] = useState(false);
@@ -60,7 +64,9 @@ export default function ChiTietXeGreenDetail() {
   };
 
   // Find the model based on the id from the URL
-  const model = vinFastGreenData.find(model => model.id === id && model.type === "green");
+  const model = vinFastGreenData.find(
+    (model) => model.id === id && model.type === "green"
+  );
 
   // Fallback if no model is found
   if (!model) {
@@ -93,7 +99,7 @@ export default function ChiTietXeGreenDetail() {
 
   return (
     <div className="min-h-screen">
-      <SwiperCar/>
+      <SwiperCar />
       {/* Hero Section */}
       {/* <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-700">
         <motion.div
@@ -164,7 +170,6 @@ export default function ChiTietXeGreenDetail() {
           <div dangerouslySetInnerHTML={{ __html: model.content.ct51 }} />
           <div dangerouslySetInnerHTML={{ __html: model.content.ct52 }} />
 
-
           <div className="text-center mb-10 my-3 mt-10">
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
               Thông số kỹ thuật
@@ -190,8 +195,9 @@ export default function ChiTietXeGreenDetail() {
                   {Object.entries(model.specs).map(
                     ([category, detail], index) => (
                       <TableRow key={index} className="hover:bg-muted/50">
-                        <TableCell className="font-medium">
-                          {category}
+                        <TableCell className="font-medium"
+                        >
+                            {category}
                         </TableCell>
                         <TableCell>{detail}</TableCell>
                       </TableRow>
@@ -228,18 +234,35 @@ export default function ChiTietXeGreenDetail() {
       </motion.div>
       <div className="flex space-x-5 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-[50%]">
-          <h1 className="text-4xl font-bold">3,5 km – Khoảng cách nhỏ cho mục tiêu lớn</h1>
-          <p className="my-3">Định hình tiên phong thúc đẩy ngành công nghiệp xe điện, hướng tới một tương lai Xanh và Thông Minh, VinFast đã đầu tư hàng trăm triệu USD phát triển hạ tầng, từng bước “phủ rộng” trạm sạc xe điện:</p>
+          <h1 className="text-4xl font-bold">
+            3,5 km – Khoảng cách nhỏ cho mục tiêu lớn
+          </h1>
+          <p className="my-3">
+            Định hình tiên phong thúc đẩy ngành công nghiệp xe điện, hướng tới
+            một tương lai Xanh và Thông Minh, VinFast đã đầu tư hàng trăm triệu
+            USD phát triển hạ tầng, từng bước “phủ rộng” trạm sạc xe điện:
+          </p>
           <ul className="list-disc ml-6">
-            <li className="my-3">Hệ thống trạm sạc xe điện VinFast trải dài 63 tỉnh và thành phố.</li>
-            <li className="my-3">106 tuyến quốc lộ quan trọng đều có trạm sạc.</li>
-            <li className="my-3">80/85 thành phố đã được lắp đặt hệ thống trạm sạc.</li>
-            <li className="my-3">Khoảng cách ngắn 3,5 km giữa 2 trạm sạc trong thành phố.</li>
+            <li className="my-3">
+              Hệ thống trạm sạc xe điện VinFast trải dài 63 tỉnh và thành phố.
+            </li>
+            <li className="my-3">
+              106 tuyến quốc lộ quan trọng đều có trạm sạc.
+            </li>
+            <li className="my-3">
+              80/85 thành phố đã được lắp đặt hệ thống trạm sạc.
+            </li>
+            <li className="my-3">
+              Khoảng cách ngắn 3,5 km giữa 2 trạm sạc trong thành phố.
+            </li>
           </ul>
-          <p className="my-3">VinFast cam kết nỗ lực mang đến nhiều tiện ích, giúp hành trình lái xe điện của người Việt thật dễ dàng!</p>
+          <p className="my-3">
+            VinFast cam kết nỗ lực mang đến nhiều tiện ích, giúp hành trình lái
+            xe điện của người Việt thật dễ dàng!
+          </p>
         </div>
         <div className="w-[50%]">
-          <img src='/images/chung.jpg' alt="Ảnh" />
+          <img src="/images/chung.jpg" alt="Ảnh" />
         </div>
       </div>
     </div>

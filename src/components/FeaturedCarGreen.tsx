@@ -15,6 +15,8 @@ export function FeaturedCarGreen() {
     {}
   );
 
+  
+
   // Initialize selected colors (first color for each car)
   useEffect(() => {
     const initialColors: Record<string, string> = {};
