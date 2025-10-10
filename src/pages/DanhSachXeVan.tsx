@@ -9,20 +9,10 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import {
-  vinFastGreenData,
-  VinFastGreenModel,
-} from "@/data/specificationsGreen";
-import { FeaturedCarGreen } from "@/components/FeaturedCarGreen";
-import {
-  carExtraExtensions,
-  carExtraExtension,
-} from "@/data/carExtraExtensions";
-import { vinFastData, VinFastModel } from "@/data/specifications";
-import { VanData, VanModel } from "@/data/specificationsVan";
-import { featuredVanCars,featuredVanCar } from "@/data/featuredVanCar";
+import { featuredVanCar, featuredVanCars } from "@/data/featuredVanCar";
+import { VanModel, VanData } from "@/data/specificationsVan";
 
-export default function Product() {
+export default function DanhSachXeVan() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,12 +29,7 @@ export default function Product() {
   };
 
   const getCarImage = (id: string) => {
-    const car = carExtraExtensions.find((c) => c.id === id);
-    return car?.colors[0]?.image || "/fallback-car.png";
-  };
-  const getCarImageVan = (id: string) => {
-    const car = VanData.find((c) => c.id === id);
-    console.log(`car đau`, car);
+    const car = featuredVanCars.find((c) => c.id === id);
     return car?.colors[0]?.image || "/fallback-car.png";
   };
   return (
@@ -69,7 +54,7 @@ export default function Product() {
         </div>
       </section>
 
-      <motion.section
+        <motion.section
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -84,8 +69,8 @@ export default function Product() {
           </p>
         </div>
         {/* VF */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {vinFastData.map((model: VinFastModel) => (
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {VanData.map((model: VanModel) => (
             <motion.div key={model.id} variants={itemVariants}>
               <Card className="flex flex-col hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
@@ -96,34 +81,31 @@ export default function Product() {
                 </CardHeader>
                 <CardContent className="flex-1">
                   <div className="space-y-4">
-                    <div
-                      dangerouslySetInnerHTML={{ __html: model.ava }}
-                      className="h-[180px]"
-                    />
                     <div className="flex items-center space-x-2">
                       <Battery className="h-5 w-5 text-primary" />
                       <span className="text-sm">
                         <strong>Phạm vi: </strong>
-                        {model.distance || "N/A"}
+                        {model.distance || 'N/A'}
                       </span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Zap className="h-5 w-5 text-primary" />
                       <span className="text-sm">
                         <strong>Công suất: </strong>
-                        {model.operate || "N/A"}
+                        {model.operate || 'N/A'}
                       </span>
                     </div>
                     <div className="flex items-start space-x-2 h-[70px]">
                       <span className="text-sm">
                         <strong>Giá bán: </strong>
-                        {model.priceEco ||
-                          model.pricePlus ||
-                          model.pricePlus2 ||
-                          "N/A"}
+                         {
+                          model.comparisons.find(
+                            (comp) => comp.parameter === "Giá bán (ước tính)"
+                          )?.values[0]
+                        }
                       </span>
                     </div>
-                    <Link to={`/danh-sach-xe-vf/${model.id}`}>
+                    <Link to={`/danh-sach-xe-van/${model.id}`}>
                       <Button className="w-full bg-primary hover:bg-primary/90">
                         Xem chi tiết
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -136,8 +118,8 @@ export default function Product() {
           ))}
         </div>
 
-        {/* Green */}
-        <div className="text-center mb-10 pt-16">
+          {/* Green */}
+          <div className="text-center mb-10 pt-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
             Các Mẫu Xe Điện Green
           </h2>
@@ -146,7 +128,7 @@ export default function Product() {
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {vinFastGreenData.map((model: VinFastGreenModel) => (
+          {VanData.map((model: VanModel) => (
             <motion.div key={model.id} variants={itemVariants}>
               <Card className="lg:h-[auto] md:h-[auto] hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                 <CardHeader>
@@ -158,11 +140,11 @@ export default function Product() {
                 <CardContent>
                   <div className="space-y-4 ">
                     <div className="flex justify-center">
-                      <img
-                        src={getCarImage(model.id)}
-                        alt={model.model}
-                        className="h-40 object-contain "
-                      />
+                    <img
+                      src={getCarImage(model.id)}
+                      alt={model.model}
+                      className="h-40 object-contain "
+                    />
                     </div>
                     <div className="flex items-center space-x-2">
                       <Battery className="h-5 w-5 text-primary" />
@@ -200,72 +182,8 @@ export default function Product() {
             </motion.div>
           ))}
         </div>
-
-        {/* Van */}
-        <div className="text-center mb-10 pt-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
-            Các Mẫu Xe Van
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Chọn mẫu xe Van
-          </p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {VanData.map((model: VanModel) => (
-            <motion.div key={model.id} variants={itemVariants}>
-              <Card className="lg:h-[auto] md:h-[auto] hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-center text-2xl ">
-                    <Car className="mr-2 h-6 w-6 text-primary " />
-                    {model.model}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4 ">
-                    <div className="flex justify-center">
-                      <img
-                        src={getCarImageVan(model.id)}
-                        alt={model.model}
-                        className="h-40 object-contain "
-                      />
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Battery className="h-5 w-5 text-primary" />
-                      <span className="text-sm">
-                        <strong>Phạm vi: </strong>
-                        {model.specs["Quãng đường"]}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Zap className="h-5 w-5 text-primary" />
-                      <span className="text-sm">
-                        <strong>Công suất: </strong>
-                        {model.specs["Động cơ"].split(", ")[1]}
-                      </span>
-                    </div>
-                    <div className="flex items-top space-x-2 lg:h-[60px] md:h-[65px]">
-                      <span className="text-sm">
-                        <strong>Giá bán: </strong>
-                        {
-                          model.comparisons.find(
-                            (comp) => comp.parameter === "Giá bán (ước tính)"
-                          )?.values[0]
-                        }
-                      </span>
-                    </div>
-                    <Link to={`/danh-sach-xe-van/${model.id}`}>
-                      <Button className="w-full bg-primary hover:bg-primary/90 lg:mt-0 md:mt-0 mt-4">
-                        Xem chi tiết
-                        <ArrowRight className="ml- h-5 w-5" />
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
       </motion.section>
+
     </div>
   );
 }

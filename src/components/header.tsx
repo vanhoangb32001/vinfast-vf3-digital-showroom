@@ -18,6 +18,8 @@ import {
   vinFastGreenData,
   VinFastGreenModel,
 } from "@/data/specificationsGreen";
+import { featuredVanCar, featuredVanCars } from "@/data/featuredVanCar";
+import { VanModel, VanData } from "@/data/specificationsVan";
 
 const navigation = [
   { name: "Trang chủ", href: "/" },
@@ -25,7 +27,7 @@ const navigation = [
     name: "Sản phẩm",
     href: "/danh-sach-xe",
     isDropdown: true,
-    type: ["vf", "green"],
+    type: ["vf", "green", "ec-van"],
   },
   // {
   //   name: "Sản phẩm VinFast",
@@ -63,6 +65,11 @@ export function Header() {
       return (
         location.pathname === path ||
         location.pathname.startsWith("/danh-sach-xe-vf/")
+      );
+    } else if (path === "/danh-sach-xe-van") {
+      return (
+        location.pathname === path ||
+        location.pathname.startsWith("/danh-sach-xe-van/")
       );
     }
     return location.pathname === path;
@@ -210,13 +217,13 @@ export function Header() {
                     <DropdownMenuSub>
                       <DropdownMenuSubTrigger
                         className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase mx-0"
-                        onMouseEnter={() => setSelectedid("vf")}
+                        onMouseEnter={() => setSelectedid("ec-van")}
                       >
                         EC Van →
                       </DropdownMenuSubTrigger>
 
                       <DropdownMenuSubContent>
-                        {vinFastData.map((model: VinFastModel) => (
+                        {VanData.map((model: VanModel) => (
                           <DropdownMenuItem key={model.id} asChild>
                             <Link
                               to={`/danh-sach-xe-van/${model.id}`}
