@@ -43,7 +43,6 @@ import {
   VinFastGreenModel,
 } from "@/data/specificationsGreen";
 import SwiperCar from "./components/swipercar";
-import ProductSelect from "../Product";
 export default function ChiTietXeGreenDetail() {
   const { id } = useParams<{ id: string }>();
   const [is360Open, setIs360Open] = useState(false);
@@ -195,9 +194,8 @@ export default function ChiTietXeGreenDetail() {
                   {Object.entries(model.specs).map(
                     ([category, detail], index) => (
                       <TableRow key={index} className="hover:bg-muted/50">
-                        <TableCell className="font-medium"
-                        >
-                            {category}
+                        <TableCell className="font-medium">
+                          {category}
                         </TableCell>
                         <TableCell>{detail}</TableCell>
                       </TableRow>

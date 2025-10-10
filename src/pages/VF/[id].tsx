@@ -148,7 +148,7 @@ export default function ChiTietXeVFDetail() {
 
               <div className="mb-6">
                 <div className="text-3xl font-bold mb-2">
-                  {model.priceEco || model.pricePlus || "Liên hệ"}
+                  {model.priceEco || model.pricePlus || model.pricePlus2 || "Liên hệ để biết giá"}
                 </div>
                 <div className="text-white/80 text-sm">Giá khởi điểm</div>
               </div>
