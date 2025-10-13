@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   Car,
   Battery,
@@ -42,6 +42,7 @@ import {
   vinFastGreenData,
   VinFastGreenModel,
 } from "@/data/specificationsGreen";
+import { carExtraExtensions, carExtraExtension } from "@/data/carExtraExtensions";
 import SwiperCar from "./components/swipercar";
 export default function ChiTietXeGreenDetail() {
   const { id } = useParams<{ id: string }>();
@@ -99,35 +100,6 @@ export default function ChiTietXeGreenDetail() {
   return (
     <div className="min-h-screen">
       <SwiperCar />
-      {/* Hero Section */}
-      {/* <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-700">
-        <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="lg:justify-self-end"
-            >
-              <Card className="bg-black/30 backdrop-blur-sm border-white/20">
-                <CardContent className="p-6">
-                  <h3 className="text-white text-xl font-semibold mb-4">Thông số kỹ thuật</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-white mb-1">{model.distance}</div>
-                      <div className="text-white/70 text-sm">Quãng đường</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-white mb-1">{model.operate}</div>
-                      <div className="text-white/70 text-sm">Công suất</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-white mb-1">{model.charging}</div>
-                      <div className="text-white/70 text-sm">Thời gian sạc</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-      </section> */}
 
       <motion.div
         variants={containerVariants}
@@ -169,7 +141,7 @@ export default function ChiTietXeGreenDetail() {
           <div dangerouslySetInnerHTML={{ __html: model.content.ct51 }} />
           <div dangerouslySetInnerHTML={{ __html: model.content.ct52 }} />
 
-          <div className="text-center mb-10 my-3 mt-10">
+          {/* <div className="text-center mb-10 my-3 mt-10">
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
               Thông số kỹ thuật
             </h2>
@@ -177,7 +149,7 @@ export default function ChiTietXeGreenDetail() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Chi tiết đầy đủ về hiệu suất và tính năng của {model.model}
             </p>
-          </div>
+          </div> */}
 
           <Card>
             <CardContent className="p-0">
