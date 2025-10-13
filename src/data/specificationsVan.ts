@@ -123,7 +123,7 @@ export const VanData: VanModel[] = [
     {
       parameter: "Giá bán (ước tính)",
       values: [
-        "435.000.000 VNĐ (sau ưu đãi, kèm pin; hướng đến doanh nghiệp nhỏ)",
+        "285.000.000 VNĐ",
         "460.000.000 VNĐ (EV Van tiêu chuẩn, pin thuê riêng)",
         "490.000.000 VNĐ (EV30 bản tiêu chuẩn, pin 41 kWh)",
       ],
@@ -307,7 +307,7 @@ export const VanData: VanModel[] = [
     {
       parameter: "Giá bán (ước tính)",
       values: [
-        "435.000.000 VNĐ (sau ưu đãi, kèm pin; hướng đến doanh nghiệp nhỏ)",
+        "315.000.000 VNĐ",
         "460.000.000 VNĐ (EV Van tiêu chuẩn, pin thuê riêng)",
         "490.000.000 VNĐ (EV30 bản tiêu chuẩn, pin 41 kWh)",
       ],

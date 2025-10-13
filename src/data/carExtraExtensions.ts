@@ -33,7 +33,7 @@ export const carExtraExtensions: carExtraExtension[] = [
     tagline: "Xe điện nhỏ gọn, tiết kiệm",
     description:
       "Mẫu xe điện Minio Green thích hợp cho đô thị, nhỏ gọn, dễ di chuyển.",
-    basePrice: "450.000.000 VNĐ",
+    basePrice: "269.000.000 VNĐ",
     isNew: true,
     colors: [
       {
@@ -75,7 +75,7 @@ export const carExtraExtensions: carExtraExtension[] = [
     tagline: "Thiết kế hiện đại, mạnh mẽ",
     description:
       "Herio Green mang đến trải nghiệm lái xe điện năng động với hiệu suất cao.",
-    basePrice: "650.000.000 VNĐ",
+    basePrice: "499.000.000 VNĐ",
     colors: [
       {
         name: "Đen",
@@ -116,7 +116,7 @@ export const carExtraExtensions: carExtraExtension[] = [
     tagline: "Tiện nghi cao cấp",
     description:
       "Nerio Green dành cho gia đình với không gian rộng và nhiều tiện ích.",
-    basePrice: "820.000.000 VNĐ",
+    basePrice: "668.000.000 VNĐ",
     colors: [
       {
         name: "Đen",
@@ -157,7 +157,7 @@ export const carExtraExtensions: carExtraExtension[] = [
     tagline: "Sang trọng và đẳng cấp",
     description:
       "Limo Green là mẫu xe điện hạng sang, thiết kế limousine hiện đại.",
-    basePrice: "1.200.000.000 VNĐ",
+    basePrice: "749.000.000 VNĐ",
     colors: [
       {
         name: "Đen",

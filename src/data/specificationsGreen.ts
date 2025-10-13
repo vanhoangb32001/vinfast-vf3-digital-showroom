@@ -86,7 +86,7 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "215.000.000 VNĐ (kèm pin; tương đương ~INR 8.99 lakh.",
+          "269.000.000 VNĐ",
           "190-265.000.000 VNĐ (7-9.8 lakh INR, bản cao cấp ~265.000.000)",
           "215-300.000.000 VNĐ (8-11 lakh INR, tùy pin 19.2/24 kWh)",
         ],
@@ -245,7 +245,7 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "458.000.000 VNĐ (sau ưu đãi 4%, kèm pin; tối ưu cho dịch vụ)",
+          "499.000.000 VNĐ",
           "659.000.000 VNĐ (niêm yết, không ưu đãi lớn)",
           "538-588.000.000 VNĐ (niêm yết, tùy pin LFP/Ternary)",
         ],
@@ -397,7 +397,7 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "550.000.000 VNĐ (sau ưu đãi, kèm pin; tối ưu cho taxi)",
+          "668.000.000 VNĐ",
           "766-886.000.000 VNĐ (Dynamic 766.000.000, Premium 886.000.000)",
           "850-950.000.000 VNĐ (bản Standard ~850.000.000; nhập khẩu)",
         ],
@@ -542,7 +542,7 @@ export const vinFastGreenData: VinFastGreenModel[] = [
       {
         parameter: "Giá bán (ước tính)",
         values: [
-          "749.000.000 VNĐ (kèm pin, ưu đãi đến 30/9/2025; lăn bánh ~800.000.000)",
+          "749.000.000 VNĐ",
           "560-658.000.000 VNĐ (xăng, không ưu đãi lớn)",
           "638-660.000.000 VNĐ (xăng, tùy bản)",
         ],

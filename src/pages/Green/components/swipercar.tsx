@@ -156,7 +156,7 @@ export default function SwiperCar() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:justify-self-end">
-            {/* <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
               <h3 className="text-white text-xl font-semibold mb-4">
                 Thông số kỹ thuật
               </h3>
@@ -170,7 +170,7 @@ export default function SwiperCar() {
                   </div>
                 ))}
               </div>
-            </div> */}
+            </div>
           </motion.div>
         </div>
       </div>

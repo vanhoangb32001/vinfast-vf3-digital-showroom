@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +12,16 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
+import {
+  Menubar,
+  MenubarTrigger,
+  MenubarMenu,
+  MenubarItem,
+  MenubarSubTrigger,
+  MenubarSubContent,
+  MenubarContent,
+  MenubarSub,
+} from "@radix-ui/react-menubar";
 import { cn } from "@/lib/utils";
 import { vinFastData, VinFastModel } from "@/data/specifications";
 import {
@@ -49,7 +59,27 @@ const navigation = [
 ];
 
 export function Header() {
+  // Mobile
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileAccordion, setMobileAccordion] = useState<
+    null | "vf" | "green" | "van"
+  >(null);
+    // Tablet
+  const [tabletMenuOpen, setTabletMenuOpen] = useState(false);
+  const [tabletAccordion, setTabletAccordion] = useState<null | "vf" | "green" | "van">(null);
+
+  useEffect(() => {
+    // Khóa scroll nền khi mở menu mobile
+    if (mobileMenuOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen ,tabletMenuOpen]);
+
+  const toggleAccordion = (key: "vf" | "green" | "van") =>
+    setMobileAccordion((prev) => (prev === key ? null : key));
+  // Desktop
   const [selectedid, setSelectedid] = useState("");
   const [dropdownOpens, setDropdownOpens] = useState<{
     [key: string]: boolean;
@@ -111,12 +141,12 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Mobile menu button */}
-        <div className="flex lg:hidden">
+        {/* Mobile navigation menu button */}
+        <div className="flex lg:hidden md:hidden">
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setMobileMenuOpen((o) => !o)}
             className="inline-flex items-center justify-center"
           >
             <span className="sr-only">Mở menu chính</span>
@@ -125,13 +155,259 @@ export function Header() {
             ) : (
               <Menu className="h-6 w-6" aria-hidden="true" />
             )}
-            
           </Button>
+
+          {/* Drawer mobile full-height */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                className="fixed inset-0 z-[60] lg:hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                {/* Overlay tối */}
+                <div
+                  className="absolute inset-0 bg-black/50"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
+                {/* Panel trượt từ phải */}
+                <motion.aside
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "tween", duration: 0.25 }}
+                  className="absolute right-0 top-0 h-screen w-[90vw] max-w-sm bg-background shadow-2xl flex flex-col"
+                >
+                  {/* Header panel */}
+                  <div className="flex items-center justify-between h-7">
+                    
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <X className="h-6 w-6" />
+                    </Button>
+                  </div>
+
+                  {/* Nội dung cuộn */}
+                  <div className="flex-1 overflow-y-auto">
+                    <nav className="px-2 py-3">
+                      {/* Trang chủ */}
+                      <Link
+                        to="/"
+                        onClick={() => {
+                          scrollToTop();
+                          setMobileMenuOpen(false);
+                        }}
+                        className={cn(
+                          "block px-3 py-3 text-base font-semibold rounded-md",
+                          location.pathname === "/"
+                            ? "bg-primary/10 text-foreground"
+                            : "hover:bg-muted text-foreground"
+                        )}
+                      >
+                        Trang chủ
+                      </Link>
+
+                      {/* Sản phẩm - Accordion nhóm */}
+                      <div className="mt-2">
+
+                        {/* VinFast VF */}
+                        <button
+                          className="w-full flex items-center justify-between px-3 py-3 rounded-md hover:bg-muted"
+                          onClick={() => toggleAccordion("vf")}
+                          aria-expanded={mobileAccordion === "vf"}
+                        >
+                          <span className="text-base font-semibold">
+                            VinFast VF
+                          </span>
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 transition-transform",
+                              mobileAccordion === "vf" && "rotate-180"
+                            )}
+                          />
+                        </button>
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: mobileAccordion === "vf" ? "auto" : 0,
+                            opacity: mobileAccordion === "vf" ? 1 : 0,
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-3">
+                            {vinFastData.map((model: VinFastModel) => (
+                              <Link
+                                key={model.id}
+                                to={`/danh-sach-xe-vf/${model.id}`}
+                                onClick={() => {
+                                  scrollToTop();
+                                  setMobileMenuOpen(false);
+                                }}
+                                className="block px-3 py-2 text-sm rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+                              >
+                                {model.model}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+
+                        {/* VinFast Green */}
+                        <button
+                          className="w-full flex items-center justify-between px-3 py-3 rounded-md hover:bg-muted mt-1"
+                          onClick={() => toggleAccordion("green")}
+                          aria-expanded={mobileAccordion === "green"}
+                        >
+                          <span className="text-base font-semibold">
+                            VinFast Green
+                          </span>
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 transition-transform",
+                              mobileAccordion === "green" && "rotate-180"
+                            )}
+                          />
+                        </button>
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: mobileAccordion === "green" ? "auto" : 0,
+                            opacity: mobileAccordion === "green" ? 1 : 0,
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-3">
+                            {vinFastGreenData.map(
+                              (model: VinFastGreenModel) => (
+                                <Link
+                                  key={model.id}
+                                  to={`/danh-sach-xe-green/${model.id}`}
+                                  onClick={() => {
+                                    scrollToTop();
+                                    setMobileMenuOpen(false);
+                                  }}
+                                  className="block px-3 py-2 text-sm rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+                                >
+                                  {model.model}
+                                </Link>
+                              )
+                            )}
+                          </div>
+                        </motion.div>
+
+                        {/* EC Van */}
+                        <button
+                          className="w-full flex items-center justify-between px-3 py-3 rounded-md hover:bg-muted mt-1"
+                          onClick={() => toggleAccordion("van")}
+                          aria-expanded={mobileAccordion === "van"}
+                        >
+                          <span className="text-base font-semibold">
+                            EC Van
+                          </span>
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 transition-transform",
+                              mobileAccordion === "van" && "rotate-180"
+                            )}
+                          />
+                        </button>
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: mobileAccordion === "van" ? "auto" : 0,
+                            opacity: mobileAccordion === "van" ? 1 : 0,
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-3">
+                            {VanData.map((model: VanModel) => (
+                              <Link
+                                key={model.id}
+                                to={`/danh-sach-xe-van/${model.id}`}
+                                onClick={() => {
+                                  scrollToTop();
+                                  setMobileMenuOpen(false);
+                                }}
+                                className="block px-3 py-2 text-sm rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+                              >
+                                {model.model}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      </div>
+
+                      {/* Các mục đơn (ví dụ Chương trình, Đặt cọc) */}
+                      <div className=" space-y-1">
+                        <Link
+                          to="/chuong-trinh"
+                          onClick={() => {
+                            scrollToTop();
+                            setMobileMenuOpen(false);
+                          }}
+                          className={cn(
+                            "block px-3 py-3 text-base font-semibold rounded-md",
+                            isActivePath("/chuong-trinh")
+                              ? "bg-primary/10 text-foreground"
+                              : "hover:bg-muted text-foreground"
+                          )}
+                        >
+                          Chương trình
+                        </Link>
+                        <Link
+                          to="/dat-coc"
+                          onClick={() => {
+                            scrollToTop();
+                            setMobileMenuOpen(false);
+                          }}
+                          className={cn(
+                            "block px-3 py-3 text-base font-semibold rounded-md",
+                            isActivePath("/dat-coc")
+                              ? "bg-primary/10 text-foreground"
+                              : "hover:bg-muted text-foreground"
+                          )}
+                        >
+                          Đặt cọc
+                        </Link>
+                      </div>
+                    </nav>
+                  </div>
+
+                  {/* Footer panel: Logo + CTA ở dưới cùng */}
+                  <div className="border-t px-5 py-4 flex items-center justify-between">
+                    <img
+                      src="/Logo.png"
+                      alt="VinFast Logo"
+                      className="h-8 w-8"
+                    />
+                    <Link
+                      to="/dat-coc"
+                      onClick={() => {
+                        scrollToTop();
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <Button size="sm" className="hero-button">
+                        Đăng ký tư vấn
+                      </Button>
+                    </Link>
+                  </div>
+                </motion.aside>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
+
+         {/* Tablet Navigation (md to <lg) */}
+        <div className="hidden md:flex lg:hidden">
+          </div>
 
         {/* Desktop navigation */}
 
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="lg:flex lg:gap-x-12 md:gap-x-4 hidden sm:flex">
           {navigation.map((item) =>
             item.isDropdown ? (
               <div
@@ -149,7 +425,7 @@ export function Header() {
                       to={item.href}
                       onClick={(e) => handleTriggerClick(e, item.href)}
                       className={cn(
-                        "text-sm font-semibold leading-6 flex items-center gap-1 px-3 rounded-md",
+                        "text-sm font-semibold leading-6 flex items-center gap-1 px-3 md:px-0 rounded-md",
                         isActivePath(item.href)
                           ? "text-primary"
                           : "text-muted-foreground hover:text-primary"
@@ -213,7 +489,7 @@ export function Header() {
                       </DropdownMenuSubContent>
                     </DropdownMenuSub>
 
-                        <div className="border-t border-border my-1" />
+                    <div className="border-t border-border my-1" />
                     <DropdownMenuSub>
                       <DropdownMenuSubTrigger
                         className="px-2 py-1 text-xs font-semibold text-muted-foreground uppercase mx-0"
@@ -264,93 +540,6 @@ export function Header() {
           </Link>
         </div>
       </nav>
-
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <motion.div
-          className="lg:hidden"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <div className="space-y-2 px-4 pb-4 pt-2">
-            {navigation.map((item) =>
-              item.isDropdown ? (
-                <div key={item.name}>
-                  <Link
-                    to={item.href}
-                    onClick={() => {
-                      scrollToTop();
-                      setMobileMenuOpen(false);
-                    }}
-                    className={cn(
-                      "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
-                      isActivePath(item.href)
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                  <div className="pl-6 space-y-1">
-                    {vinFastData
-                      .filter((model) => model.type.includes(model.type))
-                      .map((model: VinFastModel) => (
-                        <Link
-                          key={model.id}
-                          to={`/danh-sach-xe/${model.id}`}
-                          onClick={() => {
-                            scrollToTop();
-                            setMobileMenuOpen(false);
-                          }}
-                          className={cn(
-                            "block px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                            isActivePath(`/danh-sach-xe/${model.id}`)
-                              ? "bg-primary text-primary-foreground"
-                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                          )}
-                        >
-                          {model.model}
-                        </Link>
-                      ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => {
-                    scrollToTop();
-                    setMobileMenuOpen(false);
-                  }}
-                  className={cn(
-                    "block px-3 py-2 text-base font-semibold leading-7 rounded-md transition-colors",
-                    isActivePath(item.href)
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  )}
-                >
-                  {item.name}
-                </Link>
-              )
-            )}
-            <div className="flex items-center justify-between pt-4 border-t border-border">
-              <Link
-                to="/dat-coc"
-                onClick={() => {
-                  scrollToTop();
-                  setMobileMenuOpen(false);
-                }}
-              >
-                <Button size="sm" className="hero-button">
-                  Đăng ký tư vấn
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </motion.div>
-      )}
     </header>
   );
 }

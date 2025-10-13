@@ -104,7 +104,7 @@ export function FeaturedCarSlider() {
 
       {/* Content */}
       <div className="relative z-10 h-full flex items-center">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-8 items-center">
           {/* Left: Car Info */}
           <motion.div
             key={currentIndex}
@@ -184,7 +184,7 @@ export function FeaturedCarSlider() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:justify-self-end"
           >
-            <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hidden md:block">
               <h3 className="text-white text-xl font-semibold mb-4">
                 Thông số kỹ thuật
               </h3>
