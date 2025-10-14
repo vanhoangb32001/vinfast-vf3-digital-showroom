@@ -28,21 +28,21 @@ export function SellerInfoSection() {
           </h1>
           <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-6 mb-6 justify-center">
             <a href={Profile.zalo}
-          target="_blank"
-          rel="noopener noreferrer">
-            <img
-              src="/qc1.jpg"
-              alt="Hình qc"
-              className="w-15 h-15 rounded-lg"
-            /></a>
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="/qc1.jpg"
+                alt="Hình qc"
+                className="w-15 h-15 rounded-lg"
+              /></a>
             <a href={Profile.zalo}
-          target="_blank"
-          rel="noopener noreferrer">
-            <img
-              src="/qc2.jpg"
-              alt="Hình qc"
-              className="w-15 h-15 rounded-lg"
-            /></a>
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="/qc2.jpg"
+                alt="Hình qc"
+                className="w-15 h-15 rounded-lg"
+              /></a>
             <img
               src="/qc3.jpg"
               alt="Hình qc"
