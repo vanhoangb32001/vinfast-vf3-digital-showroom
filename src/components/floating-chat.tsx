@@ -45,11 +45,6 @@ export function FloatingChat() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  // Nút ScrollToTop
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -143,7 +138,7 @@ export function FloatingChat() {
             <div className="grid lg:grid-cols-3 lg:gap-6 md:gap-2">
               <div className="col-span-2 lg:col-span-2 sm:col-span-1">
                 <img
-                  src="/Vf3_Dia.jpg" // Thay bằng đường dẫn đầy đủ nếu cần
+                  src="/public/qc4.jpg" // Thay bằng đường dẫn đầy đủ nếu cần
                   alt="Tư vấn hình ảnh"
                   className="w-full lg:h-full md:h-40 object-contain rounded-md hidden md:block"
                 />
@@ -152,8 +147,8 @@ export function FloatingChat() {
                 <div className="flex items-center justify-center space-x-2 mb-4 ">
                   {/* <MessageCircle className="h-5 w-5 text-primary" /> */}
                   <div className="flex flex-col text-center content-center items-center text-xl text-blue-700 font-black md:flex-row md:block">
-                    <span className="block">Yêu cầu</span>
-                    <span className="block">Báo giá và lái xe thử</span>
+                    <span className="lg:block">Yêu cầu </span>
+                    <span className="lg:block">Báo giá và lái xe thử</span>
                   </div>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -183,7 +178,7 @@ export function FloatingChat() {
                   </div>
 
                   <div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 ">
                       <Label htmlFor="type">Loại xe</Label>
                       <Select
                         value={formData.type}
@@ -218,7 +213,7 @@ export function FloatingChat() {
                       </Select>
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 mt-3">
                       <Label htmlFor="chat-message">Tin nhắn</Label>
                       <Textarea
                         id="chat-message"

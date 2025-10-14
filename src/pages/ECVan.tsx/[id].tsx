@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Car,
   Battery,
@@ -39,8 +39,32 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link, useParams } from "react-router-dom";
 import { VanData,VanModel } from "@/data/specificationsVan";
+import { featuredVanCars,featuredVanCar } from "@/data/featuredVanCar";
 export default function ChiTietXeVanDetail() {
+
   const { id } = useParams<{ id: string }>();
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [selectedColors, setSelectedColors] = useState<Record<string, string>>({});
+  
+    const model2 = featuredVanCars.find((model) => model.id === id);
+  
+    // Initialize selected colors (first color for each car)
+    useEffect(() => {
+      const initialColors: Record<string, string> = {};
+      featuredVanCars.forEach((car) => {
+        initialColors[car.id] = car.colors[0].code;
+      });
+      setSelectedColors(initialColors);
+    }, []);
+    const currentCar = featuredVanCars[currentIndex];
+    const selectedColor = selectedColors[model2?.id] || model2?.colors[0]?.code;
+    const currentCarImage = model2?.colors.find(
+      (c) => c.code === selectedColor
+    )?.image;
+  
+    const handleColorChange = (carId: string, colorCode: string) => {
+      setSelectedColors((prev) => ({ ...prev, [carId]: colorCode }));
+    };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -141,7 +165,7 @@ export default function ChiTietXeVanDetail() {
             </h2>
 
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Chi tiết đầy đủ về hiệu suất và tính năng của {model.model}
+              Chi tiết đầy đủ về hiệu suất và tính năng của EC Van
             </p>
           </div>
 
@@ -179,11 +203,11 @@ export default function ChiTietXeVanDetail() {
           className="text-center bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-12 text-white"
         >
           <h2 className="text-3xl font-bold mb-4">
-            Sẵn sàng trải nghiệm {model.model}?
+            Sẵn sàng trải nghiệm EC Van?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Đặt cọc ngay hôm nay để nhận ưu đãi đặc biệt và là người đầu tiên sở
-            hữu {model.model}
+            hữu EC Van
           </p>
           <Link to="/dat-coc">
             <Button

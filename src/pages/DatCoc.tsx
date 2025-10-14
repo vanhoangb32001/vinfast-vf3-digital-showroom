@@ -180,7 +180,7 @@ export default function DatCoc() {
             </p>
             <div className="mt-8">
               <Badge className="bg-white/20 border-white/30 text-white text-lg px-4 py-2">
-                🎉 Ưu đãi: Tặng 2 năm bảo hiểm vật chất đến 30/09/2025
+                🎉 Ưu đãi: Tặng 2 năm bảo hiểm vật chất đến 31/10/2025
               </Badge>
             </div>
           </motion.div>
