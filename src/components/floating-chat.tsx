@@ -126,9 +126,8 @@ export function FloatingChat() {
       {/* Chat Dialog */}
       <div className="">
         <div
-          className={`fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center ${
-            isOpen ? "block" : "hidden"
-          }`}
+          className={`fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center ${isOpen ? "block" : "hidden"
+            }`}
           onClick={() => setIsOpen(false)}
         >
           <div
@@ -138,7 +137,7 @@ export function FloatingChat() {
             <div className="grid lg:grid-cols-3 lg:gap-6 md:gap-2">
               <div className="col-span-2 lg:col-span-2 sm:col-span-1">
                 <img
-                  src="/public/qc4.jpg" // Thay bằng đường dẫn đầy đủ nếu cần
+                  src="/qc4.jpg" // Thay bằng đường dẫn đầy đủ nếu cần
                   alt="Tư vấn hình ảnh"
                   className="w-full lg:h-full md:h-40 object-contain rounded-md hidden md:block"
                 />

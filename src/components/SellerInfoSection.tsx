@@ -10,16 +10,17 @@ import { Profile } from "@/config/globalconfig";
 export function SellerInfoSection() {
   return (
     <section className="py-20">
-        {/* Header */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 gap-3">
-          <div>
+      {/* Header */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 gap-3">
+        <div>
           <h1 className="flex justify-center text-5xl font-semibold mb-8 "> CHƯƠNG TRÌNH</h1>
-        <div className="grid grid-cols-2 gap-6 mb-8 justify-center">
-          <img src="/public/qc1.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
-          <img src="/public/qc2.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
-          <img src="/public/qc3.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
-          <img src="/public/qc4.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
-        </div> </div>
+          <div className="grid grid-cols-2 gap-6 mb-8 justify-center">
+            <img src="/qc1.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
+            <img src="/qc2.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
+            <img src="/qc3.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
+            <img src="/qc4.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
+          </div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
