@@ -1,24 +1,58 @@
 import { motion } from "framer-motion";
-import { Phone, MapPin, Clock, Shield, Award, Calendar, ChevronRight, Star } from "lucide-react";
+import {
+  Phone,
+  MapPin,
+  Clock,
+  Shield,
+  Award,
+  Calendar,
+  ChevronRight,
+  Star,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Profile } from "@/config/globalconfig";
+import { Link } from "lucide-react";
 
 export function SellerInfoSection() {
   return (
-    <section className="py-20">
+    <section className="lg:py-20 sm:py-14">
       {/* Header */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 gap-3">
         <div>
-          <h1 className="flex justify-center text-5xl font-semibold mb-8 "> CHƯƠNG TRÌNH</h1>
-          <div className="grid grid-cols-2 gap-6 mb-8 justify-center">
-            <img src="/qc1.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
-            <img src="/qc2.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
-            <img src="/qc3.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
-            <img src="/qc4.jpg" alt="Hình qc" className="w-15 h-15 rounded-lg" />
+          <h1 className="flex justify-center items-center lg:text-5xl md:text-4xl font-semibold pb-5 sm:text-3xl sm:pt-0 pt-6">
+            CHƯƠNG TRÌNH
+          </h1>
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-6 mb-6 justify-center">
+            <a href={Profile.zalo}
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="/qc1.jpg"
+                alt="Hình qc"
+                className="w-15 h-15 rounded-lg"
+              /></a>
+            <a href={Profile.zalo}
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="/qc2.jpg"
+                alt="Hình qc"
+                className="w-15 h-15 rounded-lg"
+              /></a>
+            <img
+              src="/qc3.jpg"
+              alt="Hình qc"
+              className="w-15 h-15 rounded-lg"
+            />
+            <img
+              src="/qc4.jpg"
+              alt="Hình qc"
+              className="w-15 h-15 rounded-lg"
+            />
           </div>
         </div>
         <motion.div
@@ -35,7 +69,8 @@ export function SellerInfoSection() {
             </span>
           </h2>
           <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-            Đội ngũ chuyên viên của chúng tôi mang đến trải nghiệm mua sắm xe đẳng cấp với sự tận tâm và chuyên nghiệp.
+            Đội ngũ chuyên viên của chúng tôi mang đến trải nghiệm mua sắm xe
+            đẳng cấp với sự tận tâm và chuyên nghiệp.
           </p>
         </motion.div>
 
@@ -61,8 +96,12 @@ export function SellerInfoSection() {
                 </div>
 
                 {/* Name + Title */}
-                <h3 className="text-2xl font-bold text-foreground mb-2">{Profile.name}</h3>
-                <p className="text-primary text-lg mb-4 italic">{Profile.title}</p>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  {Profile.name}
+                </h3>
+                <p className="text-primary text-lg mb-4 italic">
+                  {Profile.title}
+                </p>
 
                 <Separator className="my-6 bg-gray-600 w-1/2" />
 
@@ -70,27 +109,44 @@ export function SellerInfoSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 w-full">
                   <div className="flex flex-col items-center">
                     <Award className="w-8 h-8 text-blue-400 mb-2" />
-                    <span className="text-foreground font-semibold">{Profile.experience}</span>
-                    <span className="text-muted-foreground text-sm">Kinh nghiệm</span>
+                    <span className="text-foreground font-semibold">
+                      {Profile.experience}
+                    </span>
+                    <span className="text-muted-foreground text-sm">
+                      Kinh nghiệm
+                    </span>
                   </div>
                   <div className="flex flex-col items-center">
                     <Shield className="w-8 h-8 text-blue-400 mb-2" />
-                    <span className="text-foreground font-semibold">Uy tín hàng đầu</span>
-                    <span className="text-muted-foreground text-sm">Đảm bảo chất lượng</span>
+                    <span className="text-foreground font-semibold">
+                      Uy tín hàng đầu
+                    </span>
+                    <span className="text-muted-foreground text-sm">
+                      Đảm bảo chất lượng
+                    </span>
                   </div>
                   <div className="flex flex-col items-center">
                     <Calendar className="w-8 h-8 text-blue-400 mb-2" />
-                    <span className="text-foreground font-semibold">Hỗ trợ 24/7</span>
-                    <span className="text-muted-foreground text-sm">Luôn sẵn sàng</span>
+                    <span className="text-foreground font-semibold">
+                      Hỗ trợ 24/7
+                    </span>
+                    <span className="text-muted-foreground text-sm">
+                      Luôn sẵn sàng
+                    </span>
                   </div>
                 </div>
 
                 {/* Specialties */}
                 <div className="mb-8 w-full">
-                  <h4 className="text-lg font-semibold text-foreground mb-3">Chuyên môn</h4>
+                  <h4 className="text-lg font-semibold text-foreground mb-3">
+                    Chuyên môn
+                  </h4>
                   <div className="flex flex-wrap justify-center gap-2">
                     {Profile.specialties.map((spec, idx) => (
-                      <Badge key={idx} className="bg-blue-500 text-white px-3 py-1">
+                      <Badge
+                        key={idx}
+                        className="bg-blue-500 text-white px-3 py-1"
+                      >
                         {spec}
                       </Badge>
                     ))}
@@ -99,10 +155,15 @@ export function SellerInfoSection() {
 
                 {/* Languages */}
                 <div className="mb-8 w-full">
-                  <h4 className="text-lg font-semibold text-foreground mb-3">Ngôn ngữ</h4>
+                  <h4 className="text-lg font-semibold text-foreground mb-3">
+                    Ngôn ngữ
+                  </h4>
                   <div className="flex flex-wrap justify-center gap-2">
                     {Profile.languages.map((lang, idx) => (
-                      <Badge key={idx} className="bg-blue-500 text-white px-3 py-1">
+                      <Badge
+                        key={idx}
+                        className="bg-blue-500 text-white px-3 py-1"
+                      >
                         {lang}
                       </Badge>
                     ))}
@@ -117,16 +178,26 @@ export function SellerInfoSection() {
                       <a
                         href={`tel:${Profile.phone}`}
                         className="hover:underline underline-offset-2 cursor-pointer"
-                      >{Profile.phone}</a>
+                      >
+                        {Profile.phone}
+                      </a>
                     </span>
-                    <a href={Profile.zalo} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={Profile.zalo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <img
                         src="/zaloicon.webp"
                         alt="Zalo"
                         className="w-5 h-5"
                       />
                     </a>
-                    <a href={Profile.fanpage} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={Profile.fanpage}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <img
                         src="/fb-icon.png"
                         alt="Facebook"
@@ -169,21 +240,31 @@ export function SellerInfoSection() {
                     <Clock className="w-6 h-6 text-blue-400" />
                   </div>
                   <h4 className="text-foreground font-semibold">Hỗ trợ 24/7</h4>
-                  <p className="text-muted-foreground text-sm">Tận tâm mọi lúc</p>
+                  <p className="text-muted-foreground text-sm">
+                    Tận tâm mọi lúc
+                  </p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-3">
                     <Award className="w-6 h-6 text-blue-400" />
                   </div>
-                  <h4 className="text-foreground font-semibold">Dịch vụ cao cấp</h4>
-                  <p className="text-muted-foreground text-sm">Trải nghiệm độc quyền</p>
+                  <h4 className="text-foreground font-semibold">
+                    Dịch vụ cao cấp
+                  </h4>
+                  <p className="text-muted-foreground text-sm">
+                    Trải nghiệm độc quyền
+                  </p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-3">
                     <Star className="w-6 h-6 text-blue-400" />
                   </div>
-                  <h4 className="text-foreground font-semibold">Chất lượng vượt trội</h4>
-                  <p className="text-muted-foreground text-sm">Đẳng cấp quốc tế</p>
+                  <h4 className="text-foreground font-semibold">
+                    Chất lượng vượt trội
+                  </h4>
+                  <p className="text-muted-foreground text-sm">
+                    Đẳng cấp quốc tế
+                  </p>
                 </div>
               </div>
               <a href={`tel:${Profile.phone}`}>
