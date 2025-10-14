@@ -51,7 +51,7 @@ export function ContactForm() {
       {/* Background hình ảnh */}
       <div className="absolute inset-0">
         <img
-          src="https://wallpapercave.com/wp/wp8806303.jpg"
+          src="/public/Limo-footer.png"
           alt="VinFast background"
           className="w-full h-full object-cover"
         />

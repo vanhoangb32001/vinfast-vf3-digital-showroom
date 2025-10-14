@@ -96,14 +96,14 @@ export const vinFastData: VinFastModel[] = [
     id: "vf3",
     model: "VF3",
     type: "vf",
-  //   catagory: [{
-  //     name: "VF3",
-  //     priceEco: "299.000.000 VNĐ",
-  //     pricePlus: "fsdsdf",
-  //     pricePlus2: "sdfdf",
-  //   },
-  //   {name: "VF3 Pro", priceEco: "350.000.000 VNĐ", pricePlus: "fsdsdf", pricePlus2: "sdfdf"},
-  // ],
+    //   catagory: [{
+    //     name: "VF3",
+    //     priceEco: "299.000.000 VNĐ",
+    //     pricePlus: "fsdsdf",
+    //     pricePlus2: "sdfdf",
+    //   },
+    //   {name: "VF3 Pro", priceEco: "350.000.000 VNĐ", pricePlus: "fsdsdf", pricePlus2: "sdfdf"},
+    // ],
     priceEco: "299.000.000 VNĐ",
     pricePlus: "",
     pricePlus2: "",
@@ -742,8 +742,7 @@ export const vinFastData: VinFastModel[] = [
       },
     ],
     content: {
-      ct1: `<img  class="w-full" src="/images/vf6/1.jpg" alf="Ảnh vf6"/>
-    <h1 class="uppercase font-bold text-3xl my-3">Triết lý thiết kế “Cặp đối lập tự nhiên”</h1>
+      ct1: `<h1 class="uppercase font-bold text-3xl my-3">Triết lý thiết kế “Cặp đối lập tự nhiên”</h1>
           <p class="my-3">VinFast VF 6 là tuyệt tác nghệ thuật được thiết kế dựa trên triết lý “Cặp đối lập tự nhiên”, tạo nên sự cân bằng hoàn hảo giữa các yếu tố tưởng chừng như đối lập: thú vị – tinh tế, công nghệ – con người.</p>`,
       ct11: `<div class='flex space-x-7 my-5'>
               <div class="w-[50%]">
@@ -1142,7 +1141,7 @@ export const vinFastData: VinFastModel[] = [
     ],
     content: {
       ct1: `<h1 class="uppercase font-bold text-3xl my-3">VinFast VF 7 là một bước tiến đột phá trong thiết kế xe ô tô của VinFast</h1>
-    <img  class="w-full" src="/images/vf7/1.jpg" alf="Ảnh vf7"/>  
+    <img  class="w-full" src="/images/vf7/post.jpg" alf="Ảnh vf7"/>  
     <p class="my-3">Những đường nét và hình khối được sử dụng nhịp nhàng và tinh tế, mang đến cho chủ nhân VF 7 không gian trải nghiệm đầy phóng khoáng và tràn đầy năng lượng; song vẫn không làm mất đi sự tối giản, tinh khiết và thời trang vốn có của mẫu xe đánh thức mọi đam mê.</p>
       `,
       ct11: `<div class='flex space-x-7 my-5'>
@@ -2028,7 +2027,7 @@ export const vinFastData: VinFastModel[] = [
     pricePlus2: "",
     distance: "626 KM",
     operate: "402 Hp",
-    charging: "... phút",
+    charging: "26 phút",
     ava: `<img  class="w-full" src='/asset/VF/VF9/vinfast-9-white.png' alt='Ảnh vf9' class='h-[200px]'/>`,
     name: "VinFast VF9",
     tagline: "SUV điện hạng E",
@@ -2212,7 +2211,7 @@ export const vinFastData: VinFastModel[] = [
     pricePlus2: "",
     distance: "626 KM",
     operate: "402 Hp",
-    charging: "... phút",
+    charging: "26 phút",
     ava: `<img  class="w-full" src='/asset/VF/VF9/vinfast-9-white.png' alt='Ảnh vf9' class='h-[200px]'/>`,
     name: "VinFast VF9",
     tagline: "SUV điện hạng E",
