@@ -71,7 +71,7 @@ export interface Comparison {
 
 export const VanData: VanModel[] = [
 {
-  id: "ec-van-standard",
+  id: "ec-van",
   model: "EC Van (Tiêu chuẩn)",
   type: "van",
   price: "285,000,000 VNĐ",
@@ -191,7 +191,7 @@ export const VanData: VanModel[] = [
     ct15: `<p class="uppercase font-bold text-3xl my-3">Không gian chở hàng rộng rãi, bền bỉ</p>`,
     ct16: `<p class="my-3">Khoang hàng EC Van có dung tích lên đến 3.000 lít, sàn phẳng, thuận tiện cho việc sắp xếp hàng hóa. Xe hỗ trợ tải trọng 500 kg, đáp ứng nhu cầu vận chuyển hàng nhẹ và trung bình trong nội đô. Cửa sau mở rộng 180° và cửa lùa bên hông giúp việc bốc dỡ hàng nhanh chóng, tiết kiệm thời gian.</p>`,
     ct2: `<div class="flex justify-center">
-      <img src="/asset/EC/ecvan-red.png" 
+      <img src="/asset/EC/ecvan-white.png" 
       alt="EC Van" 
       class="p-3.5 justify-center " />
     </div>`,
@@ -200,12 +200,12 @@ export const VanData: VanModel[] = [
     ct23: `<p class="my-3">EC Van là giải pháp vận chuyển tối ưu trong kỷ nguyên xanh – tiết kiệm chi phí vận hành, giảm phát thải CO₂ và tiếng ồn, đồng thời mang lại hình ảnh hiện đại cho doanh nghiệp.</p>`,
     ct24: `<div class="flex basis-1/2">
       <div>
-        <img src="/asset/EC/ecvan-red.png" 
+        <img src="/asset/EC/ecvan-xanh-reu.png" 
         alt="EC Van" 
         class="p-3.5 h-full object-cover"/>
       </div>
       <div>
-        <img src="/asset/EC/ecvan-red.png" 
+        <img src="/asset/EC/ecvan-yellow.png" 
         alt="EC Van" 
         class="p-3.5 h-full object-cover"/>
       </div>
@@ -255,7 +255,7 @@ export const VanData: VanModel[] = [
   },
 },
 {
-  id: "ec-van-advanced",
+  id: "ec-van",
   model: "EC Van (Nâng cao)",
   type: "van",
   price: "315,000,000 VNĐ",
@@ -307,7 +307,7 @@ export const VanData: VanModel[] = [
     {
       parameter: "Giá bán (ước tính)",
       values: [
-        "315.000.000 VNĐ",
+        "305.000.000 VNĐ",
         "460.000.000 VNĐ (EV Van tiêu chuẩn, pin thuê riêng)",
         "490.000.000 VNĐ (EV30 bản tiêu chuẩn, pin 41 kWh)",
       ],
@@ -375,7 +375,7 @@ export const VanData: VanModel[] = [
     ct15: `<p class="uppercase font-bold text-3xl my-3">Không gian chở hàng rộng rãi, bền bỉ</p>`,
     ct16: `<p class="my-3">Khoang hàng EC Van có dung tích lên đến 3.000 lít, sàn phẳng, thuận tiện cho việc sắp xếp hàng hóa. Xe hỗ trợ tải trọng 500 kg, đáp ứng nhu cầu vận chuyển hàng nhẹ và trung bình trong nội đô. Cửa sau mở rộng 180° và cửa lùa bên hông giúp việc bốc dỡ hàng nhanh chóng, tiết kiệm thời gian.</p>`,
     ct2: `<div class="flex justify-center">
-      <img src="/asset/EC/ecvan-red.png" 
+      <img src="/asset/EC/ecvan-white.png" 
       alt="EC Van" 
       class="p-3.5 justify-center " />
     </div>`,
@@ -384,12 +384,12 @@ export const VanData: VanModel[] = [
     ct23: `<p class="my-3">EC Van là giải pháp vận chuyển tối ưu trong kỷ nguyên xanh – tiết kiệm chi phí vận hành, giảm phát thải CO₂ và tiếng ồn, đồng thời mang lại hình ảnh hiện đại cho doanh nghiệp.</p>`,
     ct24: `<div class="flex basis-1/2">
       <div>
-        <img src="/asset/EC/ecvan-red.png" 
+        <img src="/asset/EC/ecvan-xanh-reu.png" 
         alt="EC Van" 
         class="p-3.5 h-full object-cover"/>
       </div>
       <div>
-        <img src="/asset/EC/ecvan-red.png" 
+        <img src="/asset/EC/ecvan-yellow.png" 
         alt="EC Van" 
         class="p-3.5 h-full object-cover"/>
       </div>

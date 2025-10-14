@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Car,
   Battery,
@@ -42,7 +42,10 @@ import {
   vinFastGreenData,
   VinFastGreenModel,
 } from "@/data/specificationsGreen";
-import { carExtraExtensions, carExtraExtension } from "@/data/carExtraExtensions";
+import {
+  carExtraExtensions,
+  carExtraExtension,
+} from "@/data/carExtraExtensions";
 import SwiperCar from "./components/swipercar";
 export default function ChiTietXeGreenDetail() {
   const { id } = useParams<{ id: string }>();
@@ -100,12 +103,52 @@ export default function ChiTietXeGreenDetail() {
   return (
     <div className="min-h-screen">
       <SwiperCar />
-
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
+      >
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
+            Thông số nổi bật
+          </h2>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-3">
+          <motion.div variants={itemVariants}>
+            <Card className="flex flex-col items-center text-center">
+              <CardContent className="pt-6">
+                <Battery className="h-8 w-8 text-primary mb-2 mx-auto" />
+                <h3 className="font-bold text-lg mb-1">Quãng đường</h3>
+                <p className="text-2xl font-bold">{model.distance}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Card className="flex flex-col items-center text-center">
+              <CardContent className="pt-6">
+                <Zap className="h-8 w-8 text-primary mb-2 mx-auto" />
+                <h3 className="font-bold text-lg mb-1">Công suất</h3>
+                <p className="text-2xl font-bold">{model.operate}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Card className="flex flex-col items-center text-center">
+              <CardContent className="pt-6">
+                <Zap className="h-8 w-8 text-primary mb-2 mx-auto" />
+                <h3 className="font-bold text-lg mb-1">Thời gian sạc</h3>
+                <p className="text-2xl font-bold">{model.charging}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </motion.section>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
+        className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8"
       >
         {/* Technical Specifications */}
         <motion.section variants={itemVariants} className="mb-16">

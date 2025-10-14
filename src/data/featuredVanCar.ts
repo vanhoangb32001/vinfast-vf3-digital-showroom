@@ -79,7 +79,7 @@ export const featuredVanCars: featuredVanCar[] = [
     tagline: "Xe thương mại điện hiệu quả cho doanh nghiệp",
     description:
       "VinFast EC Van là mẫu xe thương mại chạy điện thiết kế tối ưu cho vận chuyển hàng hóa và dịch vụ - tiết kiệm chi phí vận hành, thân thiện môi trường.",
-    basePrice: "315,000,000 VNĐ",
+    basePrice: "305,000,000 VNĐ",
     colors: [
       {
         name: "Trắng",

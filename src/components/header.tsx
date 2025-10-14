@@ -51,10 +51,10 @@ const navigation = [
   //   isDropdown: true,
   //   type: "green",
   // },
-  {
-    name: "Chương trình",
-    href: "/chuong-trinh",
-  },
+  // {
+  //   name: "Chương trình",
+  //   href: "/chuong-trinh",
+  // },
   { name: "Đặt cọc", href: "/dat-coc" },
 ];
 
@@ -340,23 +340,8 @@ export function Header() {
                         </motion.div>
                       </div>
 
-                      {/* Các mục đơn (ví dụ Chương trình, Đặt cọc) */}
+                      {/* Các mục đơn ( Đặt cọc) */}
                       <div className=" space-y-1">
-                        <Link
-                          to="/chuong-trinh"
-                          onClick={() => {
-                            scrollToTop();
-                            setMobileMenuOpen(false);
-                          }}
-                          className={cn(
-                            "block px-3 py-3 text-base font-semibold rounded-md",
-                            isActivePath("/chuong-trinh")
-                              ? "bg-primary/10 text-foreground"
-                              : "hover:bg-muted text-foreground"
-                          )}
-                        >
-                          Chương trình
-                        </Link>
                         <Link
                           to="/dat-coc"
                           onClick={() => {
@@ -401,10 +386,6 @@ export function Header() {
           </AnimatePresence>
         </div>
 
-         {/* Tablet Navigation (md to <lg) */}
-        <div className="hidden md:flex lg:hidden">
-          </div>
-
         {/* Desktop navigation */}
 
         <div className="lg:flex lg:gap-x-12 md:gap-x-4 hidden sm:flex">
@@ -437,7 +418,7 @@ export function Header() {
                   </DropdownMenuTrigger>
 
                   {/* Dropdown chứa 2 nhóm: VinFast + Green */}
-                  <DropdownMenuContent align="start" className="w-56">
+                  <DropdownMenuContent align="start" className="w-30">
                     {/* --- Nhóm VinFast --- */}
                     <DropdownMenuSub>
                       <DropdownMenuSubTrigger
@@ -535,6 +516,12 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
+          <Link to="/dat-coc" onClick={scrollToTop}>
+            <Button>Đăng ký tư vấn</Button>
+          </Link>
+        </div>
+         {/* Tablet CTA */}
+        <div className="hidden lg:hidden md:flex md:justify-end md:items-center md:gap-4 md:">
           <Link to="/dat-coc" onClick={scrollToTop}>
             <Button>Đăng ký tư vấn</Button>
           </Link>
