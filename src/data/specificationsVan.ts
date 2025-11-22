@@ -71,7 +71,7 @@ export interface Comparison {
 
 export const VanData: VanModel[] = [
 {
-  id: "ec-van",
+  id: "ec-van-standard",
   model: "EC Van (Tiêu chuẩn)",
   type: "van",
   price: "285,000,000 VNĐ",
@@ -163,6 +163,12 @@ export const VanData: VanModel[] = [
   ],
   content: {
     ct1: `<div class="flex flex-col items-center h-full">
+    <div class="p-2 bg-white rounded-xl shadow-md border border-gray-200">
+      <div class="flex flex-col text-xl font-semibold text-gray-700 mb-2">
+        <span class="p-1 text-3xl font-bold">EC Van (Tiêu chuẩn)</span>
+        <span class="mt-1 font-extrabold text-center">285.000.000 VNĐ</span>
+    </div>
+  </div>
       <div>
         <img src="/asset/EC/ecvan-red.png" 
         alt="EC Van" 
@@ -170,15 +176,16 @@ export const VanData: VanModel[] = [
       </div>
       <div class="flex basis-1/2 ">
         <div>
-          <img src="/asset/EC/ecvan-red.png" 
+          <img src="/asset/EC/ecvan-xanh-reu.png" 
           alt="EC Van" 
           class="p-3.5"/>
         </div>
         <div>
-          <img src="/asset/EC/ecvan-red.png" 
+          <img src="/asset/EC/ecvan-yellow.png" 
           alt="EC Van" 
           class="p-3.5" />
         </div>
+        <div></div>
       </div>`,
     ct11: `<h1 class="uppercase font-bold text-3xl my-3">Linh hoạt, tiết kiệm Tối ưu cho vận tải đô thị</h1>`,
     ct12: `<p class="my-3">VinFast EC Van – mẫu xe điện thương mại cỡ nhỏ, hướng đến doanh nghiệp và hộ kinh doanh cần phương tiện vận chuyển tiết kiệm, thân thiện môi trường. Với thiết kế nhỏ gọn, xe dễ dàng di chuyển trong phố hẹp, linh hoạt giao hàng nhanh chóng trong khu đô thị.</p>`,
@@ -255,10 +262,10 @@ export const VanData: VanModel[] = [
   },
 },
 {
-  id: "ec-van",
+  id: "ec-van-advanced",
   model: "EC Van (Nâng cao)",
   type: "van",
-  price: "315,000,000 VNĐ",
+  price: "305,000,000 VNĐ",
   distance: "285 KM",
   operate: "82 Hp",
   charging: "36 phút",
@@ -347,19 +354,26 @@ export const VanData: VanModel[] = [
   ],
   content: {
     ct1: `<div class="flex flex-col items-center h-full">
+    <div class="p-2 bg-white rounded-xl shadow-md border border-gray-200">
+      <div class="flex flex-col text-xl font-semibold text-gray-700 mb-2">
+        <span class="p-1 text-3xl font-bold">EC Van (Nâng cao)</span>
+        <span class="mt-1 font-extrabold text-center">305.000.000 VNĐ</span>
+  </div>
+      </div>
       <div>
         <img src="/asset/EC/ecvan-red.png" 
         alt="EC Van" 
         class="p-3.5 justify-center " />
       </div>
+      
       <div class="flex basis-1/2 ">
         <div>
-          <img src="/asset/EC/ecvan-red.png" 
+          <img src="/asset/EC/ecvan-xanh-reu.png" 
           alt="EC Van" 
           class="p-3.5"/>
         </div>
         <div>
-          <img src="/asset/EC/ecvan-red.png" 
+          <img src="/asset/EC/ecvan-yellow.png" 
           alt="EC Van" 
           class="p-3.5" />
         </div>
