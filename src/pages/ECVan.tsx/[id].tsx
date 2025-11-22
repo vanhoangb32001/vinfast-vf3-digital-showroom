@@ -40,7 +40,9 @@ import { Badge } from "@/components/ui/badge";
 import { Link, useParams } from "react-router-dom";
 import { VanData,VanModel } from "@/data/specificationsVan";
 import { featuredVanCars,featuredVanCar } from "@/data/featuredVanCar";
+
 export default function ChiTietXeVanDetail() {
+
 
   const { id } = useParams<{ id: string }>();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -118,7 +120,6 @@ export default function ChiTietXeVanDetail() {
 
   return (
     <div className="min-h-screen">
-
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -127,7 +128,8 @@ export default function ChiTietXeVanDetail() {
       >
         {/* Technical Specifications */}
         <motion.section variants={itemVariants} className="mb-16">
-                    <div dangerouslySetInnerHTML={{ __html: model.content.ct1 }} />
+          
+          <div dangerouslySetInnerHTML={{ __html: model.content.ct1 }} />
           <div dangerouslySetInnerHTML={{ __html: model.content.ct11 }} />
           <div dangerouslySetInnerHTML={{ __html: model.content.ct12 }} />
           <div dangerouslySetInnerHTML={{ __html: model.content.ct13 }} />

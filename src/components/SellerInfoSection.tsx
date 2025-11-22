@@ -31,7 +31,7 @@ export function SellerInfoSection() {
               target="_blank"
               rel="noopener noreferrer">
               <img
-                src="/qc1.jpg"
+                src="/t11-tr.jpg"
                 alt="Hình qc"
                 className="w-15 h-15 rounded-lg"
               /></a>
@@ -39,17 +39,17 @@ export function SellerInfoSection() {
               target="_blank"
               rel="noopener noreferrer">
               <img
-                src="/qc2.jpg"
+                src="/t11-tl.jpg"
                 alt="Hình qc"
                 className="w-15 h-15 rounded-lg"
               /></a>
             <img
-              src="/qc3.jpg"
+              src="/t11-bl.jpg"
               alt="Hình qc"
               className="w-15 h-15 rounded-lg"
             />
             <img
-              src="/qc4.jpg"
+              src="/t11-br.jpg"
               alt="Hình qc"
               className="w-15 h-15 rounded-lg"
             />
